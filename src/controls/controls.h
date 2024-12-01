@@ -1,0 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   controls.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/29 10:53:29 by dmlasko           #+#    #+#             */
+/*   Updated: 2024/11/29 11:31:53 by dmlasko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fdf.h"
+
+int	keypress_set_offs(int key, t_data *data);
+int	keypress_reset_offs(int key, t_data *data);
+
+int	keypress_zoom(int key, t_data *data);
+int	keypress_z_distance(int key, t_data *data);
+
+int	keypress_switch_clrs(int key, t_data *data);
+
+int	keypress_rotation(int key, t_data *data);

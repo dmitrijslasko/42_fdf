@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gradients_aux.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/01 20:22:04 by dmlasko           #+#    #+#             */
+/*   Updated: 2024/12/01 20:23:45 by dmlasko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int	hex_to_int(const char *hex_string)
 {
-	int	result;
-	char c;
-	int value;
+	int		result;
+	int		value;
+	char	c;
 
 	result = 0;
 	hex_string = (hex_string + 2);

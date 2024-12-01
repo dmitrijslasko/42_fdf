@@ -37,7 +37,7 @@ void    print_map(t_map *map);
 void    print_map_coors(t_map *map);
 
 // clrs
-int		get_clr_between_clrs(double distance, int start_clr, int end_clr);
+int		get_clr_bween_clrs(double distance, int start_clr, int end_clr);
 int		hex_to_int(const char *hexString);
 
 // drawing
@@ -72,7 +72,7 @@ void    *gc_malloc(t_list **pointers, int size, char *desc);
 
 void	update_bounding_box(t_data *data);
 
-void    init_view(t_data *data);
+void    init_view(t_view *view);
 void    setup_view(t_data *data);
 
 void	show_admin(t_data *data);
@@ -99,7 +99,7 @@ int	check_arguments(int argc, char **argv);
 void reset_angle_degrees(double *angle);
 void reset_all_angle_degrees(t_data *data);
 
-int		get_clr_between_points(t_data *data, t_coor point_1, t_coor point_2, double distance);
+int		get_clr_bween_points(t_data *data, t_coor point_1, t_coor point_2, double distance);
 
 void gc_free_all(t_list **pointers);
 void	reset_bounding_box(t_data *data);

@@ -6,38 +6,43 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:37 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/01 12:13:50 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/01 21:51:40 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void    init_view(t_data *data)
+void	init_view(t_view *v)
 {
-	data->view->show_welcome = SHOW_WELCOME_IMAGE;
-	data->view->show_admin = FALSE;
-	data->view->show_nodes = DRAW_NODES;
-	data->view->node_size = NODE_SIZE;
-	data->view->use_custom_clrs = TRUE;
-	data->view->hi_clr = SCHEME_1_HI;
-	data->view->lo_clr = SCHEME_1_LO;
-	data->view->bg_clr = DEF_BG_COLOR;
-    data->view->xy_distance = XY_DISTANCE;
-	data->view->projection = DEF_PROJECTION;
-	data->view->x_off = DEF_OFFSET_X;
-	data->view->y_off = DEF_OFFSET_Y;
-	data->view->zoom = DEF_STARTING_ZOOM;
-	data->view->rot_x = DEF_ISO_ROT_X;
-	data->view->rot_y = DEF_ISO_ROT_Y;
-	data->view->rot_z = DEF_ISO_ROT_Z;
+	v->show_welcome = SHOW_WELCOME_IMAGE;
+	v->show_admin = FALSE;
+	v->show_nodes = DRAW_NODES;
+	v->node_size = NODE_SIZE;
+	v->use_custom_clrs = TRUE;
+	v->hi_clr = SCHEME_1_HI;
+	v->lo_clr = SCHEME_1_LO;
+	v->bg_clr = DEF_BG_COLOR;
+	v->xy_distance = XY_DISTANCE;
+	v->projection = DEF_PROJECTION;
+	v->x_off = DEF_OFFSET_X;
+	v->y_off = DEF_OFFSET_Y;
+	v->zoom = DEF_STARTING_ZOOM;
+	v->rot_x = DEF_ISO_ROT_X;
+	v->rot_y = DEF_ISO_ROT_Y;
+	v->rot_z = DEF_ISO_ROT_Z;
 }
 
 void	setup_view(t_data *data)
 {
-	data->view->xy_distance = WINDOW_W / data->map->width;
-	data->view->z_distance = data->view->xy_distance / 2;
-	if (data->map->has_clr_info)
-		data->view->use_custom_clrs = 0;
+	t_view *v;
+	t_map *m;
+
+	v = data->view;
+	m = data->map;
+	v->xy_distance = WINDOW_W / m->width;
+	v->z_distance = v->xy_distance / 2;
+	if (m->has_clr_info)
+		v->use_custom_clrs = 0;
 }
 void	reset_bounding_box(t_data *data)
 {
@@ -49,9 +54,9 @@ void	reset_bounding_box(t_data *data)
 
 void	update_bounding_box(t_data *data)
 {
-	int	row;
-	int col;
-	t_view *v;
+	int		row;
+	int		col;
+	t_view	*v;
 
 	v = data->view;
 	reset_bounding_box(data);
@@ -77,26 +82,16 @@ t_coor	update_origin_coor(t_data *data)
 {
 	t_map	*map;
 	t_view	*view;
-	t_coor origin;
-	int	z;
+	t_coor	origin;
+	int		z;
 
 	map = data->map;
 	view = data->view;
-
 	origin.x = ((double)map->width - 1) / 2;
 	origin.y = ((double)map->height - 1) / 2;
 	z = 0;
-
 	get_iso_coor(&origin.x, &origin.y, &z, view);
-
 	view->origin_x = origin.x;
 	view->origin_y = origin.y;
 	return (origin);
-}
-
-void	reset_angle(t_data *data)
-{
-	data->view->rot_x = DEF_ISO_ROT_X;
-	data->view->rot_y = DEF_ISO_ROT_Y;
-	data->view->rot_z = DEF_ISO_ROT_Z;
 }

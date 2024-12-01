@@ -6,15 +6,15 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:52 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/01 10:26:49 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/01 20:49:05 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void free_values(char **values)
+void	free_values(char **values)
 {
-	int i;
+	int	i;
 
 	if (!values)
 		return ;
@@ -29,18 +29,18 @@ void free_values(char **values)
 	values = NULL;
 }
 
-t_map	*parse_map(t_data *data, char* filepath)
+t_map	*parse_map(t_data *data, char *filepath)
 {
-	int     fd;
-	char    *result;
-	int     rows;
-	int     cols;
-	t_map   *map;
+	int		fd;
+	char	*result;
+	int		rows;
+	int		cols;
+	t_map	*map;
 
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Trouble reading the file. Check the map filename and try again.\n", 1);
+		ft_putstr_fd("Cannot read the file. Check the filename and try again.\n", 1);
 		exit (1);
 	}
 	result = get_next_line(fd);
@@ -61,11 +61,11 @@ t_map	*parse_map(t_data *data, char* filepath)
 
 void	fill_in_map(t_data *data, char *filepath)
 {
-	int     fd;
-	char    *result;
-	int     row;
-	int     col;
-	char    **values;
+	int		fd;
+	char	*result;
+	int		row;
+	int		col;
+	char	**values;
 	char	**coor;
 	int		i;
 
@@ -106,9 +106,9 @@ void	fill_in_map(t_data *data, char *filepath)
 
 void	update_z_rel(t_data *data)
 {
-	int	row;
-	int	col;
-	t_coor *coor;
+	int		row;
+	int		col;
+	t_coor	*coor;
 
 	row = 0;
 	while (row < data->map->height)
@@ -126,8 +126,8 @@ void	update_z_rel(t_data *data)
 
 void	print_map(t_map *map)
 {
-	int row;
-	int col;
+	int	row;
+	int	col;
 
 	row = 0;
 	while (row < map->height)
@@ -135,30 +135,11 @@ void	print_map(t_map *map)
 		col = 0;
 		while (col < map->width)
 		{
-			 ft_putnbr_fd(map->coor[row][col].z, 1);
-			 ft_putchar_fd('\t', 1);
+			ft_putnbr_fd(map->coor[row][col].z, 1);
+			ft_putchar_fd('\t', 1);
 			++col;
 		}
 		ft_putchar_fd('\n', 1);
-		++row;
-	}
-}
-
-void	print_map_coors(t_map *map)
-{
-	int row;
-	int col;
-
-	row = 0;
-	while (row < map->height)
-	{
-		col = 0;
-		while (col < map->width)
-		{
-			ft_printf("X: %d Y: %d Z: %d", row, col, map->coor[row][col].z);
-			ft_printf("\t/// Xi: %d Yi: %d\n", map->coor[row][col].x_iso, map->coor[row][col].y_iso);
-			++col;
-		}
 		++row;
 	}
 }

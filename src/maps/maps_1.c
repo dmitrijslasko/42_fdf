@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:37:21 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/11/29 11:38:12 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/01 22:31:35 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_map	*init_map(t_data *data, int width, int height, int z)
 {
-	t_map   *map;
-	int     current_row;
-	int 	current_col;
+	t_map	*map;
+	int		current_row;
+	int		current_col;
 
 	map = malloc(sizeof(t_map));
 	if (!map)
@@ -28,7 +28,6 @@ t_map	*init_map(t_data *data, int width, int height, int z)
 	map->width = width;
 	map->height = height;
 	map->has_clr_info = 0;
-
 	map->coor = (t_coor **) malloc(height * sizeof(t_coor));
 	if (!map->coor)
 	{
@@ -39,7 +38,6 @@ t_map	*init_map(t_data *data, int width, int height, int z)
 	current_row = 0;
 	while (current_row < height)
 	{
-
 		map->coor[current_row] = (t_coor *) malloc(width * sizeof(t_coor));
 		if (!map->coor[current_row])
 		{
@@ -60,9 +58,9 @@ t_map	*init_map(t_data *data, int width, int height, int z)
 	return (map);
 }
 
-void    free_map(t_map *map, int allocated_rows)
+void	free_map(t_map *map, int allocated_rows)
 {
-	int row;
+	int	row;
 
 	if (map)
 	{
@@ -80,16 +78,33 @@ void    free_map(t_map *map, int allocated_rows)
 	}
 }
 
+int		safe_free(void *ptr)
+{
+	free(ptr);
+	ptr = NULL;
+	return (0);
+}
 void	free_data(t_data *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->img->mlx_img);
-	mlx_destroy_image(data->mlx_ptr, data->welcome_img);
+	if (!data)
+		return ;
+	if (data->img->mlx_img)
+		mlx_destroy_image(data->mlx_ptr, data->img->mlx_img);
+	if (data->welcome_img)
+		mlx_destroy_image(data->mlx_ptr, data->welcome_img);
 	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
-	free(data->win_ptr);
-	free(data->img);
-	free(data->view);
-	free(data->mouse);
-	free_map(data->map, data->map->height);
-	free(data);
+	if (data->mlx_ptr)
+		safe_free(data->mlx_ptr);
+	if (data->win_ptr)
+		safe_free(data->win_ptr);
+	if (data->img)
+		safe_free(data->img);
+	if (data->view)
+		safe_free(data->view);
+	if (data->mouse)
+		safe_free(data->mouse);
+	if (data->map)
+		free_map(data->map, data->map->height);
+	if (data)
+		safe_free(data);
 }

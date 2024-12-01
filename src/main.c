@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:36:44 by abrabant          #+#    #+#             */
-/*   Updated: 2024/12/01 10:24:11 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/01 22:30:23 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,38 +74,65 @@ void setup_mouse(t_mouse *mouse)
 	mouse->rmb_is_pressed = FALSE;
 }
 
-int	main(int argc, char **argv)
+void	*protected_malloc(size_t size)
 {
-	t_data *data;
+	void	*ptr;
+
+	if (size == 0)
+		return (NULL);
+	ptr = malloc(size);
+	if (!ptr)
+	{
+		perror("Failed to allocate memory.");
+		exit (1);
+	}
+	return (ptr);
+
+}
+
+int init_data(t_data *data)
+{
 	int	x;
 	int y;
 
-	if (check_arguments(argc, argv) == -1)
-		exit (1);
-
-	data = malloc(sizeof(t_data));
-
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
+	{
+		free_data(data);
 		return (MLX_ERROR);
-
-	data->welcome_img = mlx_xpm_file_to_image(data->mlx_ptr, WELCOME_IMAGE, &x, &y);
-
+	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_W, WINDOW_H, WINDOW_NAME);
 	if (data->win_ptr == NULL)
 	{
-		free(data->win_ptr);
+		free_data(data);
 		return (MLX_ERROR);
 	}
-	data->view = malloc(sizeof(t_view));
-	init_view(data);
+	data->welcome_img = mlx_xpm_file_to_image(data->mlx_ptr, WELCOME_IMAGE, &x, &y);
+	if (!data->welcome_img)
+		free_data(data);
+	data->view = protected_malloc(sizeof(t_view));
+	data->mouse = protected_malloc(sizeof(t_mouse));
+	data->img = protected_malloc(sizeof(t_img));
+	init_view(data->view);
+
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_data *data;
+	if (check_arguments(argc, argv) == -1)
+		exit (1);
+
+	data = protected_malloc(sizeof(t_data));
+	init_data(data);
 	if (PARSE_MAP)
 		data->map = parse_map(data, argv[1]);
 	else
 		data->map = init_map(data, 10, 10, 2);
 	setup_view(data);
-	data->img = malloc(sizeof(t_img));
-	data->mouse = malloc(sizeof(t_mouse));
+
+
 	data->img->mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_W, WINDOW_H);
 	data->img->addr = mlx_get_data_addr(data->img->mlx_img, &data->img->bpp,
 			&data->img->line_len, &data->img->endian);
@@ -114,4 +141,5 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_loop(data->mlx_ptr);
 	free_data(data);
+	return (0);
 }

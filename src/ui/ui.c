@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:44 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/11/29 11:50:35 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/01 20:49:36 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void	add_zoom_info(t_data *data)
 	mlx = data->mlx_ptr;
 	win = data->win_ptr;
 	view = data->view;
-
 	mlx_string_put(mlx, win, WINDOW_W - 69, y, UI_CLR_1, "Zoom: ");
 	str = ft_itoa(floor(view->zoom * 10));
 	mlx_string_put(mlx, win, WINDOW_W - 35, y, UI_CLR_2, str);

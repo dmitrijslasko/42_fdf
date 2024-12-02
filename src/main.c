@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:36:44 by abrabant          #+#    #+#             */
-/*   Updated: 2024/12/02 12:07:09 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:34:25 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int	render(t_data *data)
 		return (1);
 	}
 	update_iso_coors(data, data->map, data->view);
-	update_bounding_box(data);
 	render_background(data->img, data->view->bg_clr);
 	if (data->view->show_admin)
 		show_admin(data);
 	draw_map(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->mlx_img, 0, 0);
+	update_bounding_box(data);
 	add_ui(data);
 	return (0);
 }

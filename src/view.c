@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:37 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 12:20:37 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:48:57 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	setup_view(t_data *data)
 	v = data->view;
 	m = data->map;
 	v->xy_distance = WINDOW_W / m->width;
-	v->z_distance = (int)v->xy_distance % 3;
+	v->z_distance = (int)v->xy_distance / 5;
 	if (m->has_clr_info)
 		v->use_custom_clrs = 0;
 }
@@ -67,10 +67,10 @@ void	update_bounding_box(t_data *data)
 		col = 0;
 		while (col < data->map->width)
 		{
-			data->view->x_max = fmax(v->x_max, data->map->coor[col][row].x_iso);
-			v->x_min = fmin(v->x_min, data->map->coor[col][row].x_iso);
-			v->y_max = fmax(v->y_max, data->map->coor[col][row].y_iso);
-			v->y_min = fmin(v->y_min, data->map->coor[col][row].y_iso);
+			data->view->x_max = fmax(v->x_max, data->map->coor[row][col].x_iso);
+			v->x_min = fmin(v->x_min, data->map->coor[row][col].x_iso);
+			v->y_max = fmax(v->y_max, data->map->coor[row][col].y_iso);
+			v->y_min = fmin(v->y_min, data->map->coor[row][col].y_iso);
 			++col;
 		}
 		++row;

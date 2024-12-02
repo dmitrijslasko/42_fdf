@@ -63,8 +63,6 @@ void	connect_two_nodes(t_data *data, t_coor *coor_1, t_coor *coor_2);
 int     draw_rectangle(t_img *img, t_coor *point_1, t_coor *point_2, int clr);
 
 // aux
-//void	swap(t_coor *coor_1, t_coor *coor_2);
-//void	swap_int(int *num_1, int *num_2);
 void	swap(void *a, void *b, size_t size);
 
 // memory management

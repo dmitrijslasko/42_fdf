@@ -34,13 +34,21 @@ MINILIBX_DIR = $(LIBDIRS)minilibx/
 GNL = $(GNL_DIR)*line.c $(GNL_DIR)*utils.c
 GNL_DIR = $(LIBDIRS)get_next_line/
 
+GITHUB_URL = https://raw.githubusercontent.com/dmitrijslasko/fdf42/d2d31f6ccc2dad88bdb2bcf6cb05aa5ed044f248/assets/images/start.xpm
+DOWNLOAD_DIR = ./assets/images
 
-all: $(LIBFT) $(PRINTF) $(MINILIBX) $(NAME)
+all: $(LIBFT) $(PRINTF) $(MINILIBX) $(NAME) $(DOWNLOAD_DIR)/start.xpm
+
+$(DOWNLOAD_DIR)/start.xpm: $(DOWNLOAD_DIR)
+	@curl -s -L $(GITHUB_URL) -o $@
 
 $(NAME): $(OBJECTS)
 	@$(CC) $(OBJECTS) -o $(NAME) $(GNL) -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) \
 			-L$(PRINTF_DIR) -lftprintf $(LIB_FLAGS)
 	@echo "\n$(GREEN)$(NAME) got successfully compiled.$(RESET)"
+
+$(DOWNLOAD_DIR):
+	@mkdir -p $(DOWNLOAD_DIR)
 
 $(OBJECTS): $(OBJECTS_DIR)%.o : $(SOURCES_DIR)%.c
 	@mkdir -p $(dir $@)
@@ -50,12 +58,15 @@ $(OBJECTS): $(OBJECTS_DIR)%.o : $(SOURCES_DIR)%.c
 clean:
 	rm -f $(OBJECTS_DIR)**/*.o
 	rm -rf $(OBJECTS_DIR)*
+	rm -rf $(DOWNLOAD_DIR)
+	@echo "$(GREEN)clean complete$(RESET)\c"
 
 fclean: clean
 	rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(MAKE) -C $(MINILIBX_DIR) clean
-	@$(MAKE) -C $(PRINTF_DIR) clean
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MINILIBX_DIR) clean
+	$(MAKE) -C $(PRINTF_DIR) clean
+	@echo "$(GREEN)fclean complete$(RESET)\c"
 
 re: fclean all
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iso.c                                              :+:      :+:    :+:   */
+/*   isometric_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 11:36:09 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 12:25:10 by dmlasko          ###   ########.fr       */
+/*   Created: 2024/12/02 21:04:46 by dmlasko           #+#    #+#             */
+/*   Updated: 2024/12/02 21:13:38 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
 // }
 
 // Scale / zoom
-static void	scale_coor(int *x, int *y, int *z, t_view *view)
+void	scale_coor(int *x, int *y, int *z, t_view *view)
 {
-	*x = *x * view->xy_distance * view->zoom;
-	*y = *y * view->xy_distance * view->zoom;
-	*z = *z * view->z_distance * view->zoom;
+	*x = *x * view->xy_dist * view->zoom;
+	*y = *y * view->xy_dist * view->zoom;
+	*z = *z * view->z_dist * view->zoom;
 }
 
 // Rotate around X axis
-static void	rotate_x(int *y, int *z, double rot_x)
+void	rotate_x(int *y, int *z, double rot_x)
 {
 	int		previous_y;
 	double	angle_rad;
@@ -40,7 +40,7 @@ static void	rotate_x(int *y, int *z, double rot_x)
 }
 
 // Rotate around Y axis
-static void	rotate_y(int *x, int *z, double rot_y)
+void	rotate_y(int *x, int *z, double rot_y)
 {
 	int		previous_x;
 	double	angle_rad;
@@ -52,7 +52,7 @@ static void	rotate_y(int *x, int *z, double rot_y)
 }
 
 // Rotate around Z axis
-static void	rotate_z(int *x, int *y, double rot_z)
+void	rotate_z(int *x, int *y, double rot_z)
 {
 	int		previous_x;
 	int		previous_y;
@@ -66,7 +66,7 @@ static void	rotate_z(int *x, int *y, double rot_z)
 }
 
 // Project to ISO projection
-static void	project(int *x, int *y, int *z)
+void	project(int *x, int *y, int *z)
 {
 	int		incoming_x;
 	int		incoming_y;
@@ -77,42 +77,4 @@ static void	project(int *x, int *y, int *z)
 	angle_rad = deg_to_radians(DEF_ISO_ANGLE);
 	*x = (incoming_x - incoming_y) * cos(angle_rad);
 	*y = (incoming_x + incoming_y) * sin(angle_rad) - *z;
-}
-
-void	get_iso_coor(int *x, int *y, int *z, t_view *view)
-{
-	scale_coor(x, y, z, view);
-	rotate_x(z, y, view->rot_x);
-	rotate_y(x, z, view->rot_y);
-	rotate_z(x, y, view->rot_z);
-	if (view->projection == ISO)
-		project(x, y, z);
-}
-
-// Update ISO coordinates
-void	update_iso_coors(t_data *data, t_map *m, t_view *v)
-{
-	int	r;
-	int	c;
-	int	z_value;
-	int	x_iso;
-	int	y_iso;
-
-	r = 0;
-	while (r < m->height)
-	{
-		c = 0;
-		while (c < m->width)
-		{
-			update_origin_coor(data);
-			x_iso = c;
-			y_iso = r;
-			z_value = m->coor[r][c].z;
-			get_iso_coor(&x_iso, &y_iso, &z_value, v);
-			m->coor[r][c].x_iso = x_iso + (X_CENTER - v->origin_x + v->x_off);
-			m->coor[r][c].y_iso = y_iso + (Y_CENTER - v->origin_y + v->y_off);
-			++c;
-		}
-		++r;
-	}
 }

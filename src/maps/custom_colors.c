@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing_shapes.c                                   :+:      :+:    :+:   */
+/*   custom_colors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 11:07:54 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 18:33:16 by dmlasko          ###   ########.fr       */
+/*   Created: 2024/12/02 21:15:37 by dmlasko           #+#    #+#             */
+/*   Updated: 2024/12/02 21:21:16 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	draw_rectangle(t_img *img, t_coor *pt_1, t_coor *pt_2, int clr)
+int	update_colors(t_data *data, t_map *map)
 {
-	int	current_x;
-	int	current_y;
+	int		row;
+	int		col;
+	t_view	*v;
+	t_coor	coor;
 
-	current_x = pt_1->x;
-	while (current_x < pt_2->x)
+	v = data->view;
+	row = 0;
+	while (row < map->height)
 	{
-		current_y = pt_1->y;
-		while (current_y < pt_2->y)
-			img_pix_put(img, current_y++, current_x, clr);
-		++current_x;
+		col = 0;
+		while (col < map->width)
+		{
+			coor = map->coor[row][col];
+			coor.z_clr_custom = get_clr_bween_clrs(coor.z_rel, v->lo_clr, \
+															v->hi_clr);
+			map->coor[row][col] = coor;
+			++col;
+		}
+		++row;
 	}
 	return (0);
 }

@@ -7,17 +7,17 @@ typedef enum	e_bool
 	TRUE
 }	t_bool;
 
+typedef enum	e_lang
+{
+	EN,
+	DE
+}	t_lang;
+
 typedef enum e_projection
 {
 	ISO,
 	PARALLEL
 }	t_projection;
-
-typedef enum e_lang
-{
-	EN,
-	DE
-}	t_lang;
 
 // structures
 typedef struct s_coor
@@ -37,20 +37,20 @@ typedef struct s_map
 	t_coor	**coor;
 	int		width;
 	int 	height;
-	double		z_max;
+	double	z_max;
 	int		z_min;
 	int	has_clr_info;
 }	t_map;
 
-typedef struct			s_mouse
+typedef struct s_mouse
 {
-	char				lmb_is_pressed;
-	char				rmb_is_pressed;
-	int					x;
-	int					y;
-	int					previous_x;
-	int					previous_y;
-}						t_mouse;
+	char	lmb_is_pressed;
+	char	rmb_is_pressed;
+	int		x;
+	int		y;
+	int		previous_x;
+	int		previous_y;
+}	t_mouse;
 
 typedef struct s_view
 {
@@ -63,8 +63,8 @@ typedef struct s_view
 	int		lo_clr;
 	int		hi_clr;
 	int		bg_clr;
-	double 	xy_distance;
-	double	z_distance;
+	double 	xy_dist;
+	double	z_dist;
 	double	z_limit;
 	int		x_off;
 	int		y_off;

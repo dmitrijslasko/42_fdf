@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:37 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 16:48:57 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 21:34:49 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	init_view(t_view *v)
 	v->show_welcome = SHOW_WELCOME_IMAGE;
 	v->show_admin = FALSE;
 	v->show_nodes = DRAW_NODES;
-	v->lang =	EN;
+	v->lang = EN;
 	v->node_size = NODE_SIZE;
 	v->use_custom_clrs = FALSE;
 	v->hi_clr = SCHEME_1_HI;
 	v->lo_clr = SCHEME_1_LO;
 	v->bg_clr = DEF_BG_COLOR;
-	v->xy_distance = XY_DISTANCE;
+	v->xy_dist = XY_dist;
 	v->projection = DEF_PROJECTION;
 	v->x_off = DEF_OFFSET_X;
 	v->y_off = DEF_OFFSET_Y;
@@ -35,16 +35,17 @@ void	init_view(t_view *v)
 
 void	setup_view(t_data *data)
 {
-	t_view *v;
-	t_map *m;
+	t_view	*v;
+	t_map	*m;
 
 	v = data->view;
 	m = data->map;
-	v->xy_distance = WINDOW_W / m->width;
-	v->z_distance = (int)v->xy_distance / 5;
+	v->xy_dist = WINDOW_W / m->width;
+	v->z_dist = (int)v->xy_dist / 5;
 	if (m->has_clr_info)
 		v->use_custom_clrs = 0;
 }
+
 void	reset_bounding_box(t_data *data)
 {
 	data->view->x_max = INT_MIN;

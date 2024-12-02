@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:53:29 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/11/29 11:31:53 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 18:33:35 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	keypress_set_offs(int key, t_data *data);
 int	keypress_reset_offs(int key, t_data *data);
 
 int	keypress_zoom(int key, t_data *data);
-int	keypress_z_distance(int key, t_data *data);
+int	keypress_z_dist(int key, t_data *data);
 
 int	keypress_switch_clrs(int key, t_data *data);
 

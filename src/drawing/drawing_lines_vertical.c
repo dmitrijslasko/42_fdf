@@ -25,7 +25,8 @@ void	draw_vert_line(t_data *data, t_coor pt_1, t_coor pt_2)
 	{
 		dist = ((double)curr_y - pt_1.y_iso) / (pt_2.y_iso - pt_1.y_iso);
 		if (data->view->use_custom_clrs)
-			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr_custom, pt_2.z_clr_custom);
+			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr_custom, \
+							pt_2.z_clr_custom);
 		else
 			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr, pt_2.z_clr);
 		img_pix_put(data->img, pt_1.x_iso, curr_y, pixel_clr);

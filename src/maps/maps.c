@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:52 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 12:16:14 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 21:33:30 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_map	*parse_map(t_data *data, char *filepath)
 	map = init_map(data, rows, cols, 0);
 	fill_in_map(data, filepath);
 	close(fd);
-	printf("COLS: %d, ROWS: %d\n", cols, rows);
+	ft_printf("Map parsed. Rows: %d, Columns: %d\n", rows, cols);
 	return (map);
 }
 

@@ -10,6 +10,7 @@
 # include <mlx.h>
 # include <math.h>
 # include <limits.h>
+# include <X11/Xlib.h>
 
 // headers
 # include "colors.h"
@@ -38,7 +39,7 @@ void    print_map_coors(t_map *map);
 
 // clrs
 unsigned int	pack_rgb(int red, int green, int blue);
-int		get_clr_bween_clrs(double distance, int start_clr, int end_clr);
+int		get_clr_bween_clrs(double dist, int start_clr, int end_clr);
 int		hex_to_int(const char *hexString);
 
 // drawing
@@ -49,18 +50,15 @@ void	draw_node(t_data *data, int x, int y, int clr);
 int		draw_map(t_data *data);
 void	get_iso_coor(int *x, int *y, int *z, t_view *view);
 void	update_iso_coors(t_data *data, t_map *map, t_view *view);
-
-
 void	update_z_rel(t_data *data);
 
 // drawing lines
-void	draw_vert_line(t_data *data, t_coor point_1, t_coor point_2);
-void	draw_vert_line2(t_img *img, int x, int y1, int y2, int clr, int clr2);
+void	draw_vert_line(t_data *data, t_coor pt_1, t_coor pt_2);
 void	draw_single_clr_line(t_img *img, t_line line);
-void	draw_sloped_line(t_data *data, t_coor point_1, t_coor point_2);
+void	draw_sloped_line(t_data *data, t_coor pt_1, t_coor pt_2);
 void	draw_hor_line(t_img *img, t_line line);
 void	connect_two_nodes(t_data *data, t_coor *coor_1, t_coor *coor_2);
-int     draw_rectangle(t_img *img, t_coor *point_1, t_coor *point_2, int clr);
+int     draw_rectangle(t_img *img, t_coor *pt_1, t_coor *pt_2, int clr);
 
 // aux
 void	swap(void *a, void *b, size_t size);
@@ -68,7 +66,6 @@ void	swap(void *a, void *b, size_t size);
 // memory management
 void    free_map(t_map *map, int allocated_rows);
 void	free_data(t_data *data);
-void    *gc_malloc(t_list **pointers, int size, char *desc);
 
 void	update_bounding_box(t_data *data);
 
@@ -82,30 +79,48 @@ t_coor	update_origin_coor(t_data *data);
 
 void	add_ui(t_data *data);
 
-double		deg_to_radians(double angle);
+double	deg_to_radians(double angle);
 
 void	reset_angle(t_data *data);
 
-int close_window(void);
+int		close_window(void);
 
-int			mouse_move(int x, int y, t_data *data);
-int			mouse_release(int button, int x, int y, t_data *data);
-int			mouse_press(int button, int x, int y, t_data *data);
+int		mouse_move(int x, int y, t_data *data);
+int		mouse_release(int button, int x, int y, t_data *data);
+int		mouse_press(int button, int x, int y, t_data *data);
 
-int	render(t_data *data);
+int		render(t_data *data);
 
-int	check_arguments(int argc, char **argv);
+int		check_arguments(int argc, char **argv);
 
-void reset_angle_degrees(double *angle);
-void reset_all_angle_degrees_data(t_data *data);
+void	reset_angle_degrees(double *angle);
+void	reset_all_angle_degrees_data(t_data *data);
 
-int		get_clr_bween_points(t_data *data, t_coor point_1, t_coor point_2, double distance);
+int		get_clr_bween_points(t_data *data, t_coor pt_1, t_coor pt_2, double dist);
 
-void gc_free_all(t_list **pointers);
 void	reset_bounding_box(t_data *data);
 
 int	update_colors(t_data *data, t_map *map);
 
-void	*protected_malloc(size_t size);
+void	*protected_malloc(size_t size, t_data *data);
+
+
+void	scale_coor(int *x, int *y, int *z, t_view *view);
+void	rotate_x(int *y, int *z, double rot_x);
+void	rotate_y(int *x, int *z, double rot_y);
+void	rotate_z(int *x, int *y, double rot_z);
+void	project(int *x, int *y, int *z);
+
+
+void	add_controls_panel_en(t_data *data);
+void	add_controls_panel_de(t_data *data);
+void	add_zoom_info(t_data *data);
+void	add_coor_info(t_data *data);
+void	add_license_info(t_data *data);
+
+void	setup_hooks(t_data *data);
+void	setup_mouse(t_mouse *mouse);
+int		show_welcome_img(t_data *dt);
+
 
 #endif

@@ -1,17 +1,23 @@
 # include "../lib/libft/libft.h"
 
 // enum
-typedef enum
+typedef enum	e_bool
 {
 	FALSE,
 	TRUE
 }	t_bool;
 
-typedef enum
+typedef enum e_projection
 {
 	ISO,
 	PARALLEL
 }	t_projection;
+
+typedef enum e_lang
+{
+	EN,
+	DE
+}	t_lang;
 
 // structures
 typedef struct s_coor
@@ -50,6 +56,7 @@ typedef struct s_view
 {
 	int		show_welcome;
 	int		show_admin;
+	int		lang;
 	int		show_nodes;
 	int		node_size;
 	int		use_custom_clrs;

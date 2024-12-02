@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:36:44 by abrabant          #+#    #+#             */
-/*   Updated: 2024/12/01 22:30:23 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 01:17:46 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,6 @@ int	main(int argc, char **argv)
 	else
 		data->map = init_map(data, 10, 10, 2);
 	setup_view(data);
-
-
 	data->img->mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_W, WINDOW_H);
 	data->img->addr = mlx_get_data_addr(data->img->mlx_img, &data->img->bpp,
 			&data->img->line_len, &data->img->endian);

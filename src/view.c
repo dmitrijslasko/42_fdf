@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:37 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/01 21:51:40 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 01:09:03 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_view(t_view *v)
 	v->show_welcome = SHOW_WELCOME_IMAGE;
 	v->show_admin = FALSE;
 	v->show_nodes = DRAW_NODES;
+	v->lang =	EN;
 	v->node_size = NODE_SIZE;
 	v->use_custom_clrs = TRUE;
 	v->hi_clr = SCHEME_1_HI;

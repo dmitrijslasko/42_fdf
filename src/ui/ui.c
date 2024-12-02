@@ -6,13 +6,13 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:44 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/01 20:49:36 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 01:17:30 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	add_controls_panel(t_data *data)
+static void	add_controls_panel_en(t_data *data)
 {
 	int		y;
 	void	*m;
@@ -40,6 +40,36 @@ static void	add_controls_panel(t_data *data)
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Map colors: [1][2][3]");
 	mlx_string_put(m, w, 15, y += r, CYAN, "Secret admin mode: [/]");
 }
+
+static void add_controls_panel_de(t_data *data)
+{
+    int     y;
+    void    *m;
+    void    *w;
+    int     r;
+
+    y = 0;
+    m = data->mlx_ptr;
+    w = data->win_ptr;
+    r = DEF_MENU_ROW_H;
+    mlx_string_put(m, w, 15, y += r, UI_CLR_1, "STEUERUNGEN");
+    mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Zoom: Scrollen oder [+] / [-]");
+    mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Bewegen: Ziehen oder Pfeiltasten");
+    mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Abflachen: [ / ]");
+    mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Drehen: RMB drucken & Bewegen");
+    mlx_string_put(m, w, 35, y += r, UI_CLR_2, "oder:");
+    mlx_string_put(m, w, 57, y += r, UI_CLR_1, "X-Achse - Q/W");
+    mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Y-Achse - A/S");
+    mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Z-Achse - Z/W");
+    mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Projektionen");
+    mlx_string_put(m, w, 57, y += r, UI_CLR_1, "ISO: [I]");
+    mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Parallel: [P]");
+    mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Knoten anzeigen / ausblenden: [N]");
+    mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Zurucksetzen: [R]");
+    mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Kartenfarben: [1][2][3]");
+    mlx_string_put(m, w, 15, y += r, CYAN, "Geheimer Admin-Modus: [/]");
+}
+
 
 static void	add_zoom_info(t_data *data)
 {
@@ -99,7 +129,10 @@ static void	add_license_info(t_data *data)
 
 void	add_ui(t_data *data)
 {
-	add_controls_panel(data);
+	if (data->view->lang == DE)
+		add_controls_panel_de(data);
+	else if (data->view->lang == EN)
+		add_controls_panel_en(data);
 	add_coor_info(data);
 	add_license_info(data);
 }

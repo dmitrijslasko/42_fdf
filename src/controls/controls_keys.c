@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:54:08 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/01 21:07:48 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 01:15:12 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ static int	keypress_show_admin(int key, t_data *data)
 			data->view->show_nodes = TRUE;
 		data->view->node_size += 1;
 	}
+	if (key == XK_l)
+	{
+		if (data->view->lang == EN)
+			data->view->lang = DE;
+		else
+			data->view->lang = EN;
+	}
 	return (0);
 }
 
@@ -82,7 +89,7 @@ int	handle_keypress(int key, t_data *data)
 		keypress_rotation(key, data);
 	if (key == XK_i || key == XK_p)
 		keypress_presetup_views(key, data);
-	if (key == XK_slash || key == XK_n)
+	if (key == XK_slash || key == XK_n || key == XK_l)
 		keypress_show_admin(key, data);
 	if (key == XK_r)
 		keypress_reset_offs(key, data);

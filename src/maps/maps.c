@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:52 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 21:33:30 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 22:48:17 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,10 @@ void	update_z_rel(t_data *data)
 		while (col < data->map->width)
 		{
 			coor = &data->map->coor[row][col];
-			coor->z_rel = (double)coor->z / data->map->z_max;
+			if (data->map->z_min == data->map->z_max)
+				coor->z_rel = 0;
+			else
+				coor->z_rel = (double)coor->z / data->map->z_max;
 			++col;
 		}
 		++row;

@@ -54,7 +54,7 @@ void	update_z_rel(t_data *data);
 // drawing lines
 void	draw_vert_line(t_data *data, t_coor point_1, t_coor point_2);
 void	draw_vert_line2(t_img *img, int x, int y1, int y2, int clr, int clr2);
-void	draw_vert_line3(t_img *img, t_line line);
+void	draw_single_clr_line(t_img *img, t_line line);
 void	draw_sloped_line(t_data *data, t_coor point_1, t_coor point_2);
 void	draw_hor_line(t_img *img, t_line line);
 void	connect_two_nodes(t_data *data, t_coor *coor_1, t_coor *coor_2);
@@ -103,5 +103,7 @@ int		get_clr_bween_points(t_data *data, t_coor point_1, t_coor point_2, double d
 
 void gc_free_all(t_list **pointers);
 void	reset_bounding_box(t_data *data);
+
+int	update_colors(t_data *data, t_map *map);
 
 #endif

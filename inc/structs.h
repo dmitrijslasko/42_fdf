@@ -21,6 +21,7 @@ typedef struct s_coor
 	int z;
 	int z_clr;
 	double	z_rel;
+	int	z_clr_custom;
 	int x_iso;
 	int y_iso;
 }	t_coor;

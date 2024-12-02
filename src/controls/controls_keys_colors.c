@@ -25,6 +25,7 @@ int	keypress_switch_clrs(int key, t_data *data)
 		data->view->lo_clr = SCHEME_1_LO;
 		data->view->hi_clr = SCHEME_1_HI;
 		data->view->bg_clr = SCHEME_1_BG;
+		update_colors(data, data->map);
 	}
 	if (key == XK_3)
 	{
@@ -32,6 +33,7 @@ int	keypress_switch_clrs(int key, t_data *data)
 		data->view->lo_clr = SCHEME_2_LO;
 		data->view->hi_clr = SCHEME_2_HI;
 		data->view->bg_clr = SCHEME_2_BG;
+		update_colors(data, data->map);
 	}
 	return (0);
 }

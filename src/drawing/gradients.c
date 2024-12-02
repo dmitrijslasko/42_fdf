@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:37:01 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/01 20:24:19 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 00:24:16 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,35 @@ int	get_clr_bween_clrs(double distance, int start_clr, int end_clr)
 
 int	get_clr_bween_points(t_data *dt, t_coor pt_1, t_coor pt_2, double dist)
 {
-	int		start_clr;
-	int		end_clr;
 	int		pixel_clr;
-	t_view	*view;
 
-	view = dt->view;
-	pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr, pt_2.z_clr);
 	if (dt->view->use_custom_clrs)
-	{
-		start_clr = get_clr_bween_clrs(pt_1.z_rel, view->lo_clr, view->hi_clr);
-		end_clr = get_clr_bween_clrs(pt_2.z_rel, view->lo_clr, view->hi_clr);
-		pixel_clr = get_clr_bween_clrs(dist, start_clr, end_clr);
-	}
+		pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr_custom, pt_2.z_clr_custom);
+	else
+		pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr, pt_2.z_clr);
 	return (pixel_clr);
+}
+
+int	update_colors(t_data *data, t_map *map)
+{
+	int row;
+	int col;
+	t_view *v;
+	t_coor coor;
+
+	v = data->view;
+	row = 0;
+	while (row < map->height)
+	{
+		col = 0;
+		while (col < map->width)
+		{
+			coor = map->coor[col][row];
+			coor.z_clr_custom = get_clr_bween_clrs(coor.z_rel, v->lo_clr, v->hi_clr);
+			map->coor[col][row] = coor;
+			++col;
+		}
+		++row;
+	}
+	return (0);
 }

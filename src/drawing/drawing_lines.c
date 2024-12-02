@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:07:34 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/01 20:20:38 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 00:49:06 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,7 @@ void	draw_hor_line(t_img *img, t_line line)
 static void	draw_line(t_data *data, t_coor curr, t_coor next)
 {
 	if (abs(curr.y_iso - next.y_iso) > 1)
-	{
-		if (curr.y_iso < next.y_iso)
-			draw_vert_line2(data->img, curr.x_iso, curr.y_iso, next.y_iso, curr.z_clr, next.z_clr);
-		else
-			draw_vert_line2(data->img, curr.x_iso, curr.y_iso, next.y_iso, next.z_clr, curr.z_clr);
-	}
+		draw_vert_line(data, curr, next);
 	else
 		img_pix_put(data->img, curr.x_iso, curr.y_iso, curr.z_clr);
 }
@@ -47,7 +42,7 @@ static void	draw_line(t_data *data, t_coor curr, t_coor next)
 void	draw_sloped_line(t_data *data, t_coor pt_1, t_coor pt_2)
 {
 	double	slope;
-	double	distance;
+	double	dist;
 	t_coor	curr;
 	t_coor	next;
 
@@ -57,12 +52,14 @@ void	draw_sloped_line(t_data *data, t_coor pt_1, t_coor pt_2)
 	{
 		slope = (double)(pt_2.y_iso - pt_1.y_iso) / (pt_2.x_iso - pt_1.x_iso);
 		curr.y_iso = pt_1.y_iso + (curr.x_iso - pt_1.x_iso) * slope;
-		distance = ((double)curr.x_iso - pt_1.x_iso) / (pt_2.x_iso - pt_1.x_iso);
-		curr.z_clr = get_clr_bween_points(data, pt_1, pt_2, distance);
+		dist = ((double)curr.x_iso - pt_1.x_iso) / (pt_2.x_iso - pt_1.x_iso);
+		curr.z_clr = get_clr_bween_points(data, pt_1, pt_2, dist);
+		curr.z_clr_custom = curr.z_clr;
 		next.x_iso = curr.x_iso + 1;
 		next.y_iso = pt_1.y_iso + (next.x_iso - pt_1.x_iso) * slope;
-		distance = ((double)next.x_iso - curr.x_iso) / (pt_2.x_iso - curr.x_iso);
-		next.z_clr = get_clr_bween_points(data, curr, pt_2, distance);
+		dist = ((double)next.x_iso - curr.x_iso) / (pt_2.x_iso - curr.x_iso);
+		next.z_clr = get_clr_bween_points(data, curr, pt_2, dist);
+		next.z_clr_custom = next.z_clr;
 		draw_line(data, curr, next);
 		++curr.x_iso;
 	}

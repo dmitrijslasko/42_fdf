@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:07:27 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/11/29 11:31:53 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/01 23:49:51 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	draw_crosshair(t_data *data, int x, int y, int clr)
 	line.y1 = y - CENTER_LINE_PX;
 	line.y2 = y - CL_MARGIN;
 	line.clr = clr;
-	draw_vert_line3(data->img, line);
+	draw_single_clr_line(data->img, line);
 	line.y1 = y + CENTER_LINE_PX;
 	line.y2 = y + CL_MARGIN;
-	draw_vert_line3(data->img, line);
+	draw_single_clr_line(data->img, line);
 	line.x1 = x - CENTER_LINE_PX;
 	line.x2 = x - CL_MARGIN;
 	line.y1 = y;
@@ -47,10 +47,10 @@ static void	draw_bounding_box(t_data *data)
 	draw_hor_line(data->img, line);
 	line.y2 = data->view->y_min;
 	line.x2 = data->view->x_min;
-	draw_vert_line3(data->img, line);
+	draw_single_clr_line(data->img, line);
 	line.x1 = data->view->x_max;
 	line.x2 = data->view->x_max;
-	draw_vert_line3(data->img, line);
+	draw_single_clr_line(data->img, line);
 }
 
 void	show_admin(t_data *data)

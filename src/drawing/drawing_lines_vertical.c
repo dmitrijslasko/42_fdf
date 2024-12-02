@@ -16,39 +16,24 @@ void	draw_vert_line(t_data *data, t_coor pt_1, t_coor pt_2)
 {
 	int		curr_y;
 	int		pixel_clr;
-	double	distance;
+	double	dist;
 
 	if (pt_1.y_iso > pt_2.y_iso)
 		swap(&pt_1, &pt_2, sizeof(t_coor));
 	curr_y = pt_1.y_iso;
 	while (curr_y < pt_2.y_iso)
 	{
-		distance = ((double)curr_y - pt_1.y_iso) / (pt_2.y_iso - pt_1.y_iso);
-		pixel_clr = get_clr_bween_points(data, pt_1, pt_2, distance);
+		dist = ((double)curr_y - pt_1.y_iso) / (pt_2.y_iso - pt_1.y_iso);
+		if (data->view->use_custom_clrs)
+			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr_custom, pt_2.z_clr_custom);
+		else
+			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr, pt_2.z_clr);
 		img_pix_put(data->img, pt_1.x_iso, curr_y, pixel_clr);
 		++curr_y;
 	}
 }
 
-void	draw_vert_line2(t_img *img, int x, int y1, int y2, int clr, int clr2)
-{
-	int		curr_y;
-	int		pixel_clr;
-	double	distance;
-
-	if (y1 > y2)
-		swap(&y1, &y2, sizeof(int));
-	curr_y = y1;
-	while (curr_y < y2)
-	{
-		distance = ((double)curr_y - y1) / (y2 - y1);
-		pixel_clr = get_clr_bween_clrs(distance, clr, clr2);
-		img_pix_put(img, x, curr_y, pixel_clr);
-		++curr_y;
-	}
-}
-
-void	draw_vert_line3(t_img *img, t_line line)
+void	draw_single_clr_line(t_img *img, t_line line)
 {
 	int	curr_y;
 	int	temp;

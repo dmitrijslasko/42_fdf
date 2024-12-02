@@ -58,4 +58,4 @@
 #define	TEST_MAP_Y			10
 #define	TEST_MAP_Z			0
 #define WELCOME_IMAGE       "./src/welcome.xpm"
-#define SHOW_WELCOME_IMAGE  TRUE
+#define SHOW_WELCOME_IMAGE  0

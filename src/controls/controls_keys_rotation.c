@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:53:52 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/11/29 10:57:53 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 10:49:41 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	keypress_rotation(int key, t_data *data)
 		data->view->rot_z -= DEF_ROTATE_STEP;
 	if (key == XK_x)
 		data->view->rot_z += DEF_ROTATE_STEP;
-	reset_all_angle_degrees(data);
+	reset_all_angle_degrees_data(data);
 	return (0);
 }

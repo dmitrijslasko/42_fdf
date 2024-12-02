@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:54:14 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/11/29 11:06:30 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 12:27:40 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	mouse_move(int x, int y, t_data *data)
 			view->rot_z += (data->mouse->previous_x - x) * MOUSE_SENS_ROTATE;
 		else
 			view->rot_z -= (data->mouse->previous_x - x) * MOUSE_SENS_ROTATE;
-		reset_all_angle_degrees(data);
+		reset_all_angle_degrees_data(data);
 	}
 	if (data->mouse->lmb_is_pressed)
 		set_offs(data, x, y);

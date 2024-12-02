@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:52 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/01 20:49:05 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 12:16:14 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_map	*parse_map(t_data *data, char *filepath)
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Cannot read the file. Check the filename and try again.\n", 1);
+		ft_putstr_fd("Can't read the file. Check the filename, try again.\n", 1);
 		exit (1);
 	}
 	result = get_next_line(fd);
@@ -53,9 +53,10 @@ t_map	*parse_map(t_data *data, char *filepath)
 		free(result);
 		++rows;
 	}
-	map = init_map(data, cols, rows, 0);
+	map = init_map(data, rows, cols, 0);
 	fill_in_map(data, filepath);
 	close(fd);
+	printf("COLS: %d, ROWS: %d\n", cols, rows);
 	return (map);
 }
 

@@ -37,6 +37,7 @@ void    print_map(t_map *map);
 void    print_map_coors(t_map *map);
 
 // clrs
+unsigned int	pack_rgb(int red, int green, int blue);
 int		get_clr_bween_clrs(double distance, int start_clr, int end_clr);
 int		hex_to_int(const char *hexString);
 
@@ -48,6 +49,7 @@ void	draw_node(t_data *data, int x, int y, int clr);
 int		draw_map(t_data *data);
 void	get_iso_coor(int *x, int *y, int *z, t_view *view);
 void	update_iso_coors(t_data *data, t_map *map, t_view *view);
+
 
 void	update_z_rel(t_data *data);
 
@@ -97,7 +99,7 @@ int	render(t_data *data);
 int	check_arguments(int argc, char **argv);
 
 void reset_angle_degrees(double *angle);
-void reset_all_angle_degrees(t_data *data);
+void reset_all_angle_degrees_data(t_data *data);
 
 int		get_clr_bween_points(t_data *data, t_coor point_1, t_coor point_2, double distance);
 
@@ -105,5 +107,7 @@ void gc_free_all(t_list **pointers);
 void	reset_bounding_box(t_data *data);
 
 int	update_colors(t_data *data, t_map *map);
+
+void	*protected_malloc(size_t size);
 
 #endif

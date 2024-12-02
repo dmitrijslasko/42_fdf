@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:07:34 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 01:04:46 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 10:52:18 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_hor_line(t_img *img, t_line line)
 
 static void	draw_line(t_data *data, t_coor curr, t_coor next)
 {
-	if (abs(curr.y_iso - next.y_iso) > 1)
+	if (abs(curr.y_iso - next.y_iso) >= 1)
 		draw_vert_line(data, curr, next);
 	else
 		img_pix_put(data->img, curr.x_iso, curr.y_iso, curr.z_clr);

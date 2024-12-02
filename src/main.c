@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:36:44 by abrabant          #+#    #+#             */
-/*   Updated: 2024/12/02 01:17:46 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 12:07:09 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int init_data(t_data *data)
 	data->welcome_img = mlx_xpm_file_to_image(data->mlx_ptr, WELCOME_IMAGE, &x, &y);
 	if (!data->welcome_img)
 		free_data(data);
+
 	data->view = protected_malloc(sizeof(t_view));
 	data->mouse = protected_malloc(sizeof(t_mouse));
 	data->img = protected_malloc(sizeof(t_img));
@@ -129,7 +130,7 @@ int	main(int argc, char **argv)
 	if (PARSE_MAP)
 		data->map = parse_map(data, argv[1]);
 	else
-		data->map = init_map(data, 10, 10, 2);
+		data->map = init_map(data, TEST_MAP_X, TEST_MAP_Y, TEST_MAP_Z);
 	setup_view(data);
 	data->img->mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_W, WINDOW_H);
 	data->img->addr = mlx_get_data_addr(data->img->mlx_img, &data->img->bpp,

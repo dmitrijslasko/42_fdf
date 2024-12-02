@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:52:32 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/01 20:55:32 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 10:49:41 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	reset_angle_degrees(double *angle)
 	*angle = fmod(*angle, 360);
 }
 
-void	reset_all_angle_degrees(t_data *data)
+void	reset_all_angle_degrees_data(t_data *data)
 {
 	reset_angle_degrees(&data->view->rot_x);
 	reset_angle_degrees(&data->view->rot_y);

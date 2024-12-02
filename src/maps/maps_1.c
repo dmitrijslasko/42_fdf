@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:37:21 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/01 22:31:35 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 12:10:34 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_map	*init_map(t_data *data, int width, int height, int z)
 	int		current_row;
 	int		current_col;
 
-	map = malloc(sizeof(t_map));
+	map = protected_malloc(sizeof(t_map));
 	if (!map)
 	{
 		perror("Error allocating memory: map");
@@ -28,7 +28,7 @@ t_map	*init_map(t_data *data, int width, int height, int z)
 	map->width = width;
 	map->height = height;
 	map->has_clr_info = 0;
-	map->coor = (t_coor **) malloc(height * sizeof(t_coor));
+	map->coor = malloc(height * sizeof(t_coor));
 	if (!map->coor)
 	{
 		perror("Error allocating memory: map->coor");
@@ -38,7 +38,7 @@ t_map	*init_map(t_data *data, int width, int height, int z)
 	current_row = 0;
 	while (current_row < height)
 	{
-		map->coor[current_row] = (t_coor *) malloc(width * sizeof(t_coor));
+		map->coor[current_row] = malloc(width * sizeof(t_coor));
 		if (!map->coor[current_row])
 		{
 			perror("Error allocating memory: map->coor[current_row]");

@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:37:01 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 01:04:18 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 12:30:01 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	get_clr_distance(int start_clr, int end_clr, int bit_shift)
 	return (end_clr_value - start_clr_value);
 }
 
-static unsigned int	pack_rgb(int red, int green, int blue)
+unsigned int	pack_rgb(int red, int green, int blue)
 {
 	red = fmax(fmin(red, 255), 0);
 	green = fmax(fmin(green, 255), 0);
@@ -78,9 +78,9 @@ int	update_colors(t_data *data, t_map *map)
 		col = 0;
 		while (col < map->width)
 		{
-			coor = map->coor[col][row];
+			coor = map->coor[row][col];
 			coor.z_clr_custom = get_clr_bween_clrs(coor.z_rel, v->lo_clr, v->hi_clr);
-			map->coor[col][row] = coor;
+			map->coor[row][col] = coor;
 			++col;
 		}
 		++row;

@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:37 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 01:09:03 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/02 12:20:37 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_view(t_view *v)
 	v->show_nodes = DRAW_NODES;
 	v->lang =	EN;
 	v->node_size = NODE_SIZE;
-	v->use_custom_clrs = TRUE;
+	v->use_custom_clrs = FALSE;
 	v->hi_clr = SCHEME_1_HI;
 	v->lo_clr = SCHEME_1_LO;
 	v->bg_clr = DEF_BG_COLOR;
@@ -41,7 +41,7 @@ void	setup_view(t_data *data)
 	v = data->view;
 	m = data->map;
 	v->xy_distance = WINDOW_W / m->width;
-	v->z_distance = v->xy_distance / 2;
+	v->z_distance = (int)v->xy_distance % 3;
 	if (m->has_clr_info)
 		v->use_custom_clrs = 0;
 }

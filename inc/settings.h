@@ -67,4 +67,4 @@
 
 // welcome screen
 #define WELCOME_IMAGE       "./assets/images/start.xpm"
-#define SHOW_WELCOME_IMAGE  1
+#define SHOW_WELCOME_IMAGE  0

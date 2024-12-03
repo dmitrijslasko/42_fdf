@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 21:02:00 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 23:51:35 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 17:48:54 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	*protected_malloc(size_t size, t_data *dt)
 			free_data(dt);
 		exit (1);
 	}
+	memset(ptr, 0, size);
 	return (ptr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:37:21 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 10:26:35 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 17:48:03 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static	int	init_row(t_data *dt, int height, int width, int z)
 	current_row = 0;
 	while (current_row < height)
 	{
-		dt->map->coor[current_row] = malloc(width * sizeof(t_coor));
+		dt->map->coor[current_row] = calloc(width, sizeof(t_coor));
 		if (!dt->map->coor[current_row])
 		{
 			perror("Error allocating memory: map->coor[current_row]");
@@ -33,6 +33,7 @@ static	int	init_row(t_data *dt, int height, int width, int z)
 		{
 			dt->map->coor[current_row][current_col].z = z;
 			dt->map->coor[current_row][current_col].z_clr = DEF_LINE_COLOR;
+			dt->map->coor[current_row][current_col].z_clr_custom = WHITE;
 			++current_col;
 		}
 		++current_row;

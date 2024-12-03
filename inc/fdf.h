@@ -104,7 +104,6 @@ int	update_colors(t_data *data, t_map *map);
 
 void	*protected_malloc(size_t size, t_data *data);
 
-
 void	scale_coor(int *x, int *y, int *z, t_view *view);
 void	rotate_x(int *y, int *z, double rot_x);
 void	rotate_y(int *x, int *z, double rot_y);
@@ -122,5 +121,13 @@ void	setup_hooks(t_data *data);
 void	setup_mouse(t_mouse *mouse);
 int		show_welcome_img(t_data *dt);
 
+
+void	print_map(t_map *map);
+void	update_z_rel(t_data *data);
+void	print_map(t_map *map);
+void	update_z_rel(t_data *data);
+void	fill_in_map(t_data *data, char *filepath);
+t_map	*parse_map(t_data *data, char *filepath);
+t_map	*create_map(int fd, t_data *data);
 
 #endif

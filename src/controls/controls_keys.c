@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:54:08 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 18:33:35 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 10:41:46 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	keypress_exit(int key, t_data *data)
 {
 	if (key == ESC_BUTTON)
 	{
+		ft_printf("ESC button pressed, closing the window...\n");
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
@@ -81,7 +82,7 @@ int	handle_keypress(int key, t_data *data)
 	if (key == XK_minus || key == XK_equal)
 		keypress_zoom(key, data);
 	if (key == XK_bracketright || key == XK_bracketleft)
-		keypress_z_dist(key, data);
+		keypress_Z_DIST(key, data);
 	if (key == XK_Up || key == XK_Down || key == XK_Left || key == XK_Right)
 		keypress_set_offs(key, data);
 	if (key == XK_q || key == XK_w || key == XK_a || key == XK_s || \

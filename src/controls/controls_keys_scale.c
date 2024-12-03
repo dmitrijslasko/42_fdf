@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:53:57 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 18:33:35 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 10:43:16 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	keypress_zoom(int key, t_data *data)
 	return (0);
 }
 
-int	keypress_z_dist(int key, t_data *data)
+int	keypress_Z_DIST(int key, t_data *data)
 {
 	if (key == XK_bracketright)
 		data->view->z_dist += DEF_Z_STEP;

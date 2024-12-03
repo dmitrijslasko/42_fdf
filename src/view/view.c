@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:37 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 21:34:49 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 10:44:35 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	init_view(t_view *v)
 	v->hi_clr = SCHEME_1_HI;
 	v->lo_clr = SCHEME_1_LO;
 	v->bg_clr = DEF_BG_COLOR;
-	v->xy_dist = XY_dist;
+	v->xy_dist = XY_DIST;
+	v->z_dist = Z_DIST;
 	v->projection = DEF_PROJECTION;
 	v->x_off = DEF_OFFSET_X;
 	v->y_off = DEF_OFFSET_Y;

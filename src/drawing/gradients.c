@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:37:01 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 21:18:12 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 10:34:02 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_clr_bween_clrs(double dist, int start_clr, int end_clr)
 	return (resulting_clr.rgb);
 }
 
-int	get_clr_bween_points(t_data *dt, t_coor pt_1, t_coor pt_2, double dist)
+int	get_clr_bween_pts(t_data *dt, t_coor pt_1, t_coor pt_2, double dist)
 {
 	int		pixel_clr;
 	t_view	*v;

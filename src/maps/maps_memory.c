@@ -6,17 +6,43 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:37:21 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 22:50:39 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 10:26:35 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_map	*init_map(t_data *dt, int width, int height, int z)
+static	int	init_row(t_data *dt, int height, int width, int z)
+{
+	int	current_row;
+	int	current_col;
+
+	current_row = 0;
+	while (current_row < height)
+	{
+		dt->map->coor[current_row] = malloc(width * sizeof(t_coor));
+		if (!dt->map->coor[current_row])
+		{
+			perror("Error allocating memory: map->coor[current_row]");
+			free_map(dt->map, current_row);
+			free_data(dt);
+			exit (1);
+		}
+		current_col = 0;
+		while (current_col < width)
+		{
+			dt->map->coor[current_row][current_col].z = z;
+			dt->map->coor[current_row][current_col].z_clr = DEF_LINE_COLOR;
+			++current_col;
+		}
+		++current_row;
+	}
+	return (0);
+}
+
+t_map	*init_map(t_data *dt, int height, int width, int z)
 {
 	t_map	*map;
-	int		current_row;
-	int		current_col;
 
 	map = protected_malloc(sizeof(t_map), dt);
 	dt->map = map;
@@ -24,25 +50,7 @@ t_map	*init_map(t_data *dt, int width, int height, int z)
 	map->height = height;
 	map->has_clr_info = 0;
 	map->coor = protected_malloc(height * sizeof(t_coor), dt);
-	current_row = 0;
-	while (current_row < height)
-	{
-		map->coor[current_row] = malloc(width * sizeof(t_coor));
-		if (!map->coor[current_row])
-		{
-			perror("Error allocating memory: map->coor[current_row]");
-			free_map(map, current_row);
-			return (NULL);
-		}
-		current_col = 0;
-		while (current_col < width)
-		{
-			map->coor[current_row][current_col].z = z;
-			map->coor[current_row][current_col].z_clr = DEF_LINE_COLOR;
-			++current_col;
-		}
-		++current_row;
-	}
+	init_row(dt, height, width, z);
 	update_iso_coors(dt, dt->map, dt->view);
 	return (map);
 }

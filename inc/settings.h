@@ -7,10 +7,10 @@
 #define WINDOW_H 			900
 
 // default scale
-#define XY_dist 		100
-#define Z_dist      	1
 #define X_CENTER 			600
 #define Y_CENTER 			450
+#define XY_DIST 		    100
+#define Z_DIST      	    1
 
 // offsets
 #define DEF_OFFSET_X       	0

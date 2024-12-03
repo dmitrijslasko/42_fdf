@@ -8,7 +8,10 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror -g
 LIB_FLAGS = -lmlx -lm -lXext -lX11
 
-INC = -I ./inc
+INC =   -I ./inc \
+		-I $(LIBDIRS)libft/	\
+		-I $(LIBDIRS)printf/inc	\
+		-I $(LIBDIRS)get_next_line
 
 SOURCES_DIR = ./src/
 OBJECTS_DIR = ./obj/
@@ -16,8 +19,8 @@ OBJECTS_DIR = ./obj/
 SOURCES = $(wildcard $(SOURCES_DIR)*.c) $(wildcard $(SOURCES_DIR)**/*.c)
 OBJECTS = $(patsubst $(SOURCES_DIR)%, $(OBJECTS_DIR)%, $(SOURCES:.c=.o))
 
-$(info SOURCES: $(SOURCES))
-$(info OBJECTS: $(OBJECTS))
+# $(info SOURCES: $(SOURCES))
+# $(info OBJECTS: $(OBJECTS))
 
 # libraries
 LIBDIRS = ./lib/
@@ -59,14 +62,14 @@ clean:
 	rm -f $(OBJECTS_DIR)**/*.o
 	rm -rf $(OBJECTS_DIR)*
 	rm -rf $(DOWNLOAD_DIR)
-	@echo "$(GREEN)clean complete$(RESET)\c"
+	@echo "$(GREEN)clean complete\n$(RESET)\c"
 
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(MINILIBX_DIR) clean
 	$(MAKE) -C $(PRINTF_DIR) clean
-	@echo "$(GREEN)fclean complete$(RESET)\c"
+	@echo "$(GREEN)fclean complete\n$(RESET)\c"
 
 re: fclean all
 

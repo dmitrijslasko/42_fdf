@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:36:44 by abrabant          #+#    #+#             */
-/*   Updated: 2024/12/02 22:50:06 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 00:18:19 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,19 @@ int	init_data(t_data *dt)
 	}
 	if (SHOW_WELCOME_IMAGE)
 		dt->welcome_img = mlx_xpm_file_to_image(dt->mlx_ptr, WELCOME_IMAGE, \
-												 &x, &y);
+												&x, &y);
 	dt->view = protected_malloc(sizeof(t_view), dt);
 	dt->mouse = protected_malloc(sizeof(t_mouse), dt);
 	dt->img = protected_malloc(sizeof(t_img), dt);
 	init_view(dt->view);
+	return (0);
+}
+
+static int	setup_img(t_data *dt)
+{
+	dt->img->mlx_img = mlx_new_image(dt->mlx_ptr, WINDOW_W, WINDOW_H);
+	dt->img->addr = mlx_get_data_addr(dt->img->mlx_img, &dt->img->bpp,
+			&dt->img->line_len, &dt->img->endian);
 	return (0);
 }
 
@@ -89,10 +97,10 @@ int	main(int argc, char **argv)
 		dt->map = parse_map(dt, argv[1]);
 	else
 		dt->map = init_map(dt, TEST_MAP_X, TEST_MAP_Y, TEST_MAP_Z);
+	if (!dt->map)
+		free_data(dt);
 	setup_view(dt);
-	dt->img->mlx_img = mlx_new_image(dt->mlx_ptr, WINDOW_W, WINDOW_H);
-	dt->img->addr = mlx_get_data_addr(dt->img->mlx_img, &dt->img->bpp,
-			&dt->img->line_len, &dt->img->endian);
+	setup_img(dt);
 	setup_hooks(dt);
 	setup_mouse(dt->mouse);
 	mlx_loop_hook(dt->mlx_ptr, &render, dt);

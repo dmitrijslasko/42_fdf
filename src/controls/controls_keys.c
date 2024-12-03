@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:54:08 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 10:41:46 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 10:51:21 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	handle_keypress(int key, t_data *data)
 	if (key == XK_minus || key == XK_equal)
 		keypress_zoom(key, data);
 	if (key == XK_bracketright || key == XK_bracketleft)
-		keypress_Z_DIST(key, data);
+		keypress_z_dist(key, data);
 	if (key == XK_Up || key == XK_Down || key == XK_Left || key == XK_Right)
 		keypress_set_offs(key, data);
 	if (key == XK_q || key == XK_w || key == XK_a || key == XK_s || \

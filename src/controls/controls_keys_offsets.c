@@ -12,26 +12,26 @@
 
 #include "fdf.h"
 
-int	keypress_set_offs(int key, t_data *data)
+int	keypress_set_offs(int key, t_data *dt)
 {
 	if (key == XK_Up)
-		data->view->y_off += DEF_KEY_OFFSET;
+		dt->view->y_off += DEF_KEY_OFFSET;
 	if (key == XK_Down)
-		data->view->y_off -= DEF_KEY_OFFSET;
+		dt->view->y_off -= DEF_KEY_OFFSET;
 	if (key == XK_Left)
-		data->view->x_off += DEF_KEY_OFFSET;
+		dt->view->x_off += DEF_KEY_OFFSET;
 	if (key == XK_Right)
-		data->view->x_off -= DEF_KEY_OFFSET;
+		dt->view->x_off -= DEF_KEY_OFFSET;
 	return (0);
 }
 
-int	keypress_reset_offs(int key, t_data *data)
+int	keypress_reset_offs(int key, t_data *dt)
 {
 	if (key == XK_r)
 	{
-		data->view->x_off = 0;
-		data->view->y_off = 0;
-		reset_angle(data);
+		dt->view->x_off = 0;
+		dt->view->y_off = 0;
+		reset_angle(dt);
 	}
 	return (0);
 }

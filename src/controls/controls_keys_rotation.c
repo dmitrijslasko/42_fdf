@@ -6,26 +6,26 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:53:52 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 10:49:41 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 11:14:46 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	keypress_rotation(int key, t_data *data)
+int	keypress_rotation(int key, t_data *dt)
 {
 	if (key == XK_q)
-		data->view->rot_x -= DEF_ROTATE_STEP;
+		dt->view->rot_x -= DEF_ROTATE_STEP;
 	if (key == XK_w)
-		data->view->rot_x += DEF_ROTATE_STEP;
+		dt->view->rot_x += DEF_ROTATE_STEP;
 	if (key == XK_a)
-		data->view->rot_y -= DEF_ROTATE_STEP;
+		dt->view->rot_y -= DEF_ROTATE_STEP;
 	if (key == XK_s)
-		data->view->rot_y += DEF_ROTATE_STEP;
+		dt->view->rot_y += DEF_ROTATE_STEP;
 	if (key == XK_z)
-		data->view->rot_z -= DEF_ROTATE_STEP;
+		dt->view->rot_z -= DEF_ROTATE_STEP;
 	if (key == XK_x)
-		data->view->rot_z += DEF_ROTATE_STEP;
-	reset_all_angle_degrees_data(data);
+		dt->view->rot_z += DEF_ROTATE_STEP;
+	reset_all_angle_degrees_data(dt);
 	return (0);
 }

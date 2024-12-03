@@ -6,70 +6,70 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:54:14 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/02 12:27:40 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 11:15:27 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 // Handle mouse scroll - zoom
-static int	mouse_zoom(int key, t_data *data)
+static int	mouse_zoom(int key, t_data *dt)
 {
 	if (key == MOUSE_SCROLL_UP)
 	{
-		data->view->zoom *= (1 + MOUSE_SENS_SCROLL);
-		data->view->zoom = fmin(data->view->zoom, MAX_ZOOM);
+		dt->view->zoom *= (1 + MOUSE_SENS_SCROLL);
+		dt->view->zoom = fmin(dt->view->zoom, MAX_ZOOM);
 	}
 	if (key == MOUSE_SCROLL_DOWN)
 	{
-		data->view->zoom /= (1 + MOUSE_SENS_SCROLL);
-		data->view->zoom = fmax(data->view->zoom, MIN_ZOOM);
+		dt->view->zoom /= (1 + MOUSE_SENS_SCROLL);
+		dt->view->zoom = fmax(dt->view->zoom, MIN_ZOOM);
 	}
 	return (0);
 }
 
 // Handle mouse press
-int	mouse_press(int button, int x, int y, t_data *data)
+int	mouse_press(int button, int x, int y, t_data *dt)
 {
 	(void)x;
 	(void)y;
-	if (data->view->show_welcome)
+	if (dt->view->show_welcome)
 		return (1);
 	if (button == MOUSE_SCROLL_UP || button == MOUSE_SCROLL_DOWN)
-		mouse_zoom(button, data);
+		mouse_zoom(button, dt);
 	if (button == MOUSE_LEFT_BUTTON)
-		data->mouse->lmb_is_pressed = TRUE;
+		dt->mouse->lmb_is_pressed = TRUE;
 	if (button == MOUSE_THIRD_BUTTON)
-		data->mouse->rmb_is_pressed = TRUE;
+		dt->mouse->rmb_is_pressed = TRUE;
 	return (0);
 }
 
 // Handle mouse release
-int	mouse_release(int button, int x, int y, t_data *data)
+int	mouse_release(int button, int x, int y, t_data *dt)
 {
 	(void)x;
 	(void)y;
 	(void)button;
-	if (data->view->show_welcome)
+	if (dt->view->show_welcome)
 		return (1);
 	if (button == MOUSE_LEFT_BUTTON)
-		data->mouse->lmb_is_pressed = FALSE;
+		dt->mouse->lmb_is_pressed = FALSE;
 	if (button == MOUSE_THIRD_BUTTON)
-		data->mouse->rmb_is_pressed = FALSE;
+		dt->mouse->rmb_is_pressed = FALSE;
 	return (0);
 }
 
-static void	set_offs(t_data *data, int x, int y)
+static void	set_offs(t_data *dt, int x, int y)
 {
 	t_view	*view;
 
-	view = data->view;
-	data->view->x_off += (x - data->mouse->previous_x) * MOUSE_SENS_DRAG;
-	if (data->view->x_off > 0)
-		data->view->x_off = fmin(view->x_off, DEF_DRAG_LIM * view->zoom);
+	view = dt->view;
+	dt->view->x_off += (x - dt->mouse->previous_x) * MOUSE_SENS_DRAG;
+	if (dt->view->x_off > 0)
+		dt->view->x_off = fmin(view->x_off, DEF_DRAG_LIM * view->zoom);
 	else
 		view->x_off = fmax(view->x_off, -DEF_DRAG_LIM * view->zoom);
-	view->y_off += (y - data->mouse->previous_y) * MOUSE_SENS_DRAG;
+	view->y_off += (y - dt->mouse->previous_y) * MOUSE_SENS_DRAG;
 	if (view->y_off > 0)
 		view->y_off = fmin(view->y_off, DEF_DRAG_LIM * view->zoom);
 	else
@@ -77,26 +77,26 @@ static void	set_offs(t_data *data, int x, int y)
 }
 
 // Handle mouse move
-int	mouse_move(int x, int y, t_data *data)
+int	mouse_move(int x, int y, t_data *dt)
 {
 	t_view	*view;
 
-	view = data->view;
-	data->mouse->previous_x = data->mouse->x;
-	data->mouse->previous_y = data->mouse->y;
-	data->mouse->x = x;
-	data->mouse->y = y;
+	view = dt->view;
+	dt->mouse->previous_x = dt->mouse->x;
+	dt->mouse->previous_y = dt->mouse->y;
+	dt->mouse->x = x;
+	dt->mouse->y = y;
 	if (view->show_welcome)
 		return (1);
-	if (data->mouse->rmb_is_pressed)
+	if (dt->mouse->rmb_is_pressed)
 	{
 		if (y > view->c_y)
-			view->rot_z += (data->mouse->previous_x - x) * MOUSE_SENS_ROTATE;
+			view->rot_z += (dt->mouse->previous_x - x) * MOUSE_SENS_ROTATE;
 		else
-			view->rot_z -= (data->mouse->previous_x - x) * MOUSE_SENS_ROTATE;
-		reset_all_angle_degrees_data(data);
+			view->rot_z -= (dt->mouse->previous_x - x) * MOUSE_SENS_ROTATE;
+		reset_all_angle_degrees_data(dt);
 	}
-	if (data->mouse->lmb_is_pressed)
-		set_offs(data, x, y);
+	if (dt->mouse->lmb_is_pressed)
+		set_offs(dt, x, y);
 	return (0);
 }

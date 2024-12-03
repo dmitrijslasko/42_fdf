@@ -6,20 +6,21 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:44:50 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 10:45:43 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 11:26:43 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 // enum
-typedef enum	e_bool
+typedef enum e_bool
 {
 	FALSE,
 	TRUE
 }	t_bool;
 
-typedef enum	e_lang
+typedef enum e_lang
 {
 	EN,
 	DE
@@ -34,24 +35,24 @@ typedef enum e_projection
 // structures
 typedef struct s_coor
 {
-	int	x;
-	int	y;
-	int z;
-	int z_clr;
+	int		x;
+	int		y;
+	int		z;
+	int		z_clr;
 	double	z_rel;
-	int	z_clr_custom;
-	int x_iso;
-	int y_iso;
+	int		z_clr_custom;
+	int		x_iso;
+	int		y_iso;
 }	t_coor;
 
 typedef struct s_map
 {
 	t_coor	**coor;
 	int		width;
-	int 	height;
+	int		height;
 	double	z_max;
 	int		z_min;
-	int	has_clr_info;
+	int		has_clr_info;
 }	t_map;
 
 typedef struct s_mouse
@@ -75,7 +76,7 @@ typedef struct s_view
 	int		lo_clr;
 	int		hi_clr;
 	int		bg_clr;
-	double 	xy_dist;
+	double	xy_dist;
 	double	z_dist;
 	double	z_limit;
 	int		x_off;
@@ -97,7 +98,7 @@ typedef struct s_view
 
 typedef struct s_rgb
 {
-	int rgb;
+	int	rgb;
 	int	r;
 	int	g;
 	int	b;
@@ -116,13 +117,12 @@ typedef struct s_node
 {
 	int	x;
 	int	y;
-	int z;
-	int clr;
+	int	z;
+	int	clr;
 }	t_node;
 
 typedef struct s_data
 {
-	t_list 	**pointers;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	*img;
@@ -132,10 +132,13 @@ typedef struct s_data
 	void	*welcome_img;
 }	t_data;
 
-typedef struct s_line {
-    int y1;
-	int y2;
-    int x1;
-    int x2;
-    int clr;
-} 	t_line;
+typedef struct s_line
+{
+	int	y1;
+	int	y2;
+	int	x1;
+	int	x2;
+	int	clr;
+}	t_line;
+
+#endif

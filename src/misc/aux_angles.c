@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aux.c                                              :+:      :+:    :+:   */
+/*   aux_angles.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:52:32 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 17:13:34 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 17:12:13 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	swap(void *a, void *b, size_t size)
+void	reset_angle_degrees(double *angle)
 {
-	void	*temp;
-
-	temp = malloc(size);
-	if (temp == NULL)
-		return ;
-	memcpy(temp, a, size);
-	memcpy(a, b, size);
-	memcpy(b, temp, size);
-	free(temp);
+	*angle = fmax(*angle, *angle + 360);
+	*angle = fmod(*angle, 360);
 }
 
-int	ft_count_str(char const *s, char const c)
+void	reset_all_angle_degrees_data(t_data *data)
 {
-	int	string_count;
+	reset_angle_degrees(&data->view->rot_x);
+	reset_angle_degrees(&data->view->rot_y);
+	reset_angle_degrees(&data->view->rot_z);
+}
 
-	string_count = 0;
-	while (*s)
-	{
-		while (*s && *s == c)
-			s++;
-		if (*s && *s != c)
-		{
-			string_count++;
-			while (*s && *s != c)
-				s++;
-		}
-	}
-	return (string_count);
+double	deg_to_radians(double angle)
+{
+	return (angle * (M_PI / 180.0));
+}
+
+void	reset_angle(t_data *data)
+{
+	data->view->rot_x = DEF_ISO_ROT_X;
+	data->view->rot_y = DEF_ISO_ROT_Y;
+	data->view->rot_z = DEF_ISO_ROT_Z;
 }

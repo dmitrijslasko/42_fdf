@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:30:26 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 10:48:31 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 16:22:33 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <X11/Xlib.h>
 # include <math.h>
 # include <limits.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 // headers
 # include "colors.h"
@@ -31,7 +33,6 @@
 # include "errors.h"
 
 // user libraries
-# include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
 
@@ -125,4 +126,7 @@ void			project(int *x, int *y, int *z);
 void			setup_hooks(t_data *data);
 
 int				show_welcome_img(t_data *dt);
+
+int				ft_count_str(char const *s, char const c);
+
 #endif

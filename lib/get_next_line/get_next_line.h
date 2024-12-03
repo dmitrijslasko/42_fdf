@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:35:47 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/08/13 17:37:02 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 16:22:58 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stddef.h>
-# include <fcntl.h>
 
 char	*get_next_line(int fd);
 

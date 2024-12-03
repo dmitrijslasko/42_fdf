@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:16:09 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 12:49:58 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 17:05:15 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@
 # define TEST_MAP_Z         0
 
 // welcome screen
-# define WELCOME_IMAGE       "./assets/images/start.xpm"
-# define SHOW_WELCOME_IMAGE  0
+# define WELCOME_IMAGE       "./assets/images/intro.xpm"
+# define SHOW_WELCOME_IMAGE  1
 
 #endif

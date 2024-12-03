@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:35:39 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/11/21 19:00:11 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/08/13 18:55:57 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*get_next_line(int fd)
 	if (buffer == NULL)
 		buffer = (char *)func(buffer, 1, BUFFER_SIZE + 1, sizeof(char));
 	next_line = (char *)malloc(sizeof(char));
-	if (!next_line || !buffer || BUFFER_SIZE <= 0 || fd < 0)
+	if (!next_line || !buffer || BUFFER_SIZE <= 0)
 		return (NULL);
 	next_line[0] = '\0';
 	next_line = add_buffer_to_line(next_line, buffer);

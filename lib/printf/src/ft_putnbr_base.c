@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 17:34:31 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/07/29 15:24:46 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/07/26 15:41:59 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,7 @@ size_t	ft_putnbr_base(long n, int type, char *base, t_flags *f)
 	f->preceding_0_len = ft_max(f->prcsn_len - ft_strlen(n_str), 0);
 	calc = ft_strlen(n_str) + f->is_neg + (n >= 0) * \
 		f->di_precdng_pl + (n >= 0) * f->di_precdng_sp;
-	f->space_len = ft_max(f->min_width - f->preceding_0_len - calc - \
-		(n != 0) * 2 * f->x_preceding_symbols, 0);
+	f->space_len = ft_max(f->min_width - f->preceding_0_len - calc, 0);
 	counter += f->preceding_0_len + f->space_len + calc;
 	counter -= (n == 0 && f->prcsn && !f->min_width && !f->prcsn_len);
 	if (f->align_left)

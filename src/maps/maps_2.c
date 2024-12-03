@@ -6,10 +6,11 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:52 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 00:18:48 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 16:22:44 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "printf.h"
 #include "fdf.h"
 
 void	free_values(char **values)
@@ -36,7 +37,7 @@ t_map	*create_map(int fd, t_data *data)
 	int		cols;
 
 	result = get_next_line(fd);
-	cols = ft_count_strings(result, ' ');
+	cols = ft_count_str(result, ' ');
 	if (cols == 0)
 		exit (1);
 	rows = 0;
@@ -80,7 +81,7 @@ static int	process_row(t_data *data, int row, char **values)
 	while (values[i])
 	{
 		data->map->coor[row][col].z = ft_atoi(values[i]);
-		if (ft_count_strings(values[i], ',') == 2)
+		if (ft_count_str(values[i], ',') == 2)
 		{
 			coor = ft_split(values[i], ',');
 			data->map->coor[row][col].z_clr = hex_to_int(coor[1]);

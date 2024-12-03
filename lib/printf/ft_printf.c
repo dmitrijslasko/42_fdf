@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:20:11 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/07/31 16:04:13 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/07/26 15:03:23 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_printf(const char *s, ...)
 	va_start(ap, s);
 	while (*s)
 	{
-		if (*s == '%' && *(s + 1) != '\0')
+		if (*s == '%')
 		{
 			ft_init_flags(&f);
 			s += 1;
@@ -45,9 +45,3 @@ int	ft_printf(const char *s, ...)
 	va_end(ap);
 	return (counter);
 }
-
-//int main(void)
-//{
-//	printf("---LEN: %d\n", ft_printf("42%#60.20x42", -0));
-//	printf("---LEN: %d\n", printf("42%#60.20x42", -0));
-//}

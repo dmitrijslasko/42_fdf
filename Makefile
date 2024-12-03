@@ -9,7 +9,6 @@ FLAGS = -Wall -Wextra -Werror -g
 LIB_FLAGS = -lmlx -lm -lXext -lX11
 
 INC =   -I ./inc \
-		-I $(LIBDIRS)libft/	\
 		-I $(LIBDIRS)printf/inc	\
 		-I $(LIBDIRS)get_next_line
 
@@ -25,9 +24,6 @@ OBJECTS = $(patsubst $(SOURCES_DIR)%, $(OBJECTS_DIR)%, $(SOURCES:.c=.o))
 # libraries
 LIBDIRS = ./lib/
 
-LIBFT = $(LIBFT_DIR)libft.a
-LIBFT_DIR = $(LIBDIRS)libft/
-
 PRINTF = $(PRINTF_DIR)libftprintf.a
 PRINTF_DIR = $(LIBDIRS)printf/
 
@@ -37,44 +33,43 @@ MINILIBX_DIR = $(LIBDIRS)minilibx/
 GNL = $(GNL_DIR)*line.c $(GNL_DIR)*utils.c
 GNL_DIR = $(LIBDIRS)get_next_line/
 
-GITHUB_URL = https://raw.githubusercontent.com/dmitrijslasko/fdf42/d2d31f6ccc2dad88bdb2bcf6cb05aa5ed044f248/assets/images/start.xpm
-DOWNLOAD_DIR = ./assets/images
+GITHUB_URL = https://raw.githubusercontent.com/dmitrijslasko/42-assets/7f5dcb0542c630bce507ce6b5cc2e258ef11ff31/intro.xpm
+DOWNLOAD_DIR = ./assets/images/
 
-all: $(LIBFT) $(PRINTF) $(MINILIBX) $(NAME) $(DOWNLOAD_DIR)/start.xpm
+all: submodule $(PRINTF) $(MINILIBX) $(NAME) $(DOWNLOAD_DIR)intro.xpm
 
-$(DOWNLOAD_DIR)/start.xpm: $(DOWNLOAD_DIR)
-	@curl -s -L $(GITHUB_URL) -o $@
-
-$(NAME): $(OBJECTS)
-	@$(CC) $(OBJECTS) -o $(NAME) $(GNL) -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) \
-			-L$(PRINTF_DIR) -lftprintf $(LIB_FLAGS)
-	@echo "\n$(GREEN)$(NAME) got successfully compiled.$(RESET)"
+$(DOWNLOAD_DIR)intro.xpm: $(DOWNLOAD_DIR)
+	@curl -L $(GITHUB_URL) -o $@
 
 $(DOWNLOAD_DIR):
 	@mkdir -p $(DOWNLOAD_DIR)
+
+$(NAME): $(OBJECTS)
+	@$(CC) $(OBJECTS) -o $(NAME) $(GNL) -L$(MINILIBX_DIR) \
+			-L$(PRINTF_DIR) -lftprintf $(LIB_FLAGS)
+	@echo "\n$(GREEN)$(NAME) got successfully compiled.$(RESET)"
 
 $(OBJECTS): $(OBJECTS_DIR)%.o : $(SOURCES_DIR)%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(FLAGS) $(INC) -c $< -o $@
 	@echo "$(GREEN)%%%%$(RESET)\c"
 
+submodule:
+	@git submodule update --init --recursive
+
 clean:
 	rm -f $(OBJECTS_DIR)**/*.o
 	rm -rf $(OBJECTS_DIR)*
 	rm -rf $(DOWNLOAD_DIR)
+	$(MAKE) clean -C $(PRINTF_DIR)
 	@echo "$(GREEN)clean complete\n$(RESET)\c"
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(MINILIBX_DIR) clean
-	$(MAKE) -C $(PRINTF_DIR) clean
+	$(MAKE) fclean -C $(PRINTF_DIR)
 	@echo "$(GREEN)fclean complete\n$(RESET)\c"
 
 re: fclean all
-
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
 
 $(MINILIBX):
 	$(MAKE) -C $(MINILIBX_DIR)
@@ -82,4 +77,4 @@ $(MINILIBX):
 $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re submodule printf get_next_line minilibx

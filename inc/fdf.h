@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:30:26 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 16:22:33 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 18:42:23 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,32 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-// functions
-// keypresses
-int				handle_keypress(int keysym, t_data *data);
-int				handle_keyrelease(int keysym, void *data);
-
-// parsing maps
+// parsing & updating maps
+int				check_arguments(int argc, char **argv);
 t_map			*parse_map(t_data *data, char *filepath);
 t_map			*init_map(t_data *data, int width, int height, int z);
 void			fill_in_map(t_data *data, char *filepath);
 void			print_map(t_map *map);
-void			print_map_coors(t_map *map);
 t_map			*create_map(int fd, t_data *data);
 void			update_z_rel(t_data *data);
+int				update_colors(t_data *data, t_map *map);
+void			scale_coor(int *x, int *y, int *z, t_view *view);
+void			update_bounding_box(t_data *data);
 
-// clrs
+// iso calculations
+void			rotate_x(int *y, int *z, double rot_x);
+void			rotate_y(int *x, int *z, double rot_y);
+void			rotate_z(int *x, int *y, double rot_z);
+void			project(int *x, int *y, int *z);
+void			setup_hooks(t_data *data);
+
+// colors
 unsigned int	pack_rgb(int red, int green, int blue);
 int				get_clr_bween_clrs(double dist, int start_clr, int end_clr);
 int				hex_to_int(const char *hexString);
 int				get_clr_bween_pts(t_data *data, t_coor pt_1, \
 							t_coor pt_2, double dist);
+
 // drawing
 void			img_pix_put(t_img *img, int x, int y, int clr);
 int				pixel_is_in_window(int x, int y);
@@ -75,15 +81,14 @@ int				draw_rectangle(t_img *img, t_coor *pt_1, t_coor *pt_2, int clr);
 
 // aux
 void			swap(void *a, void *b, size_t size);
+int				ft_count_str(char const *s, char const c);
 
 // memory management
+int				init_data(t_data *dt);
+void			init_view(t_view *view);
+void			*protected_malloc(size_t size, t_data *data);
 void			free_map(t_map *map, int allocated_rows);
 void			free_data(t_data *data);
-
-void			update_bounding_box(t_data *data);
-
-void			init_view(t_view *view);
-void			setup_view(t_data *data);
 
 // UI / admin
 void			show_admin(t_data *data);
@@ -93,40 +98,31 @@ void			add_controls_panel_de(t_data *data);
 void			add_zoom_info(t_data *data);
 void			add_coor_info(t_data *data);
 void			add_license_info(t_data *data);
-
 t_coor			update_origin_coor(t_data *data);
 
+// angle operations & conversion
 double			deg_to_radians(double angle);
-
 void			reset_angle(t_data *data);
+void			reset_angle_degrees(double *angle);
+void			reset_all_angle_degrees_data(t_data *data);
 
-int				close_window(void);
+// rendering
+void			render_background(t_img *img, int clr);
+int				render(t_data *dt);
 
-// mouse
+// setup
+int				setup_mlx_and_win(t_data *dt);
+int				setup_img(t_data *dt);
+void			setup_view(t_data *data);
+
+// keyboard & mouse
+int				handle_keypress(int keysym, t_data *data);
+int				handle_keyrelease(int keysym, void *data);
 void			setup_mouse(t_mouse *mouse);
 int				mouse_move(int x, int y, t_data *data);
 int				mouse_release(int button, int x, int y, t_data *data);
 int				mouse_press(int button, int x, int y, t_data *data);
-
-int				render(t_data *data);
-
-int				check_arguments(int argc, char **argv);
-void			reset_angle_degrees(double *angle);
-void			reset_all_angle_degrees_data(t_data *data);
-void			reset_bounding_box(t_data *data);
-int				update_colors(t_data *data, t_map *map);
-void			*protected_malloc(size_t size, t_data *data);
-void			scale_coor(int *x, int *y, int *z, t_view *view);
-
-// iso
-void			rotate_x(int *y, int *z, double rot_x);
-void			rotate_y(int *x, int *z, double rot_y);
-void			rotate_z(int *x, int *y, double rot_z);
-void			project(int *x, int *y, int *z);
-void			setup_hooks(t_data *data);
-
+int				close_window(void);
 int				show_welcome_img(t_data *dt);
-
-int				ft_count_str(char const *s, char const c);
 
 #endif

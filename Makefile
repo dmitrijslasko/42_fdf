@@ -59,7 +59,7 @@ submodule:
 
 clean:
 	rm -f $(OBJECTS_DIR)**/*.o
-	rm -rf $(OBJECTS_DIR)*
+	rm -rf $(OBJECTS_DIR)
 	rm -rf $(DOWNLOAD_DIR)
 	$(MAKE) clean -C $(PRINTF_DIR)
 	@echo "$(GREEN)clean complete\n$(RESET)\c"

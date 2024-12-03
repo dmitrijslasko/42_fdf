@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:37 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 10:44:35 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 18:41:49 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	setup_view(t_data *data)
 		v->use_custom_clrs = 0;
 }
 
-void	reset_bounding_box(t_data *data)
+static void	reset_bounding_box(t_data *data)
 {
 	data->view->x_max = INT_MIN;
 	data->view->x_min = INT_MAX;

@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:36:52 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 17:38:05 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 18:31:26 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_map	*parse_map(t_data *data, char *filepath)
 	if (fd < 0)
 	{
 		ft_putstr_fd("Can't read file. Check the filename, try again.\n", 1);
-		exit (1);
+		return (NULL);
 	}
 	map = create_map(fd, data);
 	fill_in_map(data, filepath);

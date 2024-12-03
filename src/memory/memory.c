@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 21:02:00 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 17:48:54 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 18:34:25 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ void	free_data(t_data *dt)
 		mlx_destroy_image(dt->mlx_ptr, dt->img->mlx_img);
 	if (dt->welcome_img)
 		mlx_destroy_image(dt->mlx_ptr, dt->welcome_img);
-	mlx_destroy_display(dt->mlx_ptr);
 	if (dt->mlx_ptr)
+	{
+		mlx_destroy_display(dt->mlx_ptr);
 		safe_free(dt->mlx_ptr);
+	}
 	if (dt->win_ptr)
 		safe_free(dt->win_ptr);
 	if (dt->img)

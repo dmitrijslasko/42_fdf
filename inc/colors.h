@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:29:34 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 11:17:00 by dmlasko          ###   ########.fr       */
+/*   Updated: 2024/12/03 18:45:56 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 # define GOLD		0xFFD700
 # define SILVER		0xC0C0C0
 # define LIME		0x32CD32
-# define NAVY		0x000080
+# define NAVY		0x000020
 # define TEAL		0x008080
 # define MAROON		0x200000
 
 // color schemes
 # define SCHEME_1_LO	TEAL
 # define SCHEME_1_HI	YELLOW
-# define SCHEME_1_BG	BLACK
+# define SCHEME_1_BG	NAVY
 
 # define SCHEME_2_LO	RED
 # define SCHEME_2_HI	BLUE

@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:07:34 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 10:34:02 by dmlasko          ###   ########.fr       */
+/*   Updated: 2025/01/03 01:38:01 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void	draw_sloped_line(t_data *data, t_coor pt_1, t_coor pt_2)
 
 void	connect_two_nodes(t_data *data, t_coor *coor_1, t_coor *coor_2)
 {
+	if (!pixel_is_in_window(coor_1->x_iso, coor_1->y_iso) &&
+		!pixel_is_in_window(coor_2->x_iso, coor_2->y_iso))
+		return ;
 	if (coor_1->x_iso == coor_2->x_iso)
 	{
 		draw_vert_line(data, *coor_1, *coor_2);

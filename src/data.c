@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:35:49 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 18:42:41 by dmlasko          ###   ########.fr       */
+/*   Updated: 2025/01/18 16:51:51 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,10 @@ int	setup_mlx_and_win(t_data *dt)
 
 	dt->mlx_ptr = mlx_init();
 	if (dt->mlx_ptr == NULL)
-	{
-		free_data(dt);
 		return (MLX_ERROR);
-	}
 	dt->win_ptr = mlx_new_window(dt->mlx_ptr, WINDOW_W, WINDOW_H, WINDOW_NAME);
 	if (dt->win_ptr == NULL)
-	{
-		free_data(dt);
 		return (MLX_ERROR);
-	}
 	if (SHOW_WELCOME_IMAGE)
 		dt->welcome_img = mlx_xpm_file_to_image(dt->mlx_ptr, WELCOME_IMAGE, \
 												&x, &y);
@@ -75,9 +69,9 @@ int	setup_mlx_and_win(t_data *dt)
 
 int	init_data(t_data *dt)
 {
-	dt->view = protected_malloc(sizeof(t_view), dt);
-	dt->mouse = protected_malloc(sizeof(t_mouse), dt);
-	dt->img = protected_malloc(sizeof(t_img), dt);
+	dt->view = protected_malloc(sizeof(t_view));
+	dt->mouse = protected_malloc(sizeof(t_mouse));
+	dt->img = protected_malloc(sizeof(t_img));
 	init_view(dt->view);
 	return (0);
 }

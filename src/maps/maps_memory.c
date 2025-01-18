@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:37:21 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 17:48:03 by dmlasko          ###   ########.fr       */
+/*   Updated: 2025/01/18 16:29:33 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static	int	init_row(t_data *dt, int height, int width, int z)
 		{
 			perror("Error allocating memory: map->coor[current_row]");
 			free_map(dt->map, current_row);
-			free_data(dt);
 			exit (1);
 		}
 		current_col = 0;
@@ -45,12 +44,12 @@ t_map	*init_map(t_data *dt, int height, int width, int z)
 {
 	t_map	*map;
 
-	map = protected_malloc(sizeof(t_map), dt);
+	map = protected_malloc(sizeof(t_map));
 	dt->map = map;
 	map->width = width;
 	map->height = height;
 	map->has_clr_info = 0;
-	map->coor = protected_malloc(height * sizeof(t_coor), dt);
+	map->coor = protected_malloc(height * sizeof(t_coor));
 	init_row(dt, height, width, z);
 	update_iso_coors(dt, dt->map, dt->view);
 	return (map);

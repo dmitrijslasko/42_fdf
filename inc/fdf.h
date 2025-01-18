@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:30:26 by dmlasko           #+#    #+#             */
-/*   Updated: 2024/12/03 18:42:23 by dmlasko          ###   ########.fr       */
+/*   Updated: 2025/01/18 16:28:58 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,8 @@ int				ft_count_str(char const *s, char const c);
 // memory management
 int				init_data(t_data *dt);
 void			init_view(t_view *view);
-void			*protected_malloc(size_t size, t_data *data);
+void			*protected_malloc(size_t size);
 void			free_map(t_map *map, int allocated_rows);
-void			free_data(t_data *data);
 
 // UI / admin
 void			show_admin(t_data *data);

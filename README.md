@@ -57,10 +57,21 @@ Other maps are stored in the ./maps/ folder.
 1. Lack of z-buffer – resulting in line overlay problems (best seen on big maps like ./maps/t1.fdf)
 1. Due to the limitation of the MLX library, the control panel text is output to the window, not the image.
 This sometimes results in blinking (because of the constant rerendering).
-However, it perfectly shows why we should use the image pre-render for the main part of the program.
+However, it perfectly shows why we should use the image pre-render for the main part of the program.  
+It's best to reimplement this functionality with using an XPM image
+
+## Reading list
+
+## Inspirations
+1. Awesome project with spherical projection
+https://github.com/ailopez-o/42Barcelona-FdF
+2. A simple project that works on MacOS (was a great starting point for me, helping to implement mouse rotations)
+https://github.com/VBrazhnik/FdF
+3. This article mentions using an XPM image for the control panel
+https://medium.com/@amehri_tarik/fdf-42-a-detailed-walkthrough-7184cca317fc
 
 ## Questions? ❓
-Feel free to contact me:
-Slack: @dmlasko
-E-mail: dmitrijs.lasko@gmail.com
-Telegram: @lalamoose
+Feel free to contact me:  
+Slack: @dmlasko  
+E-mail: dmitrijs.lasko@gmail.com  
+Telegram: @lalamoose  

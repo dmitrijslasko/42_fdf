@@ -71,7 +71,7 @@ However, it perfectly shows why we should use the image pre-render for the main 
 It's best to reimplement this functionality with using an XPM image
 
 ## Reading list
-**1. Getting started with the minilibx**
+1. Getting started with the minilibx
 https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx
 
 ## Inspirations

@@ -22,8 +22,8 @@ Other maps are stored in the ./maps/ folder.
 6) Control panel language switch (English, German)
 7) 2 projections: Isometric / parallel
 8) Rotation angle information panel
-9) Show / hide nodes (not showed in the GIF above)
-10) Special visual admin mode
+9) Special visual admin mode
+10) Show / hide nodes (not shown in the GIF above)
 
 ## Controls
 * Zoom: Scroll or [+] / [-]

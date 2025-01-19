@@ -5,6 +5,8 @@ The goal of the project is to transform 2D maps, passed as an array, into 3D map
 ## Score:
 ✅ 125/125 (with bonus)
 
+![42.fdf map](/_img_/fdf-header-image-min.png)
+
 ## Installation and launch 🚀
 1. Clone the repo: 
 ```bash

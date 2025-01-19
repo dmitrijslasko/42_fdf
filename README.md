@@ -27,7 +27,7 @@ Other maps are stored in the ./maps/ folder.
 ## Implemented functionality 🤖
 ![fdf-demo](https://github.com/dmitrijslasko/42-assets/blob/d9ae0a69c1fc9aea10fa920e7ee1ba405123e805/fdf/dmlasko-fdf-demo-v2.gif?raw=true)
 1. Welcome screen (not allowed by the project's subject, but using it via a workaround in the Makefile)
-1. Mouse & keyboard rotation and zoom
+1. Mouse / keyboard rotation and zoom
 1. Map height & color information parser
 1. Height scaling
 1. Relative height color output (with easily customizable color schemes)
@@ -40,9 +40,9 @@ Other maps are stored in the ./maps/ folder.
 
 ## Controls 🕹️
 * Zoom: Scroll or [+] / [-]
-* Move: Drag around or Arrows
+* Move: Hold left mouse button or Arrows
 * Flatten / raise height: [\[] / [\]]
-* Rotate: Press RMB & Move
+* Rotate: Hold right mouse button & Move
 * X-Axis - [Q] / [W]
 * Y-Axis - [A] / [S]
 * Z-Axis - [Z] / [W]

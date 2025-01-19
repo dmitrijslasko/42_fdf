@@ -28,7 +28,7 @@ cd fdf42
 ```bash
 make
 ```
-**4. Launch the program: **
+**4. Launch the program:**
 ```bash
 ./fdf ./maps/42
 ```

@@ -41,8 +41,8 @@ Other maps are stored in the ./maps/ folder.
 * Secret admin mode: [/]
 
 ## Known issues
-1) macOS not working out of the box (was written on Linux Ubuntu)
-2) Lack of z-buffer – resulting in line overlay problems
-3) Due to the limitation of the MLX library, the control panel text is output to the window, not the image.
+1. macOS not working out of the box (the project was written on Linux Ubuntu)
+1. Lack of z-buffer – resulting in line overlay problems (best seen on big maps like ./maps/t1.fdf)
+1. Due to the limitation of the MLX library, the control panel text is output to the window, not the image.
 This sometimes results in blinking (because of the constant rerendering).
 However, it perfectly shows why we should use the image pre-render for the main part of the program.

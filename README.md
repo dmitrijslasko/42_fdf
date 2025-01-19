@@ -58,3 +58,9 @@ Other maps are stored in the ./maps/ folder.
 1. Due to the limitation of the MLX library, the control panel text is output to the window, not the image.
 This sometimes results in blinking (because of the constant rerendering).
 However, it perfectly shows why we should use the image pre-render for the main part of the program.
+
+## Questions? ❓
+Feel free to contact me:
+Slack: @dmlasko
+E-mail: dmitrijs.lasko@gmail.com
+Telegram: @lalamoose

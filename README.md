@@ -75,11 +75,11 @@ It's best to reimplement this functionality with using an XPM image
 https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx
 
 ## Inspirations
-**1. Awesome project with implemented spherical projection**  
+1. Awesome project with implemented spherical projection
 https://github.com/ailopez-o/42Barcelona-FdF
-**2. A simple project that works on MacOS (was a great starting point for me, helping to implement mouse rotations)**  
+2. A simple project that works on MacOS (was a great starting point for me, helping to implement mouse rotations)
 https://github.com/VBrazhnik/FdF
-**3. This article mentions using an XPM image for the control panel**  
+3. This article mentions using an XPM image for the control panel
 https://medium.com/@amehri_tarik/fdf-42-a-detailed-walkthrough-7184cca317fc
 
 ## Questions? ❓

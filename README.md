@@ -1,6 +1,14 @@
 # FDF, a wireframe model (School 42 project)
-The first visual graphic project in school 42.
-The goal of the project is to transform 2D maps, passed as an array, into 3D maps.
+The FDF (Fil de Fer) project at 42 is a graphics programming task where you create a program in C to display a 3D wireframe map from a set of 2D coordinates.  
+The input is a file containing a grid of elevation points, and the program visualizes the map using isometric projection.
+
+**Key features of the project include:**
+* Parsing the map file: Read and interpret a grid of elevation values from a text file.
+* Rendering: Convert the 2D grid data into a 3D representation with lines connecting the points to form a mesh.
+* Isometric projection: Display the 3D map in a 2D isometric perspective to provide depth and structure.
+* Controls: Implement interactivity for zooming, rotating, and translating the view, allowing dynamic exploration of the map.
+* Graphics library: Typically, the project uses the MiniLibX library to handle window management and drawing.
+The project emphasizes skills in graphics programming, data manipulation, and mastering low-level rendering concepts.
 
 ## Score:
 ✅ 125/125 (with bonus)
@@ -8,19 +16,19 @@ The goal of the project is to transform 2D maps, passed as an array, into 3D map
 ![42.fdf map](./_img/fdf-header-image-min.png)
 
 ## Installation and launch 🚀
-1. Clone the repo: 
+**1. Clone the repo:**
 ```bash
 git clone https://github.com/dmitrijslasko/fdf42.git
 ```
-2. Go into the folder:
+**2. Go into the folder:**
 ```bash
 cd fdf42
 ```
-3. Build the program:
+**3. Build the program:**
 ```bash
 make
 ```
-4. Launch the program: 
+**4. Launch the program: **
 ```bash
 ./fdf ./maps/42
 ```
@@ -73,7 +81,7 @@ https://github.com/VBrazhnik/FdF
 https://medium.com/@amehri_tarik/fdf-42-a-detailed-walkthrough-7184cca317fc
 
 ## Questions? ❓
-Feel free to contact me:  
-Slack: @dmlasko  
-E-mail: dmitrijs.lasko@gmail.com  
-Telegram: @lalamoose  
+**Feel free to contact me:**
+**Slack:** @dmlasko  
+**E-mail**:** dmitrijs.lasko@gmail.com  
+**Telegram:** @lalamoose  

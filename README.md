@@ -5,28 +5,26 @@ The goal of the project is to transform 2D maps, passed as an array, into 3D map
 ## Score:
 ✅ 125/125 (with bonus)
 
-## About
-
-## Installation and launch
+## Installation and launch 🚀
 1. Clone the repo: 
 ```bash
 git clone https://github.com/dmitrijslasko/fdf42.git
 ```
-1. Go into the folder:
+2. Go into the folder:
 ```bash
 cd fdf42
 ```
-1. Build the program:
+3. Build the program:
 ```bash
 make
 ```
-1. Launch the program: 
+4. Launch the program: 
 ```bash
 ./fdf ./maps/42
 ```
 Other maps are stored in the ./maps/ folder.
 
-## Implemented functionality
+## Implemented functionality 🤖
 ![fdf-demo](https://github.com/dmitrijslasko/42-assets/blob/d9ae0a69c1fc9aea10fa920e7ee1ba405123e805/fdf/dmlasko-fdf-demo-v2.gif?raw=true)
 1. Welcome screen (not allowed by the project's subject, but using it via a workaround in the Makefile)
 1. Mouse & keyboard rotation and zoom
@@ -40,7 +38,7 @@ Other maps are stored in the ./maps/ folder.
 1. Special visual admin mode
 1. Show / hide nodes (not shown in the GIF above)
 
-## Controls
+## Controls 🕹️
 * Zoom: Scroll or [+] / [-]
 * Move: Drag around or Arrows
 * Flatten / raise height: [\[] / [\]]
@@ -54,7 +52,7 @@ Other maps are stored in the ./maps/ folder.
 * Map colors: [1][2][3]
 * Secret admin mode: [/]
 
-## Known issues
+## Known issues 🚨
 1. macOS not working out of the box (the project was written on Linux Ubuntu)
 1. Lack of z-buffer – resulting in line overlay problems (best seen on big maps like ./maps/t1.fdf)
 1. Due to the limitation of the MLX library, the control panel text is output to the window, not the image.

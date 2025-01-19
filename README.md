@@ -14,16 +14,17 @@ Other maps are stored in the ./maps/ folder.
 
 ## Implemented functionality
 ![fdf-demo](https://github.com/dmitrijslasko/42-assets/blob/d9ae0a69c1fc9aea10fa920e7ee1ba405123e805/fdf/dmlasko-fdf-demo-v2.gif?raw=true)
-1) Welcome screen (not allowed by the project's subject, but using it via a workaround in the Makefile)
-2) Mouse & keyboard rotation and zoom
-3) Map height & color information parser
-4) Height scaling
-5) Relative height color output (with easily customizable color schemes)
-6) Control panel language switch (English, German)
-7) 2 projections: Isometric / parallel
-8) Rotation angle information panel
-9) Special visual admin mode
-10) Show / hide nodes (not shown in the GIF above)
+1. Welcome screen (not allowed by the project's subject, but using it via a workaround in the Makefile)
+1. Mouse & keyboard rotation and zoom
+1. Map height & color information parser
+1. Height scaling
+1. Relative height color output (with easily customizable color schemes)
+1. Control panel overlay
+1. Control panel language switch (English, German)
+1. 2 projections: Isometric / parallel
+1. Rotation angle information panel
+1. Special visual admin mode
+1. Show / hide nodes (not shown in the GIF above)
 
 ## Controls
 * Zoom: Scroll or [+] / [-]

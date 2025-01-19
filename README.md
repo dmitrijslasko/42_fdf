@@ -70,11 +70,11 @@ This sometimes results in blinking (because of the constant rerendering).
 However, it perfectly shows why we should use the image pre-render for the main part of the program.  
 It's best to reimplement this functionality with using an XPM image
 
-## Reading list
+## Reading list 📚
 1. Getting started with the minilibx
 https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx
 
-## Inspirations
+## Inspirations 💡
 1. Awesome project with implemented spherical projection
 https://github.com/ailopez-o/42Barcelona-FdF
 2. A simple project that works on MacOS (was a great starting point for me, helping to implement mouse rotations)

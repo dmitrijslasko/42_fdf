@@ -3,13 +3,27 @@ The first visual graphic project in school 42.
 The goal of the project is to transform 2D maps, passed as an array, into 3D maps.
 
 ## Score:
-✅ 125/125
+✅ 125/125 (with bonus)
 
 ## About
 
 ## Installation and launch
-1) Build the program by running 'make' or 'make all'.
-2) Launch the program: ./fdf ./maps/42
+1. Clone the repo: 
+'''bash
+git clone https://github.com/dmitrijslasko/fdf42.git
+'''
+1. Go into the folder:
+'''bash
+cd fdf42
+'''
+1. Build the program:
+'''bash
+make
+'''
+1. Launch the program: 
+'''bash
+./fdf ./maps/42
+'''
 Other maps are stored in the ./maps/ folder.
 
 ## Implemented functionality

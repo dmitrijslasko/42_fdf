@@ -28,9 +28,9 @@ cd fdf42
 ```bash
 make
 ```
-**4. Launch the program:**
+**4. Launch the program with the selected map:**
 ```bash
-./fdf ./maps/42
+./fdf ./maps/42.fdf
 ```
 Other maps are stored in the ./maps/ folder.
 

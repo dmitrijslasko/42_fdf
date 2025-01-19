@@ -82,7 +82,7 @@ https://github.com/VBrazhnik/FdF
 3. This article mentions using an XPM image for the control panel
 https://medium.com/@amehri_tarik/fdf-42-a-detailed-walkthrough-7184cca317fc
 
-## Questions? ❓
+## Questions? 🤔
 **Feel free to contact me:**
 **Slack:** @dmlasko  
 **E-mail**: dmitrijs.lasko@gmail.com  

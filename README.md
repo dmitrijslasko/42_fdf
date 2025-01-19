@@ -9,21 +9,21 @@ The goal of the project is to transform 2D maps, passed as an array, into 3D map
 
 ## Installation and launch
 1. Clone the repo: 
-'''bash
+```bash
 git clone https://github.com/dmitrijslasko/fdf42.git
-'''
+```
 1. Go into the folder:
-'''bash
+```bash
 cd fdf42
-'''
+```
 1. Build the program:
-'''bash
+```bash
 make
-'''
+```
 1. Launch the program: 
-'''bash
+```bash
 ./fdf ./maps/42
-'''
+```
 Other maps are stored in the ./maps/ folder.
 
 ## Implemented functionality

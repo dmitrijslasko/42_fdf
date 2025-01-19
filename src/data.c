@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:35:49 by dmlasko           #+#    #+#             */
-/*   Updated: 2025/01/18 16:51:51 by dmlasko          ###   ########.fr       */
+/*   Updated: 2025/01/19 14:17:34 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ int	render(t_data *dt)
 {
 	if (dt->win_ptr == NULL)
 		return (1);
-	if (dt->view->show_welcome)
 	{
-		show_welcome_img(dt);
-		return (1);
+		if (dt->view->show_welcome)
+		{
+			show_welcome_img(dt);
+			return (1);
+		}
 	}
 	update_iso_coors(dt, dt->map, dt->view);
 	render_background(dt->img, dt->view->bg_clr);

@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 19:36:44 by abrabant          #+#    #+#             */
-/*   Updated: 2025/01/18 16:23:32 by dmlasko          ###   ########.fr       */
+/*   Updated: 2025/01/19 14:23:05 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int argc, char **argv)
 	if (check_arguments(argc, argv) == -1)
 		return (1);
 	init_data(&dt);
+	if (validate_file_content(WELCOME_IMAGE) != 1)
+		dt.view->show_welcome = 0;
 	if (PARSE_MAP)
 		dt.map = parse_map(&dt, argv[1]);
 	else

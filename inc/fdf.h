@@ -6,7 +6,7 @@
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:30:26 by dmlasko           #+#    #+#             */
-/*   Updated: 2025/01/18 16:28:58 by dmlasko          ###   ########.fr       */
+/*   Updated: 2025/01/19 14:15:51 by dmlasko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void			add_zoom_info(t_data *data);
 void			add_coor_info(t_data *data);
 void			add_license_info(t_data *data);
 t_coor			update_origin_coor(t_data *data);
+int				validate_file_content(const char *filename);
 
 // angle operations & conversion
 double			deg_to_radians(double angle);

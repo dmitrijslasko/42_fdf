@@ -28,7 +28,7 @@ Other maps are stored in the ./maps/ folder.
 ## Controls
 * Zoom: Scroll or [+] / [-]
 * Move: Drag around or Arrows
-* Flatten / raise height: [ / ]
+* Flatten / raise height: [\[] / [\]]
 * Rotate: Press RMB & Move
 * X-Axis - [Q] / [W]
 * Y-Axis - [A] / [S]

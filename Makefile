@@ -10,7 +10,8 @@ LIB_FLAGS = -lmlx -lm -lXext -lX11
 
 INC =   -I ./inc \
 		-I $(LIBDIRS)printf/inc	\
-		-I $(LIBDIRS)get_next_line
+		-I $(LIBDIRS)get_next_line \
+		-I $(LIBDIRS)minilibx
 
 SOURCES_DIR = ./src/
 OBJECTS_DIR = ./obj/

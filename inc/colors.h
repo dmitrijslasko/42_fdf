@@ -27,7 +27,7 @@
 # define CYAN		0x00FFFF
 # define MAGENTA	0xFF00FF
 # define ORANGE		0xFFA500
-# define PURPLE		0x800080
+# define PURPLE		0x200020
 # define PINK		0xFFC0CB
 # define BROWN		0xA52A2A
 # define GOLD		0xFFD700
@@ -42,8 +42,12 @@
 # define SCHEME_1_HI	YELLOW
 # define SCHEME_1_BG	NAVY
 
-# define SCHEME_2_LO	RED
-# define SCHEME_2_HI	BLUE
-# define SCHEME_2_BG	DARKGREY
+# define SCHEME_2_LO	LIME
+# define SCHEME_2_HI	MAGENTA
+# define SCHEME_2_BG	PURPLE
+
+# define SCHEME_3_LO	BLUE
+# define SCHEME_3_HI	RED
+# define SCHEME_3_BG	DARKGREY
 
 #endif

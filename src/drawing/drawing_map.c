@@ -26,14 +26,14 @@ static void	connect_all_neighbors(t_data *data, int row, int col)
 	if (row < data->map->height - 1 && DRAW_LINES && DRAW_VERTICAL_LINES)
 		connect_two_nodes(data, coor, neighbor);
 	
-	// if (data->view->show_nodes)
-	// {
-	// 	if (data->view->use_custom_clrs)
-	// 		node_clr = coor->z_clr_custom;
-	// 	else
-	// 		node_clr = coor->z_clr;
-	// 	draw_node(data, coor->x_iso, coor->y_iso, node_clr);
-	// }
+	if (data->view->show_nodes)
+	{
+		if (data->view->use_custom_clrs)
+			node_clr = coor->z_clr_custom;
+		else
+			node_clr = coor->z_clr;
+		draw_node(data, coor->x_iso, coor->y_iso, node_clr);
+	}
 }
 
 int	draw_map(t_data *data)

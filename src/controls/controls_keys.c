@@ -94,7 +94,7 @@ int	handle_keypress(int key, t_data *dt)
 		keypress_show_admin(key, dt);
 	if (key == XK_r)
 		keypress_reset_offs(key, dt);
-	if (key == XK_1 || key == XK_2 || key == XK_3)
+	if (key == XK_1 || key == XK_2 || key == XK_3 || key == XK_4)
 		keypress_switch_clrs(key, dt);
 	return (0);
 }

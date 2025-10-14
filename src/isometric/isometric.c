@@ -48,9 +48,9 @@ void	update_iso_coors(t_data *data, t_map *map, t_view *view)
 
 			get_iso_coor(&x_iso, &y_iso, &z_value, view);
 
-			map->coor[row][col].z_depth = z_value;
 			map->coor[row][col].x_iso = x_iso + (X_CENTER - view->origin_x + view->x_off);
 			map->coor[row][col].y_iso = y_iso + (Y_CENTER - view->origin_y + view->y_off);
+			map->coor[row][col].z_depth = map->coor[row][col].y_iso;
 			++col;
 		}
 		++row;

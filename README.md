@@ -67,7 +67,7 @@ Other maps are stored in the ./maps/ folder.
 * Switch projections: ISO: [I], Parallel: [P]
 * Show / hide nodes: [N]
 * Reset view: [R]
-* Map colors: [1][2][3]
+* Map colors: [1][2][3][4]
 * Secret admin mode: [/]
 
 ---

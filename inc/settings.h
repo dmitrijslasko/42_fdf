@@ -39,8 +39,8 @@
 # define DRAW_HORIZONTAL_LINES			TRUE
 # define DRAW_VERTICAL_LINES			TRUE
 # define DEF_LINE_COLOR     	WHITE
-# define DRAW_NODES      	FALSE
-# define NODE_SIZE			6
+# define DRAW_NODES      	TRUE
+# define NODE_SIZE			10
 
 // default rotation (degrees)
 # define DEF_ISO_ROT_X		0

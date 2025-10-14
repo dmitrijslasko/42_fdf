@@ -30,6 +30,7 @@ void	draw_vert_line(t_data *dt, t_coor pt_1, t_coor pt_2)
 		else
 			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr, pt_2.z_clr);
 		img_pix_put(dt->img, pt_1.x_iso, curr_y, pixel_clr);
+		// img_pix_put_buffer(dt, dt->img, pt_1.x_iso, curr_y, curr.z_depth, curr.z_clr);
 		++curr_y;
 	}
 }

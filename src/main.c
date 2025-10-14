@@ -38,7 +38,9 @@ int	main(int argc, char **argv)
 	setup_img(&dt);
 	setup_hooks(&dt);
 	setup_mouse(dt.mouse);
+
 	mlx_loop_hook(dt.mlx_ptr, render, &dt);
+	
 	mlx_loop(dt.mlx_ptr);
 	return (0);
 }

@@ -52,6 +52,7 @@ int	render(t_data *dt)
 		show_admin(dt);
 
 	draw_map(dt);
+	
 	mlx_put_image_to_window(dt->mlx_ptr, dt->win_ptr, dt->img->mlx_img, 0, 0);
 	update_bounding_box(dt);
 	add_ui(dt);

@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	draw_vert_line(t_data *data, t_coor pt_1, t_coor pt_2)
+void	draw_vert_line(t_data *dt, t_coor pt_1, t_coor pt_2)
 {
 	int		curr_y;
 	int		pixel_clr;
@@ -24,12 +24,12 @@ void	draw_vert_line(t_data *data, t_coor pt_1, t_coor pt_2)
 	while (curr_y < pt_2.y_iso)
 	{
 		dist = ((double)curr_y - pt_1.y_iso) / (pt_2.y_iso - pt_1.y_iso);
-		if (data->view->use_custom_clrs)
+		if (dt->view->use_custom_clrs)
 			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr_custom, \
 							pt_2.z_clr_custom);
 		else
 			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr, pt_2.z_clr);
-		img_pix_put(data->img, pt_1.x_iso, curr_y, pixel_clr);
+		img_pix_put(dt->img, pt_1.x_iso, curr_y, pixel_clr);
 		++curr_y;
 	}
 }
@@ -49,6 +49,7 @@ void	draw_single_clr_line(t_img *img, t_line line)
 	while (curr_y < line.y2)
 	{
 		img_pix_put(img, line.x1, curr_y, line.clr);
+		
 		++curr_y;
 	}
 }

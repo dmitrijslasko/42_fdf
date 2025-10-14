@@ -32,6 +32,10 @@ void	render_background(t_img *img, int clr)
 
 int	render(t_data *dt)
 {
+	for (int y = 0; y < WINDOW_H; y++)
+		for (int x = 0; x < WINDOW_W; x++)
+        	dt->z_buffer[y][x] = 100000000.0f; // “no depth yet”
+
 	if (dt->win_ptr == NULL)
 		return (1);
 	{
@@ -43,13 +47,15 @@ int	render(t_data *dt)
 	}
 	update_iso_coors(dt, dt->map, dt->view);
 	render_background(dt->img, dt->view->bg_clr);
+
 	if (dt->view->show_admin)
 		show_admin(dt);
+
 	draw_map(dt);
 	mlx_put_image_to_window(dt->mlx_ptr, dt->win_ptr, dt->img->mlx_img, 0, 0);
 	update_bounding_box(dt);
 	add_ui(dt);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	setup_mlx_and_win(t_data *dt)

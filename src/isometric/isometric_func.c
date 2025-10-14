@@ -74,6 +74,7 @@ void	project(int *x, int *y, int *z)
 
 	incoming_x = *x;
 	incoming_y = *y;
+	
 	angle_rad = deg_to_radians(DEF_ISO_ANGLE);
 	*x = (incoming_x - incoming_y) * cos(angle_rad);
 	*y = (incoming_x + incoming_y) * sin(angle_rad) - *z;

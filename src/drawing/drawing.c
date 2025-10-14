@@ -31,6 +31,21 @@ void	img_pix_put(t_img *img, int x, int y, int clr)
 	}
 }
 
+void	img_pix_put_buffer(t_data *dt, t_img *img, int x, int y, float z, int clr)
+{
+	if (!pixel_is_in_window(x, y))
+		return;
+
+	if (z > dt->z_buffer[y][x]) // or z > ... depending on your projection
+		return;
+
+	char *pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	*(unsigned int *)pixel = clr;
+
+	dt->z_buffer[y][x] = z;
+}
+
+
 int	pixel_is_in_window(int x, int y)
 {
 	if (x >= 0 && x < WINDOW_W && y >= 0 && y < WINDOW_H)

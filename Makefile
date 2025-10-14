@@ -5,7 +5,8 @@ RESET = \033[0m
 NAME = fdf
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror -g
+# FLAGS = -Wall -Wextra -Werror 
+FLAGS += -g
 LIB_FLAGS = -lmlx -lm -lXext -lX11
 
 INC =   -I ./inc \

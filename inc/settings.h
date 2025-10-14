@@ -36,6 +36,8 @@
 
 // lines and nodes
 # define DRAW_LINES			TRUE
+# define DRAW_HORIZONTAL_LINES			TRUE
+# define DRAW_VERTICAL_LINES			TRUE
 # define DEF_LINE_COLOR     	WHITE
 # define DRAW_NODES      	FALSE
 # define NODE_SIZE			6

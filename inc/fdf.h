@@ -59,11 +59,12 @@ void			setup_hooks(t_data *data);
 unsigned int	pack_rgb(int red, int green, int blue);
 int				get_clr_bween_clrs(double dist, int start_clr, int end_clr);
 int				hex_to_int(const char *hexString);
-int				get_clr_bween_pts(t_data *data, t_coor pt_1, \
+int				get_color_between_nodes(t_data *data, t_coor pt_1, \
 							t_coor pt_2, double dist);
 
 // drawing
 void			img_pix_put(t_img *img, int x, int y, int clr);
+void			img_pix_put_buffer(t_data *dt, t_img *img, int x, int y, float z, int clr);
 int				pixel_is_in_window(int x, int y);
 void			draw_node(t_data *data, int x, int y, int clr);
 int				draw_map(t_data *data);

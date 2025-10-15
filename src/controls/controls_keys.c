@@ -59,7 +59,6 @@ static int	keypress_show_admin(int key, t_data *dt)
 			dt->view->show_nodes = FALSE;
 		else
 			dt->view->show_nodes = TRUE;
-		dt->view->node_size += 1;
 	}
 	if (key == XK_l)
 	{

@@ -5,7 +5,8 @@ RESET = \033[0m
 NAME = fdf
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror -g
+# FLAGS = -Wall -Wextra -Werror 
+FLAGS += -g
 LIB_FLAGS = -lmlx -lm -lXext -lX11
 
 INC =   -I ./inc \
@@ -37,6 +38,7 @@ GNL_DIR = $(LIBDIRS)get_next_line/
 GITHUB_URL = https://raw.githubusercontent.com/dmitrijslasko/42-assets/7f5dcb0542c630bce507ce6b5cc2e258ef11ff31/intro.xpm
 DOWNLOAD_DIR = ./assets/images/
 
+# all: submodule $(PRINTF) $(MINILIBX) $(NAME)
 all: submodule $(PRINTF) $(MINILIBX) $(NAME) $(DOWNLOAD_DIR)intro.xpm
 
 $(DOWNLOAD_DIR)intro.xpm: $(DOWNLOAD_DIR)

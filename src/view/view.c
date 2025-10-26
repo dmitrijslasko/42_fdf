@@ -43,6 +43,7 @@ void	setup_view(t_data *data)
 	m = data->map;
 	v->xy_dist = WINDOW_W / m->width;
 	v->z_dist = (int)v->xy_dist / 5;
+	
 	if (m->has_clr_info)
 		v->use_custom_clrs = 0;
 }

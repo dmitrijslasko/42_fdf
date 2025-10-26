@@ -19,23 +19,30 @@ static void	connect_all_neighbors(t_data *data, int row, int col)
 	int		node_clr;
 
 	coor = &data->map->coor[row][col];
+
+	// horizontal lines
 	neighbor = &data->map->coor[row][col + 1];
-	if (col < data->map->width - 1 && DRAW_LINES)
+	if (col < data->map->width - 1 && DRAW_LINES && DRAW_HORIZONTAL_LINES)
 		connect_two_nodes(data, coor, neighbor);
+	
+	// vertical lines
 	neighbor = &data->map->coor[row + 1][col];
-	if (row < data->map->height - 1 && DRAW_LINES)
+	if (row < data->map->height - 1 && DRAW_LINES && DRAW_VERTICAL_LINES)
 		connect_two_nodes(data, coor, neighbor);
+	
 	if (data->view->show_nodes)
 	{
 		if (data->view->use_custom_clrs)
 			node_clr = coor->z_clr_custom;
 		else
 			node_clr = coor->z_clr;
+		if (row == 0 && col == 2)
+			node_clr = LIME;
 		draw_node(data, coor->x_iso, coor->y_iso, node_clr);
 	}
 }
 
-int	draw_map(t_data *data)
+int	render_map(t_data *data)
 {
 	int		row;
 	int		col;
@@ -47,9 +54,11 @@ int	draw_map(t_data *data)
 		while (col < data->map->width)
 		{
 			connect_all_neighbors(data, row, col);
+			// printf("[%d][%d] Depth: %f\n", row, col, data->map->coor[row][col].z_depth);
 			++col;
 		}
 		++row;
 	}
+	// printf("----------------------------------------\n");
 	return (0);
 }

@@ -37,7 +37,7 @@ void	add_controls_panel_en(t_data *data)
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Parallel: [P]");
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Show / hide nodes: [N]");
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Reset offs: [R]");
-	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Map colors: [1][2][3]");
+	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Map colors: [1][2][3][4]");
 	mlx_string_put(m, w, 15, y += r, CYAN, "Secret admin mode: [/]");
 }
 
@@ -66,7 +66,7 @@ void	add_controls_panel_de(t_data *data)
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Parallel: [P]");
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Knoten: [N]");
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Zurucksetzen: [R]");
-	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Kartenfarben: [1][2][3]");
+	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Kartenfarben: [1][2][3][4]");
 	mlx_string_put(m, w, 15, y += r, CYAN, "Geheimer Admin-Modus: [/]");
 }
 

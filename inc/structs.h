@@ -43,6 +43,7 @@ typedef struct s_coor
 	int		z_clr_custom;
 	int		x_iso;
 	int		y_iso;
+	float		z_depth;
 }	t_coor;
 
 typedef struct s_map
@@ -127,6 +128,10 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	*img;
 	t_map	*map;
+	t_map	*map2;
+	
+	float	**z_buffer;
+
 	t_view	*view;
 	t_mouse	*mouse;
 	void	*welcome_img;

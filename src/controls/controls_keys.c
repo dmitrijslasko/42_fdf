@@ -55,11 +55,8 @@ static int	keypress_show_admin(int key, t_data *dt)
 	}
 	if (key == XK_n)
 	{
-		if (dt->view->show_nodes)
-			dt->view->show_nodes = FALSE;
-		else
-			dt->view->show_nodes = TRUE;
-		dt->view->node_size += 1;
+		dt->view->show_nodes = dt->view->show_nodes == 0;
+		printf("Node mode: %d\n", dt->view->show_nodes);
 	}
 	if (key == XK_l)
 	{
@@ -94,7 +91,7 @@ int	handle_keypress(int key, t_data *dt)
 		keypress_show_admin(key, dt);
 	if (key == XK_r)
 		keypress_reset_offs(key, dt);
-	if (key == XK_1 || key == XK_2 || key == XK_3)
+	if (key == XK_1 || key == XK_2 || key == XK_3 || key == XK_4)
 		keypress_switch_clrs(key, dt);
 	return (0);
 }

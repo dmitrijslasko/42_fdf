@@ -30,7 +30,10 @@ int	keypress_zoom(int key, t_data *dt)
 int	keypress_z_dist(int key, t_data *dt)
 {
 	if (key == XK_bracketright)
+	{
 		dt->view->z_dist += DEF_Z_STEP;
+	}
+
 	if (key == XK_bracketleft)
 		dt->view->z_dist = fmax(0, dt->view->z_dist - DEF_Z_STEP);
 	return (0);

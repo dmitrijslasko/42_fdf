@@ -53,7 +53,7 @@ int	get_clr_bween_clrs(double dist, int start_clr, int end_clr)
 	return (resulting_clr.rgb);
 }
 
-int	get_clr_bween_pts(t_data *dt, t_coor pt_1, t_coor pt_2, double dist)
+int	get_color_between_nodes(t_data *dt, t_coor pt_1, t_coor pt_2, double dist)
 {
 	int		pixel_clr;
 	t_view	*v;

@@ -32,6 +32,7 @@ void	add_controls_panel_en(t_data *data)
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "X-Axis - Q/W");
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Y-Axis - A/S");
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Z-Axis - Z/W");
+	mlx_string_put(m, w, 15, y += r, CYAN, "Enable auto-rotation: [M]");
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Projections");
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "ISO: [I]");
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Parallel: [P]");
@@ -61,6 +62,7 @@ void	add_controls_panel_de(t_data *data)
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "X-Achse - Q/W");
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Y-Achse - A/S");
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Z-Achse - Z/W");
+	mlx_string_put(m, w, 15, y += r, CYAN, "Automatische Drehung: [M]");
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Projektionen");
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "ISO: [I]");
 	mlx_string_put(m, w, 57, y += r, UI_CLR_1, "Parallel: [P]");

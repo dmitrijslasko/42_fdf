@@ -16,8 +16,8 @@ void	get_iso_coor(int *x, int *y, int *z, t_view *view)
 {
 	scale_coor(x, y, z, view);
 
-	// rotate_x(z, y, view->rot_x);
-	// rotate_y(x, z, view->rot_y);
+	rotate_x(z, y, view->rot_x);
+	rotate_y(x, z, view->rot_y);
 	rotate_z(x, y, view->rot_z);
 	
 	if (view->projection == ISO)

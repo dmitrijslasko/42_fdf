@@ -95,6 +95,7 @@ typedef struct s_view
 	double	c_y;
 	double	origin_x;
 	double	origin_y;
+	int		auto_rotate;
 }	t_view;
 
 typedef struct s_rgb
@@ -128,7 +129,7 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	*img;
 	t_map	*map;
-	t_map	*map2;
+	// t_map	*map2;
 	
 	float	**z_buffer;
 

@@ -53,6 +53,11 @@ static int	keypress_show_admin(int key, t_data *dt)
 		else
 			dt->view->show_admin = TRUE;
 	}
+	if (key == XK_m)
+	{
+		printf("Auto rotation: %d\n", dt->view->show_nodes);
+		dt->view->auto_rotate = dt->view->auto_rotate == 0;
+	}
 	if (key == XK_n)
 	{
 		dt->view->show_nodes = dt->view->show_nodes == 0;
@@ -87,7 +92,7 @@ int	handle_keypress(int key, t_data *dt)
 		keypress_rotation(key, dt);
 	if (key == XK_i || key == XK_p)
 		keypress_presetup_views(key, dt);
-	if (key == XK_slash || key == XK_n || key == XK_l)
+	if (key == XK_slash || key == XK_n || key == XK_m || key == XK_l)
 		keypress_show_admin(key, dt);
 	if (key == XK_r)
 		keypress_reset_offs(key, dt);

@@ -61,6 +61,7 @@ Other maps are stored in the ./maps/ folder.
 * Move: Hold left mouse button or Arrows
 * Flatten / raise height: [\[] / [\]]
 * Rotate: Hold right mouse button & Move
+* Enable autorotation: [M]
 * X-Axis - [Q] / [W]
 * Y-Axis - [A] / [S]
 * Z-Axis - [Z] / [W]

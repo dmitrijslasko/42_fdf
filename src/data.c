@@ -32,6 +32,8 @@ void	render_background(t_img *img, int clr)
 
 int	render(t_data *dt)
 {
+	if (dt->view->auto_rotate)
+		dt->view->rot_z += 0.5;
 	for (int y = 0; y < WINDOW_H; y++)
 		for (int x = 0; x < WINDOW_W; x++)
         	dt->z_buffer[y][x] = 100000000.0f; // “no depth yet”

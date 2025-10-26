@@ -23,6 +23,8 @@ void	draw_vert_line(t_data *dt, t_coor pt_1, t_coor pt_2)
 	curr_y = pt_1.y_iso;
 	while (curr_y < pt_2.y_iso)
 	{
+		if (curr_y < 0 - 1000 || curr_y >= WINDOW_H)
+			return ;
 		dist = ((double)curr_y - pt_1.y_iso) / (pt_2.y_iso - pt_1.y_iso);
 		if (dt->view->use_custom_clrs)
 			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr_custom, \

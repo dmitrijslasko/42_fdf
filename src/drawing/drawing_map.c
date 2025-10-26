@@ -32,6 +32,8 @@ static void	connect_all_neighbors(t_data *data, int row, int col)
 	
 	if (data->view->show_nodes)
 	{
+		if (!pixel_is_in_window(coor->x_iso, coor->y_iso))
+			return ;
 		if (data->view->use_custom_clrs)
 			node_clr = coor->z_clr_custom;
 		else

@@ -12,50 +12,50 @@
 
 #include "fdf.h"
 
-static void	connect_all_neighbors(t_data *data, int row, int col)
+static void	connect_all_neighbors(t_data *dt, int row, int col)
 {
 	t_coor	*coor;
 	t_coor	*neighbor;
 	int		node_clr;
 
-	coor = &data->map->coor[row][col];
+	coor = &dt->map->coor[row][col];
 
 	// horizontal lines
-	neighbor = &data->map->coor[row][col + 1];
-	if (col < data->map->width - 1 && DRAW_LINES && DRAW_HORIZONTAL_LINES)
-		connect_two_nodes(data, coor, neighbor);
+	neighbor = &dt->map->coor[row][col + 1];
+	if (col < dt->map->width - 1 && DRAW_LINES && DRAW_HORIZONTAL_LINES)
+		connect_two_nodes(dt, coor, neighbor);
 	
 	// vertical lines
-	neighbor = &data->map->coor[row + 1][col];
-	if (row < data->map->height - 1 && DRAW_LINES && DRAW_VERTICAL_LINES)
-		connect_two_nodes(data, coor, neighbor);
+	neighbor = &dt->map->coor[row + 1][col];
+	if (row < dt->map->height - 1 && DRAW_LINES && DRAW_VERTICAL_LINES)
+		connect_two_nodes(dt, coor, neighbor);
 	
-	if (data->view->show_nodes)
+	if (dt->view->show_nodes)
 	{
 		if (!pixel_is_in_window(coor->x_iso, coor->y_iso))
 			return ;
-		if (data->view->use_custom_clrs)
+		if (dt->view->use_custom_clrs)
 			node_clr = coor->z_clr_custom;
 		else
 			node_clr = coor->z_clr;
-		if (row == 0 && col == 2)
-			node_clr = LIME;
-		draw_node(data, coor->x_iso, coor->y_iso, node_clr);
+		// if (row == 0 && col == 2)
+		// 	node_clr = LIME;
+		draw_node(dt, coor->x_iso, coor->y_iso, node_clr);
 	}
 }
 
-int	render_map(t_data *data)
+int	render_map(t_data *dt)
 {
 	int		row;
 	int		col;
 
 	row = 0;
-	while (row < data->map->height)
+	while (row < dt->map->height)
 	{
 		col = 0;
-		while (col < data->map->width)
+		while (col < dt->map->width)
 		{
-			connect_all_neighbors(data, row, col);
+			connect_all_neighbors(dt, row, col);
 			// printf("[%d][%d] Depth: %f\n", row, col, data->map->coor[row][col].z_depth);
 			++col;
 		}

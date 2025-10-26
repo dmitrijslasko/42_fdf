@@ -40,6 +40,7 @@ void	add_controls_panel_en(t_data *data)
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Reset offs: [R]");
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Map colors: [1][2][3][4]");
 	mlx_string_put(m, w, 15, y += r, CYAN, "Secret admin mode: [/]");
+	// mlx_string_put(m, w, 15, y += r, LIME, "[0][2] Z-depth]: ");
 }
 
 void	add_controls_panel_de(t_data *data)
@@ -102,6 +103,10 @@ void	add_coor_info(t_data *data)
 	mlx = data->mlx_ptr;
 	win = data->win_ptr;
 	view = data->view;
+	// z depth tests
+	// str = ft_itoa(floor(data->map->coor[0][2].z_depth));
+	// mlx_string_put(mlx, win, WINDOW_W - 150, y - 20, UI_CLR_1, "[0][2] Z Depth: ");
+	// mlx_string_put(mlx, win, WINDOW_W - 30, y - 20, UI_CLR_2, str);
 	mlx_string_put(mlx, win, WINDOW_W - 51, y, UI_CLR_1, "X: ");
 	str = ft_itoa(floor(view->rot_x));
 	mlx_string_put(mlx, win, WINDOW_W - 35, y, UI_CLR_2, str);

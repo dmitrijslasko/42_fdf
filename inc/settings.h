@@ -53,6 +53,8 @@
 # define DEF_KEY_OFFSET 		10
 # define DEF_Z_STEP 			0.5
 # define DEF_DRAG_LIM 		400
+# define AUTO_ROTATION_SPEED    0.5f
+# define ENABLE_ROTATION_ZOOM   1
 
 // zoom settings
 # define MAX_ZOOM			5

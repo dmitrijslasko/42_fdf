@@ -46,6 +46,9 @@ void	setup_view(t_data *data)
 	
 	if (m->has_clr_info)
 		v->use_custom_clrs = 0;
+	
+	data->view->auto_rotate = 0;
+	data->view->auto_rotate_zoom_dir = 1;
 }
 
 static void	reset_bounding_box(t_data *data)

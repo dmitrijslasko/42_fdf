@@ -52,7 +52,7 @@ void	draw_sloped_line(t_data *dt, t_coor pt_1, t_coor pt_2)
 
 	while (curr.x_iso < pt_2.x_iso)
 	{
-		if (curr.x_iso <= -100 || curr.x_iso >= WINDOW_W + 100)
+		if (curr.x_iso <= -1000 || curr.x_iso >= WINDOW_W + 100)
 			return ;
 		slope = (double)(pt_2.y_iso - pt_1.y_iso) / (pt_2.x_iso - pt_1.x_iso);
 

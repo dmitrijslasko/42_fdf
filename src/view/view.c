@@ -34,46 +34,50 @@ void	init_view(t_view *v)
 	v->rot_z = DEF_ISO_ROT_Z;
 }
 
-void	setup_view(t_data *data)
+void	setup_view(t_data *dt)
 {
 	t_view	*v;
 	t_map	*m;
 
-	v = data->view;
-	m = data->map;
+	v = dt->view;
+	m = dt->map;
 	v->xy_dist = WINDOW_W / m->width;
 	v->z_dist = (int)v->xy_dist / 5;
 	
 	if (m->has_clr_info)
 		v->use_custom_clrs = 0;
+	
+	dt->view->auto_rotate = 0;
+	dt->view->auto_rotate_zoom_dir = 1;
+	dt->view->show_controls = 1;
 }
 
-static void	reset_bounding_box(t_data *data)
+static void	reset_bounding_box(t_data *dt)
 {
-	data->view->x_max = INT_MIN;
-	data->view->x_min = INT_MAX;
-	data->view->y_max = INT_MIN;
-	data->view->y_min = INT_MAX;
+	dt->view->x_max = INT_MIN;
+	dt->view->x_min = INT_MAX;
+	dt->view->y_max = INT_MIN;
+	dt->view->y_min = INT_MAX;
 }
 
-void	update_bounding_box(t_data *data)
+void	update_bounding_box(t_data *dt)
 {
 	int		row;
 	int		col;
 	t_view	*v;
 
-	v = data->view;
-	reset_bounding_box(data);
+	v = dt->view;
+	reset_bounding_box(dt);
 	row = 0;
-	while (row < data->map->height)
+	while (row < dt->map->height)
 	{
 		col = 0;
-		while (col < data->map->width)
+		while (col < dt->map->width)
 		{
-			data->view->x_max = fmax(v->x_max, data->map->coor[row][col].x_iso);
-			v->x_min = fmin(v->x_min, data->map->coor[row][col].x_iso);
-			v->y_max = fmax(v->y_max, data->map->coor[row][col].y_iso);
-			v->y_min = fmin(v->y_min, data->map->coor[row][col].y_iso);
+			dt->view->x_max = fmax(v->x_max, dt->map->coor[row][col].x_iso);
+			v->x_min = fmin(v->x_min, dt->map->coor[row][col].x_iso);
+			v->y_max = fmax(v->y_max, dt->map->coor[row][col].y_iso);
+			v->y_min = fmin(v->y_min, dt->map->coor[row][col].y_iso);
 			++col;
 		}
 		++row;
@@ -82,15 +86,15 @@ void	update_bounding_box(t_data *data)
 	v->c_y = (v->y_max + v->y_min) / 2;
 }
 
-t_coor	update_origin_coor(t_data *data)
+t_coor	update_origin_coor(t_data *dt)
 {
 	t_map	*map;
 	t_view	*view;
 	t_coor	origin;
 	int		z;
 
-	map = data->map;
-	view = data->view;
+	map = dt->map;
+	view = dt->view;
 	origin.x = ((double)map->width - 1) / 2;
 	origin.y = ((double)map->height - 1) / 2;
 	z = 0;

@@ -32,32 +32,46 @@ void	render_background(t_img *img, int clr)
 
 int	render(t_data *dt)
 {
+	if (dt->win_ptr == NULL)
+		return (1);
+
 	if (dt->view->auto_rotate)
-		dt->view->rot_z += 0.5;
+	{
+		dt->view->rot_z += AUTO_ROTATION_SPEED;
+		if (ENABLE_ROTATION_ZOOM)
+		{
+		if (dt->view->zoom > 0.6 || dt->view->zoom < 0.5)
+			dt->view->auto_rotate_zoom_dir *= -1;
+		dt->view->zoom += dt->view->auto_rotate_zoom_dir * 0.0005;
+		}
+
+	}
+	
+	// z buffer reset
 	for (int y = 0; y < WINDOW_H; y++)
 		for (int x = 0; x < WINDOW_W; x++)
         	dt->z_buffer[y][x] = 100000000.0f; // “no depth yet”
-
-	if (dt->win_ptr == NULL)
-		return (1);
+	
+	// welcome image toggle
+	if (dt->view->show_welcome)
 	{
-		if (dt->view->show_welcome)
-		{
-			show_welcome_img(dt);
-			return (1);
-		}
+		show_welcome_img(dt);
+		return (2);
 	}
+	
 	update_iso_coors(dt, dt->map, dt->view);
+
 	render_background(dt->img, dt->view->bg_clr);
+
+	render_map(dt);
 
 	if (dt->view->show_admin)
 		show_admin(dt);
 
-	render_map(dt);
-
 	mlx_put_image_to_window(dt->mlx_ptr, dt->win_ptr, dt->img->mlx_img, 0, 0);
 	update_bounding_box(dt);
-	add_ui(dt);
+	if (dt->view->show_controls)
+		add_ui(dt);
 	return (EXIT_SUCCESS);
 }
 

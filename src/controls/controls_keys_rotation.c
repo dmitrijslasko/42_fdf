@@ -26,6 +26,5 @@ int	keypress_rotation(int key, t_data *dt)
 		dt->view->rot_z -= DEF_ROTATE_STEP;
 	if (key == XK_x)
 		dt->view->rot_z += DEF_ROTATE_STEP;
-	reset_all_angle_degrees_data(dt);
 	return (0);
 }

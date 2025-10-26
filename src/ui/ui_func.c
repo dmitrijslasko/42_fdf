@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	add_controls_panel_en(t_data *data)
+void	add_controls_panel_en(t_data *dt)
 {
 	int		y;
 	void	*m;
@@ -20,8 +20,8 @@ void	add_controls_panel_en(t_data *data)
 	int		r;
 
 	y = 0;
-	m = data->mlx_ptr;
-	w = data->win_ptr;
+	m = dt->mlx_ptr;
+	w = dt->win_ptr;
 	r = DEF_MENU_ROW_H;
 	mlx_string_put(m, w, 15, y += r, UI_CLR_1, "CONTROLS");
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Zoom: Scroll or [+] / [-]");
@@ -40,9 +40,10 @@ void	add_controls_panel_en(t_data *data)
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Reset offs: [R]");
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Map colors: [1][2][3][4]");
 	mlx_string_put(m, w, 15, y += r, CYAN, "Secret admin mode: [/]");
+	// mlx_string_put(m, w, 15, y += r, LIME, "[0][2] Z-depth]: ");
 }
 
-void	add_controls_panel_de(t_data *data)
+void	add_controls_panel_de(t_data *dt)
 {
 	int		y;
 	void	*m;
@@ -50,8 +51,8 @@ void	add_controls_panel_de(t_data *data)
 	int		r;
 
 	y = 0;
-	m = data->mlx_ptr;
-	w = data->win_ptr;
+	m = dt->mlx_ptr;
+	w = dt->win_ptr;
 	r = DEF_MENU_ROW_H;
 	mlx_string_put(m, w, 15, y += r, UI_CLR_1, "STEUERUNGEN");
 	mlx_string_put(m, w, 15, y += r, UI_CLR_2, "Zoom: Scrollen oder [+] / [-]");
@@ -72,7 +73,7 @@ void	add_controls_panel_de(t_data *data)
 	mlx_string_put(m, w, 15, y += r, CYAN, "Geheimer Admin-Modus: [/]");
 }
 
-void	add_zoom_info(t_data *data)
+void	add_zoom_info(t_data *dt)
 {
 	int		y;
 	void	*mlx;
@@ -81,16 +82,16 @@ void	add_zoom_info(t_data *data)
 	char	*str;
 
 	y = WINDOW_H - 10;
-	mlx = data->mlx_ptr;
-	win = data->win_ptr;
-	view = data->view;
+	mlx = dt->mlx_ptr;
+	win = dt->win_ptr;
+	view = dt->view;
 	mlx_string_put(mlx, win, WINDOW_W - 69, y, UI_CLR_1, "Zoom: ");
 	str = ft_itoa(floor(view->zoom * 10));
 	mlx_string_put(mlx, win, WINDOW_W - 35, y, UI_CLR_2, str);
 	free(str);
 }
 
-void	add_coor_info(t_data *data)
+void	add_coor_info(t_data *dt)
 {
 	int		y;
 	void	*mlx;
@@ -99,9 +100,14 @@ void	add_coor_info(t_data *data)
 	char	*str;
 
 	y = WINDOW_H - 40;
-	mlx = data->mlx_ptr;
-	win = data->win_ptr;
-	view = data->view;
+	mlx = dt->mlx_ptr;
+	win = dt->win_ptr;
+	view = dt->view;
+	// z depth tests
+	// str = ft_itoa(floor(dt->map->coor[0][2].z_depth));
+	// mlx_string_put(mlx, win, WINDOW_W - 150, y - 20, UI_CLR_1, "[0][2] Z Depth: ");
+	// mlx_string_put(mlx, win, WINDOW_W - 30, y - 20, UI_CLR_2, str);
+	reset_all_angle_degrees_data(dt);
 	mlx_string_put(mlx, win, WINDOW_W - 51, y, UI_CLR_1, "X: ");
 	str = ft_itoa(floor(view->rot_x));
 	mlx_string_put(mlx, win, WINDOW_W - 35, y, UI_CLR_2, str);
@@ -114,16 +120,16 @@ void	add_coor_info(t_data *data)
 	str = ft_itoa(floor(view->rot_z));
 	mlx_string_put(mlx, win, WINDOW_W - 35, y, UI_CLR_2, str);
 	free(str);
-	add_zoom_info(data);
+	add_zoom_info(dt);
 }
 
-void	add_license_info(t_data *data)
+void	add_license_info(t_data *dt)
 {
 	void	*mlx;
 	void	*win;
 
-	mlx = data->mlx_ptr;
-	win = data->win_ptr;
+	mlx = dt->mlx_ptr;
+	win = dt->win_ptr;
 	mlx_string_put(mlx, win, WINDOW_W / 2 - 100, WINDOW_H - 10, GREY, \
 			VERSION_INFO);
 }

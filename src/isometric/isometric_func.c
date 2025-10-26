@@ -30,35 +30,39 @@ void	scale_coor(int *x, int *y, int *z, t_view *view)
 // Rotate around X axis
 void	rotate_x(int *y, int *z, double rot_x)
 {
+	int		previous_y;
 	double	angle_rad;
 
 	angle_rad = deg_to_radians(rot_x);
-	*z = -*y * sin(angle_rad) + *z * cos(angle_rad);
-	*y = *y * cos(angle_rad) + *z * sin(angle_rad);
+	previous_y = *y;
+	*y = previous_y * cos(angle_rad) + *z * sin(angle_rad);
+	*z = -previous_y * sin(angle_rad) + *z * cos(angle_rad);
 }
 
 // Rotate around Y axis
 void	rotate_y(int *x, int *z, double rot_y)
 {
+	int		previous_x;
 	double	angle_rad;
 
 	angle_rad = deg_to_radians(rot_y);
-	*z = -*x * sin(angle_rad) + *z * cos(angle_rad);
-	*x = *x * cos(angle_rad) + *z * sin(angle_rad);
+	previous_x = *x;
+	*x = previous_x * cos(angle_rad) + *z * sin(angle_rad);
+	*z = -previous_x * sin(angle_rad) + *z * cos(angle_rad);
 }
 
 // Rotate around Z axis
 void	rotate_z(int *x, int *y, double rot_z)
 {
-	int		incoming_x;
-	int		incoming_y;
+	int		previous_x;
+	int		previous_y;
 	double	angle_rad;
 
 	angle_rad = deg_to_radians(rot_z);
-	incoming_x = *x;
-	incoming_y = *y;
-	*x = incoming_x * cos(angle_rad) - incoming_y * sin(angle_rad);
-	*y = incoming_x * sin(angle_rad) + incoming_y * cos(angle_rad);
+	previous_x = *x;
+	previous_y = *y;
+	*x = previous_x * cos(angle_rad) - previous_y * sin(angle_rad);
+	*y = previous_x * sin(angle_rad) + previous_y * cos(angle_rad);
 }
 
 // Project to ISO projection

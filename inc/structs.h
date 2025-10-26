@@ -96,6 +96,8 @@ typedef struct s_view
 	double	origin_x;
 	double	origin_y;
 	int		auto_rotate;
+	int		auto_rotate_zoom_dir;
+	int		show_controls;
 }	t_view;
 
 typedef struct s_rgb

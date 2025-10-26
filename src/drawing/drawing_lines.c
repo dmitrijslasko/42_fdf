@@ -56,6 +56,7 @@ void	draw_sloped_line(t_data *dt, t_coor pt_1, t_coor pt_2)
 
 		curr.y_iso = pt_1.y_iso + (curr.x_iso - pt_1.x_iso) * slope;
 
+		// printf("Depth: %f\n", pt_1.z_depth);
 		curr.z_depth = pt_1.z_depth + (pt_2.z_depth - pt_1.z_depth)
 			* ((curr.x_iso - pt_1.x_iso) / (pt_2.x_iso - pt_1.x_iso));
 
@@ -65,6 +66,7 @@ void	draw_sloped_line(t_data *dt, t_coor pt_1, t_coor pt_2)
 
 		next.x_iso = curr.x_iso + 1;
 		next.y_iso = pt_1.y_iso + (next.x_iso - pt_1.x_iso) * slope;
+
 		if (slope < 0 && slope > -1)
 			next.y_iso += 1;
 
@@ -74,6 +76,11 @@ void	draw_sloped_line(t_data *dt, t_coor pt_1, t_coor pt_2)
 		dist = ((double)next.x_iso - curr.x_iso) / (pt_2.x_iso - curr.x_iso);
 		next.z_clr = get_color_between_nodes(dt, curr, pt_2, dist);
 		next.z_clr_custom = next.z_clr;
+		// if (next.z_depth > 400)
+		// {
+		// 	curr.z_clr_custom = BLACK;
+		// 	next.z_clr_custom = BLACK;
+		// }
 		// if (slope < 0 && slope > -1)
 		// {
 		// 	curr.z_clr = LIME;

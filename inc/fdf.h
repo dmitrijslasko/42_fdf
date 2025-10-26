@@ -52,7 +52,7 @@ void			update_bounding_box(t_data *data);
 void			rotate_x(int *y, int *z, double rot_x);
 void			rotate_y(int *x, int *z, double rot_y);
 void			rotate_z(int *x, int *y, double rot_z);
-void			project(int *x, int *y, int *z);
+void			apply_isometric_projection(int *x, int *y, int *z);
 void			setup_hooks(t_data *data);
 
 // colors
@@ -67,7 +67,7 @@ void			img_pix_put(t_img *img, int x, int y, int clr);
 void			img_pix_put_buffer(t_data *dt, t_img *img, int x, int y, float z, int clr);
 int				pixel_is_in_window(int x, int y);
 void			draw_node(t_data *data, int x, int y, int clr);
-int				draw_map(t_data *data);
+int				render_map(t_data *data);
 void			get_iso_coor(int *x, int *y, int *z, t_view *view);
 void			update_iso_coors(t_data *data, t_map *map, t_view *view);
 void			update_z_rel(t_data *data);

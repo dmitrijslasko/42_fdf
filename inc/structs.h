@@ -128,6 +128,7 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	*img;
 	t_map	*map;
+	t_map	*map2;
 	
 	float	**z_buffer;
 

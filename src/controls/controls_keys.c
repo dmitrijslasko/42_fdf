@@ -55,10 +55,8 @@ static int	keypress_show_admin(int key, t_data *dt)
 	}
 	if (key == XK_n)
 	{
-		if (dt->view->show_nodes)
-			dt->view->show_nodes = FALSE;
-		else
-			dt->view->show_nodes = TRUE;
+		dt->view->show_nodes = dt->view->show_nodes == 0;
+		printf("Node mode: %d\n", dt->view->show_nodes);
 	}
 	if (key == XK_l)
 	{

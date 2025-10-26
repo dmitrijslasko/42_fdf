@@ -51,10 +51,7 @@ int	render(t_data *dt)
 	if (dt->view->show_admin)
 		show_admin(dt);
 
-	draw_map(dt);
-
-	// printf("Depth: %f\n", dt->z_buffer[WINDOW_H/2-1][WINDOW_W/2-1]);
-	// printf("Depth: %f\n", dt->map->coor[dt->map->height/2-1][dt->map->width/2-1].z_depth);
+	render_map(dt);
 
 	mlx_put_image_to_window(dt->mlx_ptr, dt->win_ptr, dt->img->mlx_img, 0, 0);
 	update_bounding_box(dt);

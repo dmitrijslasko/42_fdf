@@ -38,16 +38,20 @@
 # define MAROON		0x200000
 
 // color schemes
+# define SCHEME_0_LO	GREY
+# define SCHEME_0_HI	WHITE
+# define SCHEME_0_BG	BLACK
+
 # define SCHEME_1_LO	TEAL
-# define SCHEME_1_HI	YELLOW
+# define SCHEME_1_HI	GOLD
 # define SCHEME_1_BG	NAVY
 
 # define SCHEME_2_LO	LIME
 # define SCHEME_2_HI	MAGENTA
 # define SCHEME_2_BG	PURPLE
 
-# define SCHEME_3_LO	BLUE
-# define SCHEME_3_HI	RED
+# define SCHEME_3_LO	DARKGREY
+# define SCHEME_3_HI	ORANGE
 # define SCHEME_3_BG	DARKGREY
 
 #endif

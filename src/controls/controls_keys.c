@@ -55,14 +55,14 @@ static int	keypress_show_admin(int key, t_data *dt)
 	}
 	if (key == XK_m)
 	{
-		printf("Auto rotation: %d\n", dt->view->show_nodes);
-		dt->view->auto_rotate = dt->view->auto_rotate == 0;
+		printf("Auto rotation: %d\n", dt->view->auto_rotate);
+		dt->view->auto_rotate = !dt->view->auto_rotate;
 	}
 	if (key == XK_c)
 		dt->view->show_controls = !dt->view->show_controls;
 	if (key == XK_n)
 	{
-		dt->view->show_nodes = dt->view->show_nodes == 0;
+		dt->view->show_nodes = !dt->view->show_nodes;
 		printf("Node mode: %d\n", dt->view->show_nodes);
 	}
 	if (key == XK_l)
@@ -98,7 +98,7 @@ int	handle_keypress(int key, t_data *dt)
 		keypress_show_admin(key, dt);
 	if (key == XK_r)
 		keypress_reset_offs(key, dt);
-	if (key == XK_1 || key == XK_2 || key == XK_3 || key == XK_4)
+	if (key == XK_1 || key == XK_2 || key == XK_3 || key == XK_4 || key == XK_5)
 		keypress_switch_clrs(key, dt);
 	return (0);
 }

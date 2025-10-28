@@ -19,9 +19,19 @@ void	get_iso_coor(int *x, int *y, int *z, t_view *view)
 	rotate_x(z, y, view->rot_x);
 	rotate_y(x, z, view->rot_y);
 	rotate_z(x, y, view->rot_z);
-	
+
 	if (view->projection == ISO)
 		apply_isometric_projection(x, y, z);
+	
+	int topdown_x = (*x - *y) * 0.7071;
+	int topdown_y = (*x + *y) * 0.7071;
+
+	if (view->projection == TOPDOWN)
+	{
+		*x = topdown_x;
+		*y = topdown_y;
+	}
+	// *z = topdown_y;
 }
 
 // Update ISO coordinates
@@ -50,13 +60,12 @@ void	update_iso_coors(t_data *dt, t_map *map, t_view *view)
 			// calculate isometric coordinates
 			get_iso_coor(&x_iso, &y_iso, &z_value, view);
 			// get_z_depth(&map->coor[row][col].z_depth);
-
 			map->coor[row][col].x_iso = x_iso + (X_CENTER - view->origin_x + view->x_off);
 			map->coor[row][col].y_iso = y_iso + (Y_CENTER - view->origin_y + view->y_off);
-
-			// z-buffer value
-			// map->coor[row][col].z_depth = 0;
-						
+			
+			map->coor[row][col].z_depth = z_value;
+			// if (row == 0 && col == 2)
+			// 	printf("%d\n", map->coor[row][col].z_depth);
 			++col;
 		}
 		++row;

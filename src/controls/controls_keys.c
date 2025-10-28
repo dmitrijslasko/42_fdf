@@ -36,11 +36,11 @@ static int	keypress_welcome_screen(int key, t_data *dt)
 
 static int	keypress_presetup_views(int key, t_data *dt)
 {
-	reset_angle(dt);
+	// reset_angle(dt);
 	if (key == XK_i)
 		dt->view->projection = ISO;
 	if (key == XK_p)
-		dt->view->projection = PARALLEL;
+		dt->view->projection = TOPDOWN;
 	return (0);
 }
 

@@ -29,7 +29,7 @@ typedef enum e_lang
 typedef enum e_projection
 {
 	ISO,
-	PARALLEL
+	TOPDOWN
 }	t_projection;
 
 // structures
@@ -43,7 +43,7 @@ typedef struct s_coor
 	int		z_clr_custom;
 	int		x_iso;
 	int		y_iso;
-	float		z_depth;
+	int		z_depth;
 }	t_coor;
 
 typedef struct s_map

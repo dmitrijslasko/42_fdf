@@ -98,8 +98,10 @@ t_coor	update_origin_coor(t_data *dt)
 	origin.x = ((double)map->width - 1) / 2;
 	origin.y = ((double)map->height - 1) / 2;
 	z = 0;
+	
 	get_iso_coor(&origin.x, &origin.y, &z, view);
 	view->origin_x = origin.x;
 	view->origin_y = origin.y;
+	
 	return (origin);
 }

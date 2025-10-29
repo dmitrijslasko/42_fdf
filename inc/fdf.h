@@ -52,7 +52,7 @@ void			update_bounding_box(t_data *data);
 void			rotate_x(int *y, int *z, double rot_x);
 void			rotate_y(int *x, int *z, double rot_y);
 void			rotate_z(int *x, int *y, double rot_z);
-void			apply_isometric_projection(int *x, int *y, int *z);
+int			apply_isometric_projection(int *x, int *y, int *z, t_view *view);
 void			setup_hooks(t_data *data);
 
 // colors
@@ -64,19 +64,19 @@ int				get_color_between_nodes(t_data *data, t_coor pt_1, \
 
 // drawing
 void			img_pix_put(t_img *img, int x, int y, int clr);
-void			img_pix_put_buffer(t_data *dt, t_img *img, int x, int y, float z, int clr);
+void			img_pix_put_buffer(t_data *dt, t_img *img, int x, int y, int z, int clr);
 int				pixel_is_in_window(int x, int y);
 void			draw_node(t_data *data, int x, int y, int clr);
 int				render_map(t_data *data);
-void			get_iso_coor(int *x, int *y, int *z, t_view *view);
+int				get_iso_coor(int *x, int *y, int *z, t_view *view);
 void			update_iso_coors(t_data *data, t_map *map, t_view *view);
 void			update_z_rel(t_data *data);
 
 // drawing lines
-void			draw_vert_line(t_data *data, t_coor pt_1, t_coor pt_2);
-void			draw_single_clr_line(t_img *img, t_line line);
+void			draw_vertical_line(t_data *data, t_coor pt_1, t_coor pt_2);
+void			draw_single_color_line(t_img *img, t_line line);
 void			draw_sloped_line(t_data *data, t_coor pt_1, t_coor pt_2);
-void			draw_hor_line(t_img *img, t_line line);
+void			draw_horizontal_line(t_img *img, t_line line);
 void			connect_two_nodes(t_data *data, t_coor *coor_1, t_coor *coor_2);
 int				draw_rectangle(t_img *img, t_coor *pt_1, t_coor *pt_2, int clr);
 

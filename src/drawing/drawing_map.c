@@ -56,7 +56,7 @@ int	render_map(t_data *dt)
 		while (col < dt->map->width)
 		{
 			connect_all_neighbors(dt, row, col);
-			// printf("[%d][%d] Depth: %f\n", row, col, data->map->coor[row][col].z_depth);
+			// printf("[%d][%d] Depth: %d\n", row, col, dt->map->coor[row][col].z_depth);
 			++col;
 		}
 		++row;

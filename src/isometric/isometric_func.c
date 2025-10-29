@@ -66,16 +66,41 @@ void	rotate_z(int *x, int *y, double rot_z)
 }
 
 // Project to ISO projection
-void	apply_isometric_projection(int *x, int *y, int *z)
+int	apply_isometric_projection(int *x, int *y, int *z, t_view *view)
 {
-	int		incoming_x;
-	int		incoming_y;
-	double	angle_rad;
+	double  x0 = *x;
+	double  y0 = *y;
+	double  z0 = *z;
+	double  angle_z = deg_to_radians(45.0);
+	double  angle_x = deg_to_radians(35.264);
 
-	incoming_x = *x;
-	incoming_y = *y;
+	double  cos_z = cos(angle_z);
+	double  sin_z = sin(angle_z);
+	double  cos_x = cos(angle_x);
+	double  sin_x = sin(angle_x);
+
+	// Rotate around Z-axis
+	double x1 = x0 * cos_z - y0 * sin_z;
+	double y1 = x0 * sin_z + y0 * cos_z;
+	double z1 = z0;
+
+	*x = (int)x1;
+	*y = (int)y1;
+	*z = (int)z1;  // not needed for drawing, but kept for consistency
 	
-	angle_rad = deg_to_radians(DEF_ISO_ANGLE);
-	*x = (incoming_x - incoming_y) * cos(angle_rad);
-	*y = (incoming_x + incoming_y) * sin(angle_rad) - *z;
+	int ret = *y + (Y_CENTER - view->origin_y + view->y_off);
+
+	if (view->projection == ISO)
+	{
+		// Rotate around X-axis
+		double x2 = x1;
+		double y2 = y1 * cos_x - z1 * sin_x;
+		double z2 = y1 * sin_x + z1 * cos_x;
+
+		*x = (int)x2;
+		*y = (int)y2;
+		*z = (int)z2;  // not needed for drawing, but kept for consistency
+	}
+	
+	return ret;
 }

@@ -50,7 +50,7 @@ int	render(t_data *dt)
 	// z buffer reset
 	for (int y = 0; y < WINDOW_H; y++)
 		for (int x = 0; x < WINDOW_W; x++)
-        	dt->z_buffer[y][x] = 100000000.0f; // “no depth yet”
+        	dt->z_buffer[y][x] = 100000000; // “no depth yet”
 	
 	// welcome image toggle
 	if (dt->view->show_welcome)
@@ -62,6 +62,17 @@ int	render(t_data *dt)
 	update_iso_coors(dt, dt->map, dt->view);
 
 	render_background(dt->img, dt->view->bg_clr);
+
+	t_coor start, end;
+	start.x_iso = dt->view->origin_x;
+	start.y_iso = 0;
+	start.z_clr = CYAN;
+	end.z_clr = CYAN;
+	
+	end.x_iso = dt->view->origin_x;
+	end.y_iso = WINDOW_H;
+
+	draw_sloped_line(dt, start, end);
 
 	render_map(dt);
 

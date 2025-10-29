@@ -133,7 +133,7 @@ typedef struct s_data
 	t_map	*map;
 	// t_map	*map2;
 	
-	float	**z_buffer;
+	int		**z_buffer;
 
 	t_view	*view;
 	t_mouse	*mouse;

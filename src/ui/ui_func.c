@@ -103,10 +103,11 @@ void	add_coor_info(t_data *dt)
 	mlx = dt->mlx_ptr;
 	win = dt->win_ptr;
 	view = dt->view;
-	// z depth tests
-	// str = ft_itoa(floor(dt->map->coor[0][2].z_depth));
-	// mlx_string_put(mlx, win, WINDOW_W - 150, y - 20, UI_CLR_1, "[0][2] Z Depth: ");
-	// mlx_string_put(mlx, win, WINDOW_W - 30, y - 20, UI_CLR_2, str);
+
+	str = ft_itoa(floor(dt->map->coor[10][18].z_depth));
+	mlx_string_put(mlx, win, WINDOW_W - 150, y - 20, UI_CLR_1, "[10][18] Z Depth: ");
+	mlx_string_put(mlx, win, WINDOW_W - 30, y - 20, UI_CLR_2, str);
+	
 	reset_all_angle_degrees_data(dt);
 	mlx_string_put(mlx, win, WINDOW_W - 51, y, UI_CLR_1, "X: ");
 	str = ft_itoa(floor(view->rot_x));

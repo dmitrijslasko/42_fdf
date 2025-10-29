@@ -39,18 +39,34 @@ int	get_clr_bween_clrs(double dist, int start_clr, int end_clr)
 {
 	t_rgb	s_start_clr;
 	t_rgb	resulting_clr;
-	t_rgb	clr_diff;
+	t_rgb	color_difference;
 
 	s_start_clr.r = get_clr_value(start_clr, 16);
 	s_start_clr.g = get_clr_value(start_clr, 8);
 	s_start_clr.b = get_clr_value(start_clr, 0);
-	clr_diff.r = get_clr_dist(start_clr, end_clr, 16);
-	clr_diff.g = get_clr_dist(start_clr, end_clr, 8);
-	clr_diff.b = get_clr_dist(start_clr, end_clr, 0);
-	resulting_clr.rgb = pack_rgb(s_start_clr.r + (dist * clr_diff.r), \
-									s_start_clr.g + (dist * clr_diff.g), \
-									s_start_clr.b + (dist * clr_diff.b));
+
+	color_difference.r = get_clr_dist(start_clr, end_clr, 16);
+	color_difference.g = get_clr_dist(start_clr, end_clr, 8);
+	color_difference.b = get_clr_dist(start_clr, end_clr, 0);
+	
+	resulting_clr.rgb = pack_rgb(s_start_clr.r + (dist * color_difference.r), \
+									s_start_clr.g + (dist * color_difference.g), \
+									s_start_clr.b + (dist * color_difference.b));
 	return (resulting_clr.rgb);
+}
+
+int	get_z_depth_between_nodes(t_data *dt, t_coor pt_1, t_coor pt_2, double dist)
+{
+	int		pixel_clr;
+	t_view	*v;
+
+	v = dt->view;
+	if (v->use_custom_clrs)
+		pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr_custom, \
+							pt_2.z_clr_custom);
+	else
+		pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr, pt_2.z_clr);
+	return (pixel_clr);
 }
 
 int	get_color_between_nodes(t_data *dt, t_coor pt_1, t_coor pt_2, double dist)

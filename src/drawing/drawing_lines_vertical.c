@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	draw_vert_line(t_data *dt, t_coor pt_1, t_coor pt_2)
+void	draw_vertical_line(t_data *dt, t_coor pt_1, t_coor pt_2)
 {
 	int		curr_y;
 	int		pixel_clr;
@@ -20,24 +20,31 @@ void	draw_vert_line(t_data *dt, t_coor pt_1, t_coor pt_2)
 
 	if (pt_1.y_iso > pt_2.y_iso)
 		swap(&pt_1, &pt_2, sizeof(t_coor));
+		
 	curr_y = pt_1.y_iso;
 	while (curr_y < pt_2.y_iso)
 	{
 		if (curr_y < 0 - 1000 || curr_y >= WINDOW_H)
 			return ;
+
 		dist = ((double)curr_y - pt_1.y_iso) / (pt_2.y_iso - pt_1.y_iso);
+
 		if (dt->view->use_custom_clrs)
-			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr_custom, \
-							pt_2.z_clr_custom);
-		else
+			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr_custom, pt_2.z_clr_custom);
+		else 
 			pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr, pt_2.z_clr);
-		img_pix_put(dt->img, pt_1.x_iso, curr_y, pixel_clr);
-		// img_pix_put_buffer(dt, dt->img, pt_1.x_iso, curr_y, curr.z_depth, curr.z_clr);
+		
+		// int z_depth = pt_1.z_depth + (pt_2.z_depth - pt_1.z_depth) * dist;
+		
+		// TODO: HAS TO BE CHANGED HERE
+		// img_pix_put(dt->img, pt_1.x_iso, curr_y, pixel_clr);ssss
+		img_pix_put_buffer(dt, dt->img, pt_1.x_iso, curr_y, pt_2.z_depth, pixel_clr);
+		
 		++curr_y;
 	}
 }
 
-void	draw_single_clr_line(t_img *img, t_line line)
+void	draw_single_color_line(t_img *img, t_line line)
 {
 	int	curr_y;
 	int	temp;
@@ -52,7 +59,6 @@ void	draw_single_clr_line(t_img *img, t_line line)
 	while (curr_y < line.y2)
 	{
 		img_pix_put(img, line.x1, curr_y, line.clr);
-		
 		++curr_y;
 	}
 }

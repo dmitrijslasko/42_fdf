@@ -79,7 +79,7 @@ void	draw_sloped_line(t_data *dt, t_coor pt_1, t_coor pt_2)
 		dist = ((double)next.x_iso - curr.x_iso) / (pt_2.x_iso - curr.x_iso);
 
 		next.z_depth = curr.z_depth - (pt_2.z_depth - curr.z_depth) * dist;
-		printf("DEPTH: %d\n", next.z_depth);
+		// printf("DEPTH: %d\n", next.z_depth);
 		next.z_clr = get_color_between_nodes(dt, curr, pt_2, dist);
 		next.z_clr_custom = next.z_clr;
 

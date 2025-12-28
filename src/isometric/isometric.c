@@ -51,8 +51,8 @@ void	update_iso_coors(t_data *dt, t_map *map, t_view *view)
 
 			// calculate isometric coordinates
 			map->coor[row][col].z_depth = get_iso_coor(&x_iso, &y_iso, &z_value, view);
-			if(row == 10 && col == 18)
-				printf("DEPTH: %d\n", map->coor[row][col].z_depth);
+			// if(row == 10 && col == 18)
+				// printf("DEPTH: %d\n", map->coor[row][col].z_depth);
 
 			map->coor[row][col].x_iso = x_iso + (X_CENTER - view->origin_x + view->x_off);
 			map->coor[row][col].y_iso = y_iso + (Y_CENTER - view->origin_y + view->y_off);

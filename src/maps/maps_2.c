@@ -64,6 +64,7 @@ t_map	*parse_map(t_data *data, char *filepath)
 	}
 	map = create_map(fd, data);
 	fill_in_map(data, filepath);
+	
 	close(fd);
 	ft_printf("Map parsed. Rows: %d, Columns: %d\n", data->map->height, \
 				data->map->width);
@@ -80,16 +81,16 @@ static int	process_row(t_data *data, int row, char **values)
 	i = 0;
 	while (values[i])
 	{
-		data->map->coor[row][col].z = ft_atoi(values[i]);
+		data->map->nodes[row][col].z = ft_atoi(values[i]);
 		if (ft_count_str(values[i], ',') == 2)
 		{
 			coor = ft_split(values[i], ',');
-			data->map->coor[row][col].z_clr = hex_to_int(coor[1]);
+			data->map->nodes[row][col].z_color = hex_to_int(coor[1]);
 			free_values(coor);
-			data->map->has_clr_info = 1;
+			data->map->has_color_info = 1;
 		}
 		else
-			data->map->coor[row][col].z_clr = DEF_LINE_COLOR;
+			data->map->nodes[row][col].z_color = DEF_LINE_COLOR;
 		data->map->z_max = fmax(data->map->z_max, ft_atoi(values[i]));
 		data->map->z_min = fmin(data->map->z_min, ft_atoi(values[i]));
 		++col;
@@ -117,7 +118,7 @@ void	fill_in_map(t_data *data, char *filepath)
 		result = get_next_line(fd);
 		++row;
 	}
-	update_iso_coors(data, data->map, data->view);
+	update_all_iso_coordinates(data, data->map, data->view);
 	update_z_rel(data);
 	close(fd);
 }

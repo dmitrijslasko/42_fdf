@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-static int	get_clr_value(int clr, int bit_shift)
+static int	get_color_value(int clr, int bit_shift)
 {
 	return ((clr >> bit_shift) & 0xFF);
 }
@@ -22,8 +22,8 @@ static int	get_clr_dist(int start_clr, int end_clr, int bit_shift)
 	int	start_clr_value;
 	int	end_clr_value;
 
-	start_clr_value = get_clr_value(start_clr, bit_shift);
-	end_clr_value = get_clr_value(end_clr, bit_shift);
+	start_clr_value = get_color_value(start_clr, bit_shift);
+	end_clr_value = get_color_value(end_clr, bit_shift);
 	return (end_clr_value - start_clr_value);
 }
 
@@ -35,15 +35,15 @@ unsigned int	pack_rgb(int red, int green, int blue)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-int	get_clr_bween_clrs(double dist, int start_clr, int end_clr)
+int	get_color_between_colors(double dist, int start_clr, int end_clr)
 {
 	t_rgb	s_start_clr;
 	t_rgb	resulting_clr;
 	t_rgb	clr_diff;
 
-	s_start_clr.r = get_clr_value(start_clr, 16);
-	s_start_clr.g = get_clr_value(start_clr, 8);
-	s_start_clr.b = get_clr_value(start_clr, 0);
+	s_start_clr.r = get_color_value(start_clr, 16);
+	s_start_clr.g = get_color_value(start_clr, 8);
+	s_start_clr.b = get_color_value(start_clr, 0);
 	clr_diff.r = get_clr_dist(start_clr, end_clr, 16);
 	clr_diff.g = get_clr_dist(start_clr, end_clr, 8);
 	clr_diff.b = get_clr_dist(start_clr, end_clr, 0);
@@ -53,16 +53,16 @@ int	get_clr_bween_clrs(double dist, int start_clr, int end_clr)
 	return (resulting_clr.rgb);
 }
 
-int	get_color_between_nodes(t_data *dt, t_coor pt_1, t_coor pt_2, double dist)
+int	get_color_between_nodes(t_data *dt, t_node pt_1, t_node pt_2, double dist)
 {
 	int		pixel_clr;
 	t_view	*v;
 
 	v = dt->view;
-	if (v->use_custom_clrs)
-		pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr_custom, \
+	if (v->use_custom_colors)
+		pixel_clr = get_color_between_colors(dist, pt_1.z_clr_custom, \
 							pt_2.z_clr_custom);
 	else
-		pixel_clr = get_clr_bween_clrs(dist, pt_1.z_clr, pt_2.z_clr);
+		pixel_clr = get_color_between_colors(dist, pt_1.z_color, pt_2.z_color);
 	return (pixel_clr);
 }

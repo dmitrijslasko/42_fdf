@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arguments.c                                  :+:      :+:    :+:   */
+/*   check_cl_arguments.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmlasko <dmlasko@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-int	check_arguments(int argc, char **argv)
+int	check_cl_arguments(int argc, char **argv)
 {
 	(void)argv;
 	if (argc == 1)

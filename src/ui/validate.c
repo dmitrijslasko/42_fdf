@@ -13,7 +13,7 @@
 #include "fdf.h"
 
 // Function to validate the file content
-int	validate_file_content(const char *filename)
+int	validate_welcome_img(const char *filename)
 {
 	char	buffer[512];
 	int		fd;

@@ -33,7 +33,7 @@ int	mouse_press(int button, int x, int y, t_data *dt)
 {
 	(void)x;
 	(void)y;
-	if (dt->view->show_welcome)
+	if (dt->view->show_welcome_img)
 		return (1);
 	if (button == MOUSE_SCROLL_UP || button == MOUSE_SCROLL_DOWN)
 		mouse_zoom(button, dt);
@@ -50,7 +50,7 @@ int	mouse_release(int button, int x, int y, t_data *dt)
 	(void)x;
 	(void)y;
 	(void)button;
-	if (dt->view->show_welcome)
+	if (dt->view->show_welcome_img)
 		return (1);
 	if (button == MOUSE_LEFT_BUTTON)
 		dt->mouse->lmb_is_pressed = FALSE;
@@ -86,11 +86,11 @@ int	mouse_move(int x, int y, t_data *dt)
 	dt->mouse->previous_y = dt->mouse->y;
 	dt->mouse->x = x;
 	dt->mouse->y = y;
-	if (view->show_welcome)
+	if (view->show_welcome_img)
 		return (1);
 	if (dt->mouse->rmb_is_pressed)
 	{
-		if (y > view->c_y)
+		if (y > view->bounding_box_center_y)
 			view->rot_z += (dt->mouse->previous_x - x) * MOUSE_SENS_ROTATE;
 		else
 			view->rot_z -= (dt->mouse->previous_x - x) * MOUSE_SENS_ROTATE;

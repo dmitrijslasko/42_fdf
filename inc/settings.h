@@ -40,15 +40,15 @@
 # define DRAW_VERTICAL_LINES			TRUE
 # define DEF_LINE_COLOR     	WHITE
 # define DRAW_NODES      	FALSE
-# define NODE_SIZE			10
+# define NODE_SIZE			20
 
 // default rotation (degrees)
 # define DEF_ISO_ROT_X		0
 # define DEF_ISO_ROT_Y		0
-# define DEF_ISO_ROT_Z       180
+# define DEF_ISO_ROT_Z      0
 # define DEF_ISO_ANGLE   	30
 
-# define DEF_PROJECTION  	ISO
+# define DEF_PROJECTION  	ISOMETRIC
 # define DEF_ROTATE_STEP 	1
 # define DEF_KEY_OFFSET 		10
 # define DEF_Z_STEP 			0.5
@@ -79,7 +79,7 @@
 # define CL_MARGIN          20
 
 // map parsing
-# define PARSE_MAP			TRUE
+# define USE_TEST_MAP	    0
 # define TEST_MAP_X			10
 # define TEST_MAP_Y		    10
 # define TEST_MAP_Z         0

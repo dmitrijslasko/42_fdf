@@ -14,9 +14,9 @@
 
 void	add_ui(t_data *data)
 {
-	if (data->view->lang == DE)
+	if (data->view->ui_language == DEUTSCH)
 		add_controls_panel_de(data);
-	else if (data->view->lang == EN)
+	else if (data->view->ui_language == ENGLISH)
 		add_controls_panel_en(data);
 	add_coor_info(data);
 	add_license_info(data);

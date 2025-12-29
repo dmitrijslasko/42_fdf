@@ -16,7 +16,7 @@ void	update_z_rel(t_data *data)
 {
 	int		row;
 	int		col;
-	t_coor	*coor;
+	t_node	*coor;
 
 	row = 0;
 	while (row < data->map->height)
@@ -24,7 +24,7 @@ void	update_z_rel(t_data *data)
 		col = 0;
 		while (col < data->map->width)
 		{
-			coor = &data->map->coor[row][col];
+			coor = &data->map->nodes[row][col];
 			if (data->map->z_min == data->map->z_max)
 				coor->z_rel = 0;
 			else
@@ -46,7 +46,7 @@ void	print_map(t_map *map)
 		col = 0;
 		while (col < map->width)
 		{
-			ft_putnbr_fd(map->coor[row][col].z, 1);
+			ft_putnbr_fd(map->nodes[row][col].z, 1);
 			ft_putchar_fd('\t', 1);
 			++col;
 		}

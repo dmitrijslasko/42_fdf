@@ -17,15 +17,13 @@ void	draw_node(t_data *dt, int x, int y, int clr)
 	int	curr_x;
 	int	curr_y;
 
-	img_pix_put(dt->img, x, y, clr);
 	curr_x = x - dt->view->node_size / 2;
 	while (curr_x <= x + dt->view->node_size / 2)
 	{
 		curr_y = y - dt->view->node_size / 2;
 		while (curr_y <= y + dt->view->node_size / 2)
 		{
-			if (pixel_is_in_window(curr_x, curr_y))
-				img_pix_put(dt->img, curr_x, curr_y, clr);
+			img_pix_put(dt->img, curr_x, curr_y, clr);
 			++curr_y;
 		}
 		++curr_x;

@@ -17,7 +17,7 @@ int	update_colors(t_data *data, t_map *map)
 	int		row;
 	int		col;
 	t_view	*v;
-	t_coor	coor;
+	t_node	coor;
 
 	v = data->view;
 	row = 0;
@@ -26,10 +26,10 @@ int	update_colors(t_data *data, t_map *map)
 		col = 0;
 		while (col < map->width)
 		{
-			coor = map->coor[row][col];
-			coor.z_clr_custom = get_clr_bween_clrs(coor.z_rel, v->lo_clr, \
+			coor = map->nodes[row][col];
+			coor.z_clr_custom = get_color_between_colors(coor.z_rel, v->lo_clr, \
 															v->hi_clr);
-			map->coor[row][col] = coor;
+			map->nodes[row][col] = coor;
 			++col;
 		}
 		++row;

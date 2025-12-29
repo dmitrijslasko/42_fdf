@@ -14,33 +14,42 @@
 
 static void	connect_all_neighbors(t_data *dt, int row, int col)
 {
-	t_coor	*coor;
-	t_coor	*neighbor;
+	t_node	*node;
+	t_node	*neighbor;
 	int		node_clr;
 
-	coor = &dt->map->coor[row][col];
+	node = &dt->map->nodes[row][col];
 
 	// horizontal lines
-	neighbor = &dt->map->coor[row][col + 1];
+	
 	if (col < dt->map->width - 1 && DRAW_LINES && DRAW_HORIZONTAL_LINES)
-		connect_two_nodes(dt, coor, neighbor);
+	{
+		neighbor = &dt->map->nodes[row][col + 1];
+		connect_two_nodes(dt, node, neighbor);
+	}
 	
 	// vertical lines
-	neighbor = &dt->map->coor[row + 1][col];
-	if (row < dt->map->height - 1 && DRAW_LINES && DRAW_VERTICAL_LINES)
-		connect_two_nodes(dt, coor, neighbor);
+	if (row < dt->map->height - 1 && DRAW_LINES && DRAW_VERTICAL_LINES) 
+	{
+		neighbor = &dt->map->nodes[row + 1][col];
+		connect_two_nodes(dt, node, neighbor);
+	}
 	
 	if (dt->view->show_nodes)
 	{
-		if (!pixel_is_in_window(coor->x_iso, coor->y_iso))
-			return ;
-		if (dt->view->use_custom_clrs)
-			node_clr = coor->z_clr_custom;
+		// if (!pixel_is_in_window(node->x_iso, node->y_iso))
+		// 	return ;
+		if (dt->view->use_custom_colors)
+			node_clr = node->z_clr_custom;
 		else
-			node_clr = coor->z_clr;
-		// if (row == 0 && col == 2)
-		// 	node_clr = LIME;
-		draw_node(dt, coor->x_iso, coor->y_iso, node_clr);
+			node_clr = node->z_color;
+
+		if (row == 0 && col == 0)
+			node_clr = LIME;
+		if (row == 2 && col == 2)
+			node_clr = ORANGE;
+
+		draw_node(dt, node->x_iso, node->y_iso, node_clr);
 	}
 }
 
@@ -56,11 +65,12 @@ int	render_map(t_data *dt)
 		while (col < dt->map->width)
 		{
 			connect_all_neighbors(dt, row, col);
-			// printf("[%d][%d] Depth: %f\n", row, col, data->map->coor[row][col].z_depth);
+			if ((row == 0 && col == 0) || (row == 2 && col == 2))
+				printf("[%d][%d] Z Depth: %f\n", row, col, dt->map->nodes[row][col].z_depth);
 			++col;
 		}
 		++row;
 	}
-	// printf("----------------------------------------\n");
+	printf("----------------------------------------\n");
 	return (0);
 }

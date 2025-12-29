@@ -20,8 +20,8 @@ static	int	init_row(t_data *dt, int height, int width, int z)
 	current_row = 0;
 	while (current_row < height)
 	{
-		dt->map->coor[current_row] = calloc(width, sizeof(t_coor));
-		if (!dt->map->coor[current_row])
+		dt->map->nodes[current_row] = calloc(width, sizeof(t_node));
+		if (!dt->map->nodes[current_row])
 		{
 			perror("Error allocating memory: map->coor[current_row]");
 			free_map(dt->map, current_row);
@@ -30,9 +30,9 @@ static	int	init_row(t_data *dt, int height, int width, int z)
 		current_col = 0;
 		while (current_col < width)
 		{
-			dt->map->coor[current_row][current_col].z = z;
-			dt->map->coor[current_row][current_col].z_clr = DEF_LINE_COLOR;
-			dt->map->coor[current_row][current_col].z_clr_custom = WHITE;
+			dt->map->nodes[current_row][current_col].z = z;
+			dt->map->nodes[current_row][current_col].z_color = DEF_LINE_COLOR;
+			dt->map->nodes[current_row][current_col].z_clr_custom = WHITE;
 			++current_col;
 		}
 		++current_row;
@@ -48,10 +48,10 @@ t_map	*init_map(t_data *dt, int height, int width, int z)
 	dt->map = map;
 	map->width = width;
 	map->height = height;
-	map->has_clr_info = 0;
-	map->coor = protected_malloc(height * sizeof(t_coor));
+	map->has_color_info = 0;
+	map->nodes = protected_malloc(width * height * sizeof(t_node));
 	init_row(dt, height, width, z);
-	update_iso_coors(dt, dt->map, dt->view);
+	update_all_iso_coordinates(dt, dt->map, dt->view);
 	return (map);
 }
 
@@ -61,15 +61,15 @@ void	free_map(t_map *map, int allocated_rows)
 
 	if (map)
 	{
-		if (map->coor)
+		if (map->nodes)
 		{
 			row = 0;
 			while (row < allocated_rows)
 			{
-				free(map->coor[row]);
+				free(map->nodes[row]);
 				++row;
 			}
-			free(map->coor);
+			free(map->nodes);
 		}
 		free(map);
 	}

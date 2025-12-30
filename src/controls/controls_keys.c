@@ -36,7 +36,7 @@ static int	keypress_welcome_screen(int key, t_data *dt)
 
 static int	keypress_presetup_views(int key, t_data *dt)
 {
-	reset_rotation(dt);
+	// reset_rotation(dt);
 	if (key == XK_i)
 		dt->view->projection_type = ISOMETRIC;
 	if (key == XK_p)

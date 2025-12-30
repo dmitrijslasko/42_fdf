@@ -22,14 +22,14 @@ static void	connect_all_neighbors(t_data *dt, int row, int col)
 
 	// horizontal lines
 	
-	if (col < dt->map->width - 1 && DRAW_LINES && DRAW_HORIZONTAL_LINES)
+	if (col < dt->map->width - 1 && dt->view->show_lines && DRAW_HORIZONTAL_LINES)
 	{
 		neighbor = &dt->map->nodes[row][col + 1];
 		connect_two_nodes(dt, node, neighbor);
 	}
 	
 	// vertical lines
-	if (row < dt->map->height - 1 && DRAW_LINES && DRAW_VERTICAL_LINES) 
+	if (row < dt->map->height - 1 && dt->view->show_lines && DRAW_VERTICAL_LINES) 
 	{
 		neighbor = &dt->map->nodes[row + 1][col];
 		connect_two_nodes(dt, node, neighbor);
@@ -44,12 +44,7 @@ static void	connect_all_neighbors(t_data *dt, int row, int col)
 		else
 			node_clr = node->z_color;
 
-		if (row == 0 && col == 0)
-			node_clr = LIME;
-		if (row == 2 && col == 2)
-			node_clr = ORANGE;
-
-		draw_node(dt, node->x_iso, node->y_iso, node_clr);
+		draw_node(dt, node, node_clr);
 	}
 }
 
@@ -65,12 +60,12 @@ int	render_map(t_data *dt)
 		while (col < dt->map->width)
 		{
 			connect_all_neighbors(dt, row, col);
-			if ((row == 0 && col == 0) || (row == 2 && col == 2))
-				printf("[%d][%d] Z Depth: %f\n", row, col, dt->map->nodes[row][col].z_depth);
+			// if ((row == 0 && col == 0) || (row == 2 && col == 2))
+			// 	printf("[%d][%d] Z Depth: %f\n", row, col, dt->map->nodes[row][col].z_depth);
 			++col;
 		}
 		++row;
 	}
-	printf("----------------------------------------\n");
+	// printf("----------------------------------------\n");
 	return (0);
 }

@@ -12,18 +12,24 @@
 
 #include "fdf.h"
 
-void	draw_node(t_data *dt, int x, int y, int clr)
+void	draw_node(t_data *dt, t_node *node, int clr)
 {
 	int	curr_x;
 	int	curr_y;
 
-	curr_x = x - dt->view->node_size / 2;
-	while (curr_x <= x + dt->view->node_size / 2)
+	curr_x = node->x_iso - dt->view->node_size / 2;
+	while (curr_x <= node->x_iso + dt->view->node_size / 2)
 	{
-		curr_y = y - dt->view->node_size / 2;
-		while (curr_y <= y + dt->view->node_size / 2)
+		curr_y = node->y_iso - dt->view->node_size / 2;
+		while (curr_y <= node->y_iso + dt->view->node_size / 2)
 		{
-			img_pix_put(dt->img, curr_x, curr_y, clr);
+			if (pixel_is_in_window(curr_x, curr_y) == 0)
+				;
+			else if (dt->z_buffer_map[curr_y][curr_x] < node->z_depth)
+			{
+				img_pix_put(dt->img, curr_x, curr_y, clr);
+				dt->z_buffer_map[curr_y][curr_x] = node->z_depth;
+			}
 			++curr_y;
 		}
 		++curr_x;

@@ -16,7 +16,8 @@ void	init_view(t_view *v)
 {
 	v->show_welcome_img = SHOW_WELCOME_IMAGE;
 	v->show_admin = FALSE;
-	v->show_nodes = DRAW_NODES;
+	v->show_lines = SHOW_LINES;
+	v->show_nodes = SHOW_NODES;
 	v->ui_language = ENGLISH;
 	v->node_size = NODE_SIZE;
 	v->use_custom_colors = FALSE;

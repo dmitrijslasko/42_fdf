@@ -36,7 +36,7 @@ static void	draw_crosshair(t_data *dt, int x, int y, int clr)
 	line.x2 = CL_MARGIN + x;
 	draw_horizontal_line(dt->img, line);
 
-	draw_node(dt, x, y, clr);
+	// draw_node(dt, x, y, clr);
 }
 
 static void	draw_bounding_box(t_data *dt)

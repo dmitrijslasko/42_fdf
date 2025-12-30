@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-#define STARTING_DEPTH	99999999.0f
+#define STARTING_DEPTH	-99999999.0f
 
 void	render_background(t_img *img, int clr)
 {

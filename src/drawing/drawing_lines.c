@@ -36,8 +36,8 @@ static void	draw_line(t_data *dt, t_node curr, t_node next)
 	if (abs(curr.y_iso - next.y_iso) >= 1)
 		draw_vertical_line(dt, curr, next);
 	else
-		// img_pix_put(dt->img, curr.x_iso, curr.y_iso, curr.z_clr);
-		img_pix_put_buffer(dt, dt->img, curr.x_iso, curr.y_iso, curr.z_depth, curr.z_color);
+		img_pix_put(dt->img, curr.x_iso, curr.y_iso, curr.z_color);
+		// img_pix_put_buffer(dt, dt->img, curr.x_iso, curr.y_iso, curr.z_depth, curr.z_color);
 }
 
 void	draw_sloped_line(t_data *dt, t_node pt_1, t_node pt_2)
@@ -97,10 +97,6 @@ void	draw_sloped_line(t_data *dt, t_node pt_1, t_node pt_2)
 
 void	connect_two_nodes(t_data *dt, t_node *coor_1, t_node *coor_2)
 {
-	// if (!pixel_is_in_window(coor_1->x_iso, coor_1->y_iso)
-	// 	&& !pixel_is_in_window(coor_2->x_iso, coor_2->y_iso))
-	// 	return ;
-
 	// perfectly vertical line
 	if (coor_1->x_iso == coor_2->x_iso)
 	{

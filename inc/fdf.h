@@ -68,7 +68,7 @@ int				get_color_between_nodes(t_data *dt, t_node pt_1, \
 void			img_pix_put(t_img *img, int x, int y, int clr);
 void			img_pix_put_buffer(t_data *dt, t_img *img, int x, int y, float z, int clr);
 int				pixel_is_in_window(int x, int y);
-void			draw_node(t_data *dt, int x, int y, int clr);
+void			draw_node(t_data *dt, t_node *node, int clr);
 int				render_map(t_data *dt);
 float			get_iso_coor(int *x, int *y, int *z, t_view *view);
 void			update_all_iso_coordinates(t_data *dt, t_map *map, t_view *view);

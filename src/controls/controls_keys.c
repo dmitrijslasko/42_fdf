@@ -74,10 +74,10 @@ static int	keypress_show_admin(int key, t_data *dt)
 	}
 	if (key == XK_l)
 	{
-		if (dt->view->ui_language == ENGLISH)
-			dt->view->ui_language = DEUTSCH;
-		else
-			dt->view->ui_language = ENGLISH;
+		dt->view->ui_language++;
+		dt->view->ui_language %= 2;
+		dt->view->show_lines++;
+		dt->view->show_lines %= 2;
 	}
 	return (0);
 }

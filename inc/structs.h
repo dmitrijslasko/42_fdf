@@ -76,6 +76,8 @@ typedef struct s_view
 	int		show_admin;
 	int		ui_language;
 
+	int		show_lines;
+
 	int		show_nodes;
 	int		node_size;
 

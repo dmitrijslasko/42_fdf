@@ -19,12 +19,18 @@ float get_iso_coor(int *x, int *y, int *z, t_view *view)
     rotate_x(z, y, view->rot_x);
     rotate_y(x, z, view->rot_y);
     rotate_z(x, y, view->rot_z);
+	rotate_z(x, y, 45);
+
+	float depth;
+
+	depth = *y;
 
     if (view->projection_type == ISOMETRIC)
+	{
+		rotate_z(x, y, -45);
         apply_isometric_projection(x, y, z);
-	else 
-		rotate_z(x, y, 45);
-    return (float)(*x + *y); // camera-space depth
+	}
+    return (depth); // camera-space depth
 }
 
 

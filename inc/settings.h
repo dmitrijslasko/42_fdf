@@ -35,11 +35,11 @@
 # define DEF_BG_COLOR		BLACK
 
 // lines and nodes
-# define DRAW_LINES			TRUE
+# define SHOW_LINES			0
 # define DRAW_HORIZONTAL_LINES			TRUE
 # define DRAW_VERTICAL_LINES			TRUE
 # define DEF_LINE_COLOR     	WHITE
-# define DRAW_NODES      	FALSE
+# define SHOW_NODES      	FALSE
 # define NODE_SIZE			20
 
 // default rotation (degrees)

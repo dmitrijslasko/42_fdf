@@ -37,6 +37,8 @@
 # include "get_next_line.h"
 
 // parsing & updating maps
+void print_map_colors(t_data *dt);
+
 int				check_cl_arguments(int argc, char **argv);
 t_map			*parse_map(t_data *dt, char *filepath);
 t_map			*init_map(t_data *dt, int width, int height, int z);

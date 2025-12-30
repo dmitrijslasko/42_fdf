@@ -12,6 +12,14 @@
 
 #include "fdf.h"
 
+void print_map_colors(t_data *dt)
+{
+	for (int row=0; row < dt->map->height; row++)
+	{
+		for (int col=0; col < dt->map->width; col++)
+			printf("COLOR: %d\n", dt->map->nodes[row][col].z_color);
+	}
+}
 int	main(int argc, char **argv)
 {
 	t_data	dt;
@@ -29,6 +37,7 @@ int	main(int argc, char **argv)
 	else
 		dt.map = parse_map(&dt, argv[1]);
 	
+	// print_map_colors(&dt);
 	if (!dt.map) return (EXIT_FAILURE);
 
 	setup_mlx_and_win(&dt);

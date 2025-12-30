@@ -44,6 +44,7 @@ static void	connect_all_neighbors(t_data *dt, int row, int col)
 		else
 			node_clr = node->z_color;
 
+		// printf("%d\n", node_clr);
 		draw_node(dt, node, node_clr);
 	}
 }
@@ -60,8 +61,6 @@ int	render_map(t_data *dt)
 		while (col < dt->map->width)
 		{
 			connect_all_neighbors(dt, row, col);
-			// if ((row == 0 && col == 0) || (row == 2 && col == 2))
-			// 	printf("[%d][%d] Z Depth: %f\n", row, col, dt->map->nodes[row][col].z_depth);
 			++col;
 		}
 		++row;

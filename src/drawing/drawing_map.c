@@ -25,14 +25,16 @@ static void	connect_all_neighbors(t_data *dt, int row, int col)
 	if (col < dt->map->width - 1 && dt->view->show_lines && DRAW_HORIZONTAL_LINES)
 	{
 		neighbor = &dt->map->nodes[row][col + 1];
-		connect_two_nodes(dt, node, neighbor);
+		if (pixel_is_in_window(node->x_iso, node->y_iso) || pixel_is_in_window(neighbor->x_iso, neighbor->y_iso))
+			connect_two_nodes(dt, node, neighbor);
 	}
 	
 	// vertical lines
 	if (row < dt->map->height - 1 && dt->view->show_lines && DRAW_VERTICAL_LINES) 
 	{
 		neighbor = &dt->map->nodes[row + 1][col];
-		connect_two_nodes(dt, node, neighbor);
+		if (pixel_is_in_window(node->x_iso, node->y_iso) || pixel_is_in_window(neighbor->x_iso, neighbor->y_iso))
+			connect_two_nodes(dt, node, neighbor);
 	}
 	
 	if (dt->view->show_nodes)
@@ -45,7 +47,8 @@ static void	connect_all_neighbors(t_data *dt, int row, int col)
 			node_clr = node->z_color;
 
 		// printf("%d\n", node_clr);
-		draw_node(dt, node, node_clr);
+		if (pixel_is_in_window(node->x_iso, node->y_iso))
+			draw_node(dt, node, node_clr);
 	}
 }
 

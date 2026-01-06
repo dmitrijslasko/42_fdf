@@ -36,10 +36,8 @@ void	img_pix_put_buffer(t_data *dt, t_img *img, int x, int y, float z, int clr)
 	if (!pixel_is_in_window(x, y))
 		return;
 
-	if (z > dt->z_buffer_map[y][x]) // or z > ... depending on your projection
+	if (z < dt->z_buffer_map[y][x]) // or z > ... depending on your projection
 		return;
-
-	// return ;
 
 	char *pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)pixel = clr;

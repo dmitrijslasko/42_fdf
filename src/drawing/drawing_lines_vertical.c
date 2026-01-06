@@ -36,7 +36,8 @@ void	draw_vertical_line(t_data *dt, t_node pt_1, t_node pt_2)
 			color2 = pt_2.z_clr_custom;
 		}
 		pixel_clr = get_color_between_colors(distance, color1, color2);
-		img_pix_put(dt->img, pt_1.x_iso, curr_y, pixel_clr);
+		// img_pix_put(dt->img, pt_1.x_iso, curr_y, pixel_clr);
+		img_pix_put_buffer(dt, dt->img, pt_1.x_iso, curr_y, pt_1.z_depth, pixel_clr);
 		++curr_y;
 	}
 }

@@ -20,9 +20,12 @@ int	hex_to_int(const char *hex_string)
 
 	result = 0;
 	hex_string = (hex_string + 2);
-	while (*hex_string != '\0')
+	printf("in: %s\n", hex_string);
+	const char* in = hex_string;
+	int i = 0;
+	while (hex_string[i])
 	{
-		c = *hex_string;
+		c = hex_string[i];
 		value = 0;
 		if (ft_isdigit(c))
 			value = c - '0';
@@ -33,7 +36,9 @@ int	hex_to_int(const char *hex_string)
 		else
 			return (0);
 		result = (result << 4) | value;
-		hex_string++;
+		// hex_string++;
+		i++;
 	}
+	// printf("output for %s: %d\n", in, result);
 	return (result);
 }

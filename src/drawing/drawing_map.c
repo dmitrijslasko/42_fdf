@@ -39,16 +39,13 @@ static void	connect_all_neighbors(t_data *dt, int row, int col)
 	
 	if (dt->view->show_nodes)
 	{
-		// if (!pixel_is_in_window(node->x_iso, node->y_iso))
-		// 	return ;
+		if (!pixel_is_in_window(node->x_iso, node->y_iso))
+			return ;
 		if (dt->view->use_custom_colors)
 			node_clr = node->z_clr_custom;
 		else
 			node_clr = node->z_color;
-
-		// printf("%d\n", node_clr);
-		if (pixel_is_in_window(node->x_iso, node->y_iso))
-			draw_node(dt, node, node_clr);
+		draw_node(dt, node, node_clr);
 	}
 }
 

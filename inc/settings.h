@@ -15,7 +15,7 @@
 
 // window name
 # define WINDOW_NAME         "fdf - dmlasko @ 42Berlin"
-# define VERSION_INFO        "fdf project - 42 Berlin - dmlasko, v1.0"
+# define VERSION_INFO        "fdf project - 42 Berlin - dmlasko, v2.0"
 
 // window size
 # define WINDOW_W 	1200

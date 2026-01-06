@@ -30,6 +30,7 @@ void	init_view(t_view *v)
 	v->x_off = DEF_OFFSET_X;
 	v->y_off = DEF_OFFSET_Y;
 	v->zoom = DEF_STARTING_ZOOM;
+	v->zoom_animation = 0.5f;
 	v->rot_x = DEF_ISO_ROT_X;
 	v->rot_y = DEF_ISO_ROT_Y;
 	v->rot_z = DEF_ISO_ROT_Z;
@@ -52,6 +53,7 @@ void	setup_view(t_data *dt)
 	dt->view->auto_rotate_axis = 1;
 	dt->view->auto_rotate_zoom_dir = 1;
 	dt->view->show_controls = 1;
+	
 }
 
 static void	reset_bounding_box(t_data *dt)

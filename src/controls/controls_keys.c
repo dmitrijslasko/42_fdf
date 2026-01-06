@@ -60,9 +60,9 @@ static int	keypress_show_admin(int key, t_data *dt)
 	}
 	if (key == XK_m && dt->view->auto_rotate)
 	{
-		dt->view->auto_rotate_axis += 1;
-		dt->view->auto_rotate_axis %= 3;
-		dt->view->auto_rotate_axis += 1;
+		// dt->view->auto_rotate_axis += 1;
+		dt->view->auto_rotate_axis = dt->view->auto_rotate_axis %4 + 1;
+		printf("Animation mode: %d\n", dt->view->auto_rotate_axis);
 		// printf("Auto rotation: %d\n", dt->view->auto_rotate_axis);
 	}
 	if (key == XK_c)
@@ -70,7 +70,7 @@ static int	keypress_show_admin(int key, t_data *dt)
 	if (key == XK_n)
 	{
 		dt->view->show_nodes = !dt->view->show_nodes;
-		printf("Node mode: %d\n", dt->view->show_nodes);
+		printf("Node display mode: %d\n", dt->view->show_nodes);
 	}
 	if (key == XK_l)
 	{

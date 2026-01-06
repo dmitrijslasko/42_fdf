@@ -71,6 +71,21 @@ t_map	*parse_map(t_data *dt, char *filepath)
 	return (map);
 }
 
+char	*trim_newline(char *s)
+{
+	int	i;
+
+	// if (!s)
+	// 	return;
+	i = 0;
+	while (s[i])
+		i++;
+	if (i > 0 && (s[i - 1] == '\n' || s[i - 1] == '\r'))
+		s[i - 1] = '\0';
+	return (s);
+}
+
+
 static int	process_row(t_data *dt, int row, char **values)
 {
 	int		col;
@@ -85,13 +100,15 @@ static int	process_row(t_data *dt, int row, char **values)
 		if (ft_count_str(values[i], ',') == 2)
 		{
 			coor = ft_split(values[i], ',');
-			dt->map->nodes[row][col].z_color = hex_to_int(coor[1]);
+			// printf("DEBUG color token: '%s'\n", coor[1]);
+			dt->map->nodes[row][col].z_color = hex_to_int(trim_newline(coor[1]));
 			// printf("COLOR: %s\n", coor[1]);
 			free_values(coor);
 			dt->map->has_color_info = 1;
 		}
 		else
 			dt->map->nodes[row][col].z_color = DEF_LINE_COLOR;
+			
 		dt->map->z_max = fmax(dt->map->z_max, ft_atoi(values[i]));
 		dt->map->z_min = fmin(dt->map->z_min, ft_atoi(values[i]));
 		++col;

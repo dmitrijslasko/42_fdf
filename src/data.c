@@ -57,11 +57,13 @@ int	render_frame(t_data *dt)
 			axis_value = &dt->view->rot_z;
 
 		*axis_value += AUTO_ROTATION_SPEED;
-		if (ENABLE_ROTATION_ZOOM) 
+
+		if (dt->view->auto_rotate_axis == 4) 
 		{
-			if (dt->view->zoom > _max_zoom || dt->view->zoom < _min_zoom)
+			if (dt->view->zoom_animation > _max_zoom || dt->view->zoom_animation < _min_zoom)
 				dt->view->auto_rotate_zoom_dir *= -1;
-			dt->view->zoom += dt->view->auto_rotate_zoom_dir * _zoom_speed;
+			dt->view->zoom_animation += dt->view->auto_rotate_zoom_dir * _zoom_speed;
+			dt->view->zoom = dt->view->zoom_animation;
 		}
 	}
 	

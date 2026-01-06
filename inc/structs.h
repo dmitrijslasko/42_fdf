@@ -92,6 +92,7 @@ typedef struct s_view
 	int		x_off;
 	int		y_off;
 	double	zoom;
+	double	zoom_animation;
 	int		projection_type;
 
 	double	rot_x;

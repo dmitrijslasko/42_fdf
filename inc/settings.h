@@ -57,7 +57,7 @@
 # define ENABLE_ROTATION_ZOOM   1
 
 // zoom settings
-# define MAX_ZOOM			5
+# define MAX_ZOOM			50
 # define MIN_ZOOM			0.5f
 # define KEYBOARD_ZOOM		0.1f
 # define DEF_STARTING_ZOOM   0.5f

@@ -25,8 +25,6 @@ void	draw_vertical_line(t_data *dt, t_node pt_1, t_node pt_2)
 	curr_y = pt_1.y_iso;
 	while (curr_y < pt_2.y_iso)
 	{
-		// if (curr_y < 0 - 1000 || curr_y >= WINDOW_H)
-		// 	return ;
 		distance = ((double)curr_y - pt_1.y_iso) / (pt_2.y_iso - pt_1.y_iso);
 		color1 = pt_1.z_color;
 		color2 = pt_2.z_color;

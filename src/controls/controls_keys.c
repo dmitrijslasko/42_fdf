@@ -17,7 +17,7 @@ static int	keypress_exit(int key, t_data *dt)
 {
 	if (key == ESC_BUTTON)
 	{
-		ft_printf("ESC button pressed, closing the window...\n");
+		ft_printf(">>> ESC button pressed, closing the window...\n");
 		mlx_destroy_window(dt->mlx_ptr, dt->win_ptr);
 		dt->win_ptr = NULL;
 	}

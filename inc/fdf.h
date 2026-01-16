@@ -46,7 +46,7 @@ void			fill_in_map(t_data *dt, char *filepath);
 void			print_map(t_map *map);
 t_map			*create_map(int fd, t_data *dt);
 
-void			update_z_rel(t_data *dt);
+void			update_z_relative(t_data *dt);
 int				update_colors(t_data *dt, t_map *map);
 
 void			update_bounding_box(t_data *dt);

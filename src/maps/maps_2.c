@@ -75,8 +75,8 @@ char	*trim_newline(char *s)
 {
 	int	i;
 
-	// if (!s)
-	// 	return;
+	if (!s)
+		return (NULL);
 	i = 0;
 	while (s[i])
 		i++;
@@ -131,14 +131,12 @@ void	fill_in_map(t_data *dt, char *filepath)
 	{
 		values = ft_split(result, ' ');
 		process_row(dt, row, values);
-		printf("Processed row %d\n", row);
-		// print_map_colors(dt);
 		free_values(values);
 		free(result);
 		result = get_next_line(fd);
 		++row;
 	}
 	update_all_iso_coordinates(dt, dt->map, dt->view);
-	update_z_rel(dt);
+	update_z_relative(dt);
 	close(fd);
 }

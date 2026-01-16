@@ -39,9 +39,6 @@ void render_axes(t_data *dt)
 }
 int	render_frame(t_data *dt)
 {
-	// obsolete check it seems
-	// if (dt->win_ptr == NULL)
-	// 	return (1);
 	const float _max_zoom = 0.6;
 	const float _min_zoom = 0.5;
 	const float _zoom_speed = 0.0005;

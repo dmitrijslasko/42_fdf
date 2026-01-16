@@ -20,7 +20,6 @@ int	hex_to_int(const char *hex_string)
 
 	result = 0;
 	hex_string = (hex_string + 2);
-	printf("in: %s\n", hex_string);
 	const char* in = hex_string;
 	int i = 0;
 	while (hex_string[i])

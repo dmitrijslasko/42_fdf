@@ -56,6 +56,5 @@ int	main(int argc, char **argv)
 
 	mlx_loop_hook(dt.mlx_ptr, render_frame, &dt);
 	mlx_loop(dt.mlx_ptr);
-
 	return (EXIT_SUCCESS);
 }

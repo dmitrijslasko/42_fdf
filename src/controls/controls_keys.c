@@ -82,6 +82,7 @@ static int	keypress_show_admin(int key, t_data *dt)
 	return (0);
 }
 
+// NOTE: maybe has to be redone to only list all buttons in one place
 int	handle_keypress(int key, t_data *dt)
 {
 	if (key == ESC_BUTTON)

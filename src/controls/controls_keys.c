@@ -20,6 +20,7 @@ static int	keypress_exit(int key, t_data *dt)
 		ft_printf(">>> ESC button pressed, closing the window...\n");
 		mlx_destroy_window(dt->mlx_ptr, dt->win_ptr);
 		dt->win_ptr = NULL;
+		close_window();
 	}
 	return (0);
 }
@@ -86,7 +87,9 @@ static int	keypress_show_admin(int key, t_data *dt)
 int	handle_keypress(int key, t_data *dt)
 {
 	if (key == ESC_BUTTON)
+	{
 		keypress_exit(key, dt);
+	}
 	if (key == XK_space)
 		keypress_welcome_screen(key, dt);
 	if (dt->view->show_welcome_img)

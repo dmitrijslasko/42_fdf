@@ -16,6 +16,7 @@ void	setup_hooks(t_data *dt)
 {
 	ft_printf("Setting up hooks...\n");
 	mlx_hook(dt->win_ptr, KeyPress, KeyPressMask, handle_keypress, dt);
+	
 	mlx_hook(dt->win_ptr, 17, 0, close_window, dt);
 	mlx_hook(dt->win_ptr, 4, 1L << 2, mouse_press, dt);
 	mlx_hook(dt->win_ptr, 5, 1L << 3, mouse_release, dt);

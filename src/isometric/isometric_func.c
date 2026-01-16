@@ -45,12 +45,10 @@ void	rotate_y(int *x, int *z, double rot_y)
 	int		previous_x;
 	double	y_angle_rad;
 
-	// printf("Z in: %d\n", *z);
 	y_angle_rad = deg_to_radians(rot_y);
 	previous_x = *x;
 	*x = previous_x * cos(y_angle_rad) + *z * sin(y_angle_rad);
 	*z = -previous_x * sin(y_angle_rad) + *z * cos(y_angle_rad);
-	// printf("Z out: %d\n", *z);
 }
 
 // Rotate around Z axis

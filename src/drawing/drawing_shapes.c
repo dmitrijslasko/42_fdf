@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-int	draw_rectangle(t_img *img, t_coor *pt_1, t_coor *pt_2, int clr)
+int	draw_rectangle(t_img *img, t_node *pt_1, t_node *pt_2, int clr)
 {
 	int	current_x;
 	int	current_y;

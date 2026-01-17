@@ -12,35 +12,51 @@
 
 #include "fdf.h"
 
+void print_map_colors(t_data *dt)
+{
+	for (int row=0; row < dt->map->height; row++)
+	{
+		for (int col=0; col < dt->map->width; col++)
+			printf("COLOR: %d\n", dt->map->nodes[row][col].z_color);
+	}
+}
 int	main(int argc, char **argv)
 {
 	t_data	dt;
 
-	if (check_arguments(argc, argv) == -1)
-		return (1);
+	if (check_cl_arguments(argc, argv) == -1)
+		return (EXIT_FAILURE);
 		
 	init_data(&dt);
-	if (validate_file_content(WELCOME_IMAGE) != 1)
-		dt.view->show_welcome = 0;
-	if (PARSE_MAP)
-		dt.map = parse_map(&dt, argv[1]);
-	else
+
+	if (validate_welcome_img(WELCOME_IMAGE) != 1)
+		dt.view->show_welcome_img = 0;
+		
+	if (USE_TEST_MAP)
 		dt.map = init_map(&dt, TEST_MAP_X, TEST_MAP_Y, TEST_MAP_Z);
-	if (!dt.map)
-		return (1);
+	else
+		dt.map = parse_map(&dt, argv[1]);
+	
+	// print_map_colors(&dt);
+	if (!dt.map) return (EXIT_FAILURE);
+
 	setup_mlx_and_win(&dt);
 
-	dt.z_buffer = protected_malloc(sizeof(float *) * WINDOW_H);
+	if (SHOW_WELCOME_IMAGE)
+	dt.welcome_img = mlx_xpm_file_to_image(dt.mlx_ptr, WELCOME_IMAGE, NULL, NULL);
+
+	// init z buffer for each window pixel
+	dt.z_buffer_map = protected_malloc(sizeof(float *) * WINDOW_H);
 	for (int y = 0; y < WINDOW_H; y++)
-		dt.z_buffer[y] = protected_malloc(sizeof(float) * WINDOW_W);
+		dt.z_buffer_map[y] = protected_malloc(sizeof(float) * WINDOW_W);
 
 	setup_view(&dt);
 	setup_img(&dt);
 	setup_hooks(&dt);
-	setup_mouse(dt.mouse);
 
-	mlx_loop_hook(dt.mlx_ptr, render, &dt);
-	
+	mlx_loop_hook(dt.mlx_ptr, render_frame, &dt);
 	mlx_loop(dt.mlx_ptr);
-	return (0);
+	printf(">>> Exiting program...\n");
+
+	return (EXIT_SUCCESS);
 }

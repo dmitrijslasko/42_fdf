@@ -27,10 +27,10 @@ void	reset_all_angle_degrees_data(t_data *data)
 
 double	deg_to_radians(double angle)
 {
-	return (angle * (M_PI / 180.0));
+	return (angle * (3.14 / 180.0));
 }
 
-void	reset_angle(t_data *data)
+void	reset_rotation(t_data *data)
 {
 	data->view->rot_x = DEF_ISO_ROT_X;
 	data->view->rot_y = DEF_ISO_ROT_Y;

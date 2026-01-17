@@ -15,11 +15,11 @@
 
 // window name
 # define WINDOW_NAME         "fdf - dmlasko @ 42Berlin"
-# define VERSION_INFO        "fdf project - 42 Berlin - dmlasko, v1.0"
+# define VERSION_INFO        "fdf project - 42 Berlin - dmlasko, v2.0"
 
 // window size
-# define WINDOW_W 	1200
-# define WINDOW_H 	900
+# define WINDOW_W 	1000
+# define WINDOW_H 	750
 
 // default scale
 # define X_CENTER 	600
@@ -35,20 +35,20 @@
 # define DEF_BG_COLOR		BLACK
 
 // lines and nodes
-# define DRAW_LINES			TRUE
+# define SHOW_LINES			1
 # define DRAW_HORIZONTAL_LINES			TRUE
 # define DRAW_VERTICAL_LINES			TRUE
 # define DEF_LINE_COLOR     	WHITE
-# define DRAW_NODES      	FALSE
+# define SHOW_NODES      	FALSE
 # define NODE_SIZE			10
 
 // default rotation (degrees)
 # define DEF_ISO_ROT_X		0
 # define DEF_ISO_ROT_Y		0
-# define DEF_ISO_ROT_Z       180
+# define DEF_ISO_ROT_Z      0
 # define DEF_ISO_ANGLE   	30
 
-# define DEF_PROJECTION  	ISO
+# define DEF_PROJECTION  	ISOMETRIC
 # define DEF_ROTATE_STEP 	1
 # define DEF_KEY_OFFSET 		10
 # define DEF_Z_STEP 			0.5
@@ -57,7 +57,7 @@
 # define ENABLE_ROTATION_ZOOM   1
 
 // zoom settings
-# define MAX_ZOOM			5
+# define MAX_ZOOM			50
 # define MIN_ZOOM			0.5f
 # define KEYBOARD_ZOOM		0.1f
 # define DEF_STARTING_ZOOM   0.5f
@@ -79,7 +79,7 @@
 # define CL_MARGIN          20
 
 // map parsing
-# define PARSE_MAP			TRUE
+# define USE_TEST_MAP	    0
 # define TEST_MAP_X			10
 # define TEST_MAP_Y		    10
 # define TEST_MAP_Z         0

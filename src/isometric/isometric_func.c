@@ -31,24 +31,24 @@ void	scale_coor(int *x, int *y, int *z, t_view *view)
 void	rotate_x(int *y, int *z, double rot_x)
 {
 	int		previous_y;
-	double	angle_rad;
+	double	x_angle_rad;
 
-	angle_rad = deg_to_radians(rot_x);
+	x_angle_rad = deg_to_radians(rot_x);
 	previous_y = *y;
-	*y = previous_y * cos(angle_rad) + *z * sin(angle_rad);
-	*z = -previous_y * sin(angle_rad) + *z * cos(angle_rad);
+	*y = (previous_y * cos(x_angle_rad)) + (*z * sin(x_angle_rad));
+	*z = (-previous_y * sin(x_angle_rad)) + (*z * cos(x_angle_rad));
 }
 
 // Rotate around Y axis
 void	rotate_y(int *x, int *z, double rot_y)
 {
 	int		previous_x;
-	double	angle_rad;
+	double	y_angle_rad;
 
-	angle_rad = deg_to_radians(rot_y);
+	y_angle_rad = deg_to_radians(rot_y);
 	previous_x = *x;
-	*x = previous_x * cos(angle_rad) + *z * sin(angle_rad);
-	*z = -previous_x * sin(angle_rad) + *z * cos(angle_rad);
+	*x = previous_x * cos(y_angle_rad) + *z * sin(y_angle_rad);
+	*z = -previous_x * sin(y_angle_rad) + *z * cos(y_angle_rad);
 }
 
 // Rotate around Z axis
@@ -56,16 +56,16 @@ void	rotate_z(int *x, int *y, double rot_z)
 {
 	int		previous_x;
 	int		previous_y;
-	double	angle_rad;
+	double	z_angle_rad;
 
-	angle_rad = deg_to_radians(rot_z);
+	z_angle_rad = deg_to_radians(rot_z);
 	previous_x = *x;
 	previous_y = *y;
-	*x = previous_x * cos(angle_rad) - previous_y * sin(angle_rad);
-	*y = previous_x * sin(angle_rad) + previous_y * cos(angle_rad);
+	*x = previous_x * cos(z_angle_rad) - previous_y * sin(z_angle_rad);
+	*y = previous_x * sin(z_angle_rad) + previous_y * cos(z_angle_rad);
 }
 
-// Project to ISO projection
+// Project to ISOMETRIC projection
 void	apply_isometric_projection(int *x, int *y, int *z)
 {
 	int		incoming_x;

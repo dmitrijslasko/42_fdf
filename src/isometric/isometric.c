@@ -12,51 +12,58 @@
 
 #include "fdf.h"
 
-void	get_iso_coor(int *x, int *y, int *z, t_view *view)
+float get_iso_coor(int *x, int *y, int *z, t_view *view)
 {
-	scale_coor(x, y, z, view);
+    scale_coor(x, y, z, view);
 
-	rotate_x(z, y, view->rot_x);
-	rotate_y(x, z, view->rot_y);
-	rotate_z(x, y, view->rot_z);
-	
-	if (view->projection == ISO)
-		apply_isometric_projection(x, y, z);
+    rotate_x(z, y, view->rot_x);
+    rotate_y(x, z, view->rot_y);
+    rotate_z(x, y, view->rot_z);
+	rotate_z(x, y, 45);
+
+	float depth;
+
+	depth = *y;
+
+    if (view->projection_type == ISOMETRIC)
+	{
+		rotate_z(x, y, -45);
+        apply_isometric_projection(x, y, z);
+	}
+    return (depth); // camera-space depth
 }
 
+
 // Update ISO coordinates
-void	update_iso_coors(t_data *dt, t_map *map, t_view *view)
+void	update_all_iso_coordinates(t_data *dt, t_map *map, t_view *view)
 {
 	int	row;
 	int	col;
 	
-	int	z_value;
+	int z_value = 0;
 	int	x_iso;
 	int	y_iso;
 
 	row = 0;
+	// update_origin_coor(dt);
 	while (row < map->height)
 	{
 		col = 0;
 		while (col < map->width)
 		{
-			update_origin_coor(dt);
-
 			// start with the map values
-			x_iso = col;
-			y_iso = row;
-			z_value = map->coor[row][col].z;
+			x_iso = col - map->width / 2;
+			y_iso = row - map->height / 2;
+			z_value = map->nodes[row][col].z;
 
 			// calculate isometric coordinates
-			get_iso_coor(&x_iso, &y_iso, &z_value, view);
-			// get_z_depth(&map->coor[row][col].z_depth);
+			float z_depth = get_iso_coor(&x_iso, &y_iso, &z_value, view);
 
-			map->coor[row][col].x_iso = x_iso + (X_CENTER - view->origin_x + view->x_off);
-			map->coor[row][col].y_iso = y_iso + (Y_CENTER - view->origin_y + view->y_off);
+			// SCREEN SPACE
+			map->nodes[row][col].x_iso = x_iso + X_CENTER + view->x_off;
+			map->nodes[row][col].y_iso = y_iso + Y_CENTER + view->y_off;
+			map->nodes[row][col].z_depth = z_depth;
 
-			// z-buffer value
-			// map->coor[row][col].z_depth = 0;
-						
 			++col;
 		}
 		++row;

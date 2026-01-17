@@ -30,7 +30,7 @@ void	free_values(char **values)
 	values = NULL;
 }
 
-t_map	*create_map(int fd, t_data *data)
+t_map	*create_map(int fd, t_data *dt)
 {
 	char	*result;
 	int		rows;
@@ -48,10 +48,10 @@ t_map	*create_map(int fd, t_data *data)
 		free(result);
 		++rows;
 	}
-	return (init_map(data, rows, cols, 0));
+	return (init_map(dt, rows, cols, 0));
 }
 
-t_map	*parse_map(t_data *data, char *filepath)
+t_map	*parse_map(t_data *dt, char *filepath)
 {
 	int		fd;
 	t_map	*map;
@@ -62,15 +62,31 @@ t_map	*parse_map(t_data *data, char *filepath)
 		ft_putstr_fd("Can't read file. Check the filename, try again.\n", 1);
 		return (NULL);
 	}
-	map = create_map(fd, data);
-	fill_in_map(data, filepath);
+	map = create_map(fd, dt);
+	fill_in_map(dt, filepath);
+	
 	close(fd);
-	ft_printf("Map parsed. Rows: %d, Columns: %d\n", data->map->height, \
-				data->map->width);
+	ft_printf("Map parsed. Rows: %d, Columns: %d\n", dt->map->height, \
+				dt->map->width);
 	return (map);
 }
 
-static int	process_row(t_data *data, int row, char **values)
+char	*trim_newline(char *s)
+{
+	int	i;
+
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (s[i])
+		i++;
+	if (i > 0 && (s[i - 1] == '\n' || s[i - 1] == '\r'))
+		s[i - 1] = '\0';
+	return (s);
+}
+
+
+static int	process_row(t_data *dt, int row, char **values)
 {
 	int		col;
 	int		i;
@@ -80,25 +96,28 @@ static int	process_row(t_data *data, int row, char **values)
 	i = 0;
 	while (values[i])
 	{
-		data->map->coor[row][col].z = ft_atoi(values[i]);
+		dt->map->nodes[row][col].z = ft_atoi(values[i]);
 		if (ft_count_str(values[i], ',') == 2)
 		{
 			coor = ft_split(values[i], ',');
-			data->map->coor[row][col].z_clr = hex_to_int(coor[1]);
+			// printf("DEBUG color token: '%s'\n", coor[1]);
+			dt->map->nodes[row][col].z_color = hex_to_int(trim_newline(coor[1]));
+			// printf("COLOR: %s\n", coor[1]);
 			free_values(coor);
-			data->map->has_clr_info = 1;
+			dt->map->has_color_info = 1;
 		}
 		else
-			data->map->coor[row][col].z_clr = DEF_LINE_COLOR;
-		data->map->z_max = fmax(data->map->z_max, ft_atoi(values[i]));
-		data->map->z_min = fmin(data->map->z_min, ft_atoi(values[i]));
+			dt->map->nodes[row][col].z_color = DEF_LINE_COLOR;
+			
+		dt->map->z_max = fmax(dt->map->z_max, ft_atoi(values[i]));
+		dt->map->z_min = fmin(dt->map->z_min, ft_atoi(values[i]));
 		++col;
 		++i;
 	}
 	return (0);
 }
 
-void	fill_in_map(t_data *data, char *filepath)
+void	fill_in_map(t_data *dt, char *filepath)
 {
 	int		fd;
 	char	*result;
@@ -111,13 +130,13 @@ void	fill_in_map(t_data *data, char *filepath)
 	while (result)
 	{
 		values = ft_split(result, ' ');
-		process_row(data, row, values);
+		process_row(dt, row, values);
 		free_values(values);
 		free(result);
 		result = get_next_line(fd);
 		++row;
 	}
-	update_iso_coors(data, data->map, data->view);
-	update_z_rel(data);
+	update_all_iso_coordinates(dt, dt->map, dt->view);
+	update_z_relative(dt);
 	close(fd);
 }

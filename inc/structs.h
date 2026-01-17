@@ -22,38 +22,42 @@ typedef enum e_bool
 
 typedef enum e_lang
 {
-	EN,
-	DE
+	ENGLISH,
+	DEUTSCH
 }	t_lang;
 
-typedef enum e_projection
+typedef enum e_projection_type
 {
-	ISO,
+	ISOMETRIC,
 	PARALLEL
-}	t_projection;
+}	t_projection_type;
 
 // structures
-typedef struct s_coor
+typedef struct t_node
 {
+	// from parsing
 	int		x;
 	int		y;
 	int		z;
-	int		z_clr;
+
+	int		z_color;
 	double	z_rel;
 	int		z_clr_custom;
+	
+	// screen space
 	int		x_iso;
 	int		y_iso;
-	float		z_depth;
-}	t_coor;
+	float	z_depth;
+}	t_node;
 
 typedef struct s_map
 {
-	t_coor	**coor;
+	t_node	**nodes;
 	int		width;
 	int		height;
 	double	z_max;
 	int		z_min;
-	int		has_clr_info;
+	int		has_color_info;
 }	t_map;
 
 typedef struct s_mouse
@@ -68,34 +72,44 @@ typedef struct s_mouse
 
 typedef struct s_view
 {
-	int		show_welcome;
+	int		show_welcome_img;
 	int		show_admin;
-	int		lang;
+	int		ui_language;
+
+	int		show_lines;
+
 	int		show_nodes;
 	int		node_size;
-	int		use_custom_clrs;
+
+	int		bg_clr;
 	int		lo_clr;
 	int		hi_clr;
-	int		bg_clr;
+	int		use_custom_colors;
+
 	double	xy_dist;
 	double	z_dist;
 	double	z_limit;
 	int		x_off;
 	int		y_off;
 	double	zoom;
-	int		projection;
+	double	zoom_animation;
+	int		projection_type;
+
 	double	rot_x;
 	double	rot_y;
 	double	rot_z;
-	int		x_min;
-	int		x_max;
-	int		y_min;
-	int		y_max;
-	double	c_x;
-	double	c_y;
-	double	origin_x;
-	double	origin_y;
+
+	int		bounding_box_min_x;
+	int		bounding_box_max_x;
+	int		bounding_box_min_y;
+	int		bounding_box_max_y;
+	double	bounding_box_center_x;
+	double	bounding_box_center_y;
+	double	origin_x_iso;
+	double	origin_y_iso;
+
 	int		auto_rotate;
+	int		auto_rotate_axis;
 	int		auto_rotate_zoom_dir;
 	int		show_controls;
 }	t_view;
@@ -117,14 +131,6 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_node
-{
-	int	x;
-	int	y;
-	int	z;
-	int	clr;
-}	t_node;
-
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -133,7 +139,7 @@ typedef struct s_data
 	t_map	*map;
 	// t_map	*map2;
 	
-	float	**z_buffer;
+	float	**z_buffer_map;
 
 	t_view	*view;
 	t_mouse	*mouse;
@@ -146,7 +152,7 @@ typedef struct s_line
 	int	y2;
 	int	x1;
 	int	x2;
-	int	clr;
+	int	color;
 }	t_line;
 
 #endif

@@ -12,14 +12,17 @@
 
 #include "fdf.h"
 
-void	setup_hooks(t_data *data)
+void	setup_hooks(t_data *dt)
 {
 	ft_printf("Setting up hooks...\n");
-	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, handle_keypress, data);
-	mlx_hook(data->win_ptr, 17, 0, close_window, data);
-	mlx_hook(data->win_ptr, 4, 1L << 2, mouse_press, data);
-	mlx_hook(data->win_ptr, 5, 1L << 3, mouse_release, data);
-	mlx_hook(data->win_ptr, 6, 1L << 6, mouse_move, data);
+	mlx_hook(dt->win_ptr, KeyPress, KeyPressMask, handle_keypress, dt);
+	
+	mlx_hook(dt->win_ptr, 17, 0, close_window, dt);
+	mlx_hook(dt->win_ptr, 4, 1L << 2, mouse_press, dt);
+	mlx_hook(dt->win_ptr, 5, 1L << 3, mouse_release, dt);
+	mlx_hook(dt->win_ptr, 6, 1L << 6, mouse_move, dt);
+	dt->mouse->lmb_is_pressed = FALSE;
+	dt->mouse->rmb_is_pressed = FALSE;
 	ft_printf("Setting up hooks complete!\n");
 }
 
@@ -34,7 +37,6 @@ int	show_welcome_img(t_data *dt)
 void	setup_mouse(t_mouse *mouse)
 {
 	ft_printf("Mouse setup...\n");
-	mouse->lmb_is_pressed = FALSE;
-	mouse->rmb_is_pressed = FALSE;
+
 	ft_printf("Mouse setup complete!\n");
 }

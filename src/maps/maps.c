@@ -12,23 +12,23 @@
 
 #include "fdf.h"
 
-void	update_z_rel(t_data *data)
+void	update_z_relative(t_data *dt)
 {
 	int		row;
 	int		col;
-	t_coor	*coor;
+	t_node	*coor;
 
 	row = 0;
-	while (row < data->map->height)
+	while (row < dt->map->height)
 	{
 		col = 0;
-		while (col < data->map->width)
+		while (col < dt->map->width)
 		{
-			coor = &data->map->coor[row][col];
-			if (data->map->z_min == data->map->z_max)
+			coor = &dt->map->nodes[row][col];
+			if (dt->map->z_min == dt->map->z_max)
 				coor->z_rel = 0;
 			else
-				coor->z_rel = (double)coor->z / data->map->z_max;
+				coor->z_rel = (double)coor->z / dt->map->z_max;
 			++col;
 		}
 		++row;
@@ -46,7 +46,7 @@ void	print_map(t_map *map)
 		col = 0;
 		while (col < map->width)
 		{
-			ft_putnbr_fd(map->coor[row][col].z, 1);
+			ft_putnbr_fd(map->nodes[row][col].z, 1);
 			ft_putchar_fd('\t', 1);
 			++col;
 		}

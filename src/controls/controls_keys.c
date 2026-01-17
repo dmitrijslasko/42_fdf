@@ -17,9 +17,10 @@ static int	keypress_exit(int key, t_data *dt)
 {
 	if (key == ESC_BUTTON)
 	{
-		ft_printf("ESC button pressed, closing the window...\n");
+		ft_printf(">>> ESC button pressed, closing the window...\n");
 		mlx_destroy_window(dt->mlx_ptr, dt->win_ptr);
 		dt->win_ptr = NULL;
+		close_window();
 	}
 	return (0);
 }
@@ -28,19 +29,19 @@ static int	keypress_welcome_screen(int key, t_data *dt)
 {
 	if (key == XK_space)
 	{
-		if (dt->view->show_welcome)
-			dt->view->show_welcome = FALSE;
+		if (dt->view->show_welcome_img)
+			dt->view->show_welcome_img = FALSE;
 	}
 	return (0);
 }
 
 static int	keypress_presetup_views(int key, t_data *dt)
 {
-	reset_angle(dt);
+	// reset_rotation(dt);
 	if (key == XK_i)
-		dt->view->projection = ISO;
+		dt->view->projection_type = ISOMETRIC;
 	if (key == XK_p)
-		dt->view->projection = PARALLEL;
+		dt->view->projection_type = PARALLEL;
 	return (0);
 }
 
@@ -53,35 +54,45 @@ static int	keypress_show_admin(int key, t_data *dt)
 		else
 			dt->view->show_admin = TRUE;
 	}
-	if (key == XK_m)
+	if (key == XK_k)
 	{
-		printf("Auto rotation: %d\n", dt->view->auto_rotate);
-		dt->view->auto_rotate = !dt->view->auto_rotate;
+		dt->view->auto_rotate = dt->view->auto_rotate == 0;
+		printf("Auto rotation ON/OFF: %d\n", dt->view->auto_rotate);
+	}
+	if (key == XK_m && dt->view->auto_rotate)
+	{
+		// dt->view->auto_rotate_axis += 1;
+		dt->view->auto_rotate_axis = dt->view->auto_rotate_axis %4 + 1;
+		printf("Animation mode: %d\n", dt->view->auto_rotate_axis);
+		// printf("Auto rotation: %d\n", dt->view->auto_rotate_axis);
 	}
 	if (key == XK_c)
 		dt->view->show_controls = !dt->view->show_controls;
 	if (key == XK_n)
 	{
 		dt->view->show_nodes = !dt->view->show_nodes;
-		printf("Node mode: %d\n", dt->view->show_nodes);
+		printf("Node display mode: %d\n", dt->view->show_nodes);
 	}
 	if (key == XK_l)
 	{
-		if (dt->view->lang == EN)
-			dt->view->lang = DE;
-		else
-			dt->view->lang = EN;
+		dt->view->ui_language++;
+		dt->view->ui_language %= 2;
+		dt->view->show_lines++;
+		dt->view->show_lines %= 2;
 	}
 	return (0);
 }
 
+// NOTE: maybe has to be redone to only list all buttons in one place
 int	handle_keypress(int key, t_data *dt)
 {
 	if (key == ESC_BUTTON)
+	{
 		keypress_exit(key, dt);
+	}
 	if (key == XK_space)
 		keypress_welcome_screen(key, dt);
-	if (dt->view->show_welcome)
+	if (dt->view->show_welcome_img)
 		return (1);
 	if (key == XK_minus || key == XK_equal)
 		keypress_zoom(key, dt);
@@ -94,7 +105,7 @@ int	handle_keypress(int key, t_data *dt)
 		keypress_rotation(key, dt);
 	if (key == XK_i || key == XK_p)
 		keypress_presetup_views(key, dt);
-	if (key == XK_slash || key == XK_n || key == XK_m || key == XK_l || key == XK_c)
+	if (key == XK_slash || key == XK_n || key == XK_k || key == XK_m || key == XK_l || key == XK_c)
 		keypress_show_admin(key, dt);
 	if (key == XK_r)
 		keypress_reset_offs(key, dt);

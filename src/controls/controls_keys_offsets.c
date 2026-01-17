@@ -31,7 +31,7 @@ int	keypress_reset_offs(int key, t_data *dt)
 	{
 		dt->view->x_off = 0;
 		dt->view->y_off = 0;
-		reset_angle(dt);
+		reset_rotation(dt);
 	}
 	return (0);
 }

@@ -13,7 +13,7 @@
 #include "fdf.h"
 
 // Function to validate the file content
-int	validate_file_content(const char *filename)
+int	validate_welcome_img(const char *filename)
 {
 	char	buffer[512];
 	int		fd;
@@ -22,7 +22,7 @@ int	validate_file_content(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error: Could not open welcome image file\n.");
+		ft_printf("Error: Could not open welcome image file.\n");
 		return (0);
 	}
 	bytes_read = read(fd, buffer, sizeof(buffer) - 1);

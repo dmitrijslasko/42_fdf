@@ -18,8 +18,8 @@
 # define VERSION_INFO        "fdf project - 42 Berlin - dmlasko, v2.0"
 
 // window size
-# define WINDOW_W 	1200
-# define WINDOW_H 	900
+# define WINDOW_W 	1000
+# define WINDOW_H 	750
 
 // default scale
 # define X_CENTER 	600

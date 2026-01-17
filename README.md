@@ -65,7 +65,7 @@ Other maps are stored in the ./maps/ folder.
 * X-Axis - [Q] / [W]
 * Y-Axis - [A] / [S]
 * Z-Axis - [Z] / [W]
-* Switch projections: ISO: [I], Parallel: [P]
+* Switch projections: ISO: [I], Top-view: [P]
 * Show / hide nodes: [N]
 * Reset view: [R]
 * Map colors: [1][2][3][4]

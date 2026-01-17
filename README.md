@@ -61,7 +61,8 @@ Other maps are stored in the ./maps/ folder.
 * Move: Hold left mouse button or Arrows
 * Flatten / raise height: [\[] / [\]]
 * Rotate: Hold right mouse button & Move
-* Enable autorotation: [M]
+* Enable autorotation: [K]
+* Toggle autorotation mode: [M]
 * X-Axis - [Q] / [W]
 * Y-Axis - [A] / [S]
 * Z-Axis - [Z] / [W]
@@ -69,17 +70,17 @@ Other maps are stored in the ./maps/ folder.
 * Show / hide nodes: [N]
 * Reset view: [R]
 * Map colors: [1][2][3][4]
+* Switch language: [L]
 * Secret admin mode: [/]
 
 ---
 
 ## Known issues 🚨
-1. macOS not working out of the box (the project was written on Linux Ubuntu)
-1. Lack of z-buffer – resulting in line overlay problems (best seen on big maps like ./maps/t1.fdf)
+1. macOS not working out of the box (the project was written on Linux Ubuntu 22/24)
 1. Due to the limitation of the MLX library, the control panel text is output to the window, not the image.
 This sometimes results in blinking (because of the constant rerendering).
 However, it perfectly shows why we should use the image pre-render for the main part of the program.  
-It's best to reimplement this functionality with an XPM image
+It's best to reimplement this functionality with an XPM image.
 
 ---
 
@@ -92,9 +93,9 @@ https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx
 ## Inspirations 💡
 1. Awesome project with implemented spherical projection
 https://github.com/ailopez-o/42Barcelona-FdF
-2. A simple project that works on MacOS (was a great starting point for me, helping to implement mouse rotations)
+1. A simple fdf implementation that works on MacOS (was a great starting point for me; helped to implement mouse rotations)
 https://github.com/VBrazhnik/FdF
-3. This article mentions using an XPM image for the control panel
+1. This article mentions using an XPM image for the control panel
 https://medium.com/@amehri_tarik/fdf-42-a-detailed-walkthrough-7184cca317fc
 
 ## Questions? 🤔
